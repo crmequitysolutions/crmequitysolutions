@@ -22,6 +22,7 @@ gem 'jbuilder'
 gem 'sdoc'
 # provide support for user authentication
 gem 'devise'
+gem 'phonelib'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
