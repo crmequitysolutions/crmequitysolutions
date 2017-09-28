@@ -4,4 +4,4 @@ This is the respository for our CompSci 408 project.
 
 rails server -p $PORT -b $IP
 
-Test.
+URL: https://pure-fjord-73255.herokuapp.com/
