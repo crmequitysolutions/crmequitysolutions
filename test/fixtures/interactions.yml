@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  interaction_id: 1
+  contact_id: 1
+  date_time: 2017-09-28 18:42:45
+  type: 
+  result: MyString
+  note: MyText
+  property_id: 1
+
+two:
+  interaction_id: 1
+  contact_id: 1
+  date_time: 2017-09-28 18:42:45
+  type: 
+  result: MyString
+  note: MyText
+  property_id: 1

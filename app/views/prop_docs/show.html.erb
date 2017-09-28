@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Prop doc:</strong>
+  <%= @prop_doc.prop_doc_id %>
+</p>
+
+<p>
+  <strong>Property:</strong>
+  <%= @prop_doc.property_id %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @prop_doc.content %>
+</p>
+
+<p>
+  <strong>Mime type:</strong>
+  <%= @prop_doc.mime_type %>
+</p>
+
+<p>
+  <strong>File name:</strong>
+  <%= @prop_doc.file_name %>
+</p>
+
+<p>
+  <strong>File type:</strong>
+  <%= @prop_doc.file_type %>
+</p>
+
+<p>
+  <strong>Upload date:</strong>
+  <%= @prop_doc.upload_date %>
+</p>
+
+<%= link_to 'Edit', edit_prop_doc_path(@prop_doc) %> |
+<%= link_to 'Back', prop_docs_path %>

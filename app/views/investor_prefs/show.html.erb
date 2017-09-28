@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Investor pref:</strong>
+  <%= @investor_pref.investor_pref_id %>
+</p>
+
+<p>
+  <strong>Contact:</strong>
+  <%= @investor_pref.contact_id %>
+</p>
+
+<p>
+  <strong>Zip code:</strong>
+  <%= @investor_pref.zip_code %>
+</p>
+
+<p>
+  <strong>Community:</strong>
+  <%= @investor_pref.community_id %>
+</p>
+
+<p>
+  <strong>Property type:</strong>
+  <%= @investor_pref.property_type %>
+</p>
+
+<p>
+  <strong>Bd rms:</strong>
+  <%= @investor_pref.bd_rms %>
+</p>
+
+<p>
+  <strong>Ba rms:</strong>
+  <%= @investor_pref.ba_rms %>
+</p>
+
+<p>
+  <strong>Max:</strong>
+  <%= @investor_pref.max %>
+</p>
+
+<p>
+  <strong>Min:</strong>
+  <%= @investor_pref.min %>
+</p>
+
+<p>
+  <strong>Rehab ind:</strong>
+  <%= @investor_pref.rehab_ind %>
+</p>
+
+<p>
+  <strong>Main st ind:</strong>
+  <%= @investor_pref.main_st_ind %>
+</p>
+
+<%= link_to 'Edit', edit_investor_pref_path(@investor_pref) %> |
+<%= link_to 'Back', investor_prefs_path %>

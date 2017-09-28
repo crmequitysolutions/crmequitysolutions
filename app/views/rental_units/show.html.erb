@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Rental unit:</strong>
+  <%= @rental_unit.rental_unit_id %>
+</p>
+
+<p>
+  <strong>Property:</strong>
+  <%= @rental_unit.property_id %>
+</p>
+
+<p>
+  <strong>Bd rms:</strong>
+  <%= @rental_unit.bd_rms %>
+</p>
+
+<p>
+  <strong>Ba rms:</strong>
+  <%= @rental_unit.ba_rms %>
+</p>
+
+<p>
+  <strong>Rent:</strong>
+  <%= @rental_unit.rent %>
+</p>
+
+<p>
+  <strong>Occupied ind:</strong>
+  <%= @rental_unit.occupied_ind %>
+</p>
+
+<p>
+  <strong>Pay heat ind:</strong>
+  <%= @rental_unit.pay_heat_ind %>
+</p>
+
+<p>
+  <strong>Pay wtr ind:</strong>
+  <%= @rental_unit.pay_wtr_ind %>
+</p>
+
+<p>
+  <strong>Pay gas ind:</strong>
+  <%= @rental_unit.pay_gas_ind %>
+</p>
+
+<p>
+  <strong>Pay elec ind:</strong>
+  <%= @rental_unit.pay_elec_ind %>
+</p>
+
+<p>
+  <strong>Tenant:</strong>
+  <%= @rental_unit.tenant %>
+</p>
+
+<%= link_to 'Edit', edit_rental_unit_path(@rental_unit) %> |
+<%= link_to 'Back', rental_units_path %>

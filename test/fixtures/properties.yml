@@ -1,0 +1,97 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  property_id: 1
+  address_id: 1
+  owner: 1
+  property_type: MyString
+  time_on_mrkt: MyString
+  construction: MyString
+  basement_ind: false
+  public_water_ind: false
+  offstreet_parking_ind: false
+  main_st_ind: false
+  garage_ind: false
+  sqft: 1.5
+  yr_built: 1
+  bd_rms: 1
+  ba_rms: 1
+  rooms: 1
+  kitch_reno_date: 2017-09-28 19:03:28
+  bath_reno_date: 2017-09-28 19:03:28
+  roof_type: MyString
+  roof_age: MyString
+  roof_leaks_ind: false
+  plumb_type: MyString
+  plumb_age: MyString
+  plumb_leak_ind: false
+  foundation: MyString
+  heat_type: MyString
+  heat_age: MyString
+  heat_works: false
+  cool_type: MyString
+  cool_age: MyString
+  cool_works: false
+  window_type: MyString
+  window_nbr: 1
+  resn_to_sell: MyString
+  agnt_list_ind: false
+  agnt_exp_date: 2017-09-28 19:03:28
+  quick_close_amt: 1.5
+  amt_owed: 1.5
+  pymnt_crnt: false
+  pymt_amt: 1.5
+  tax_inc_ind: false
+  interest_rate: 1.5
+  pymnt_asum_ind: false
+  sell_by_date: 2017-09-28 19:03:28
+  bck_tx_ind: false
+  bkd_tx_amt: 1.5
+
+two:
+  property_id: 1
+  address_id: 1
+  owner: 1
+  property_type: MyString
+  time_on_mrkt: MyString
+  construction: MyString
+  basement_ind: false
+  public_water_ind: false
+  offstreet_parking_ind: false
+  main_st_ind: false
+  garage_ind: false
+  sqft: 1.5
+  yr_built: 1
+  bd_rms: 1
+  ba_rms: 1
+  rooms: 1
+  kitch_reno_date: 2017-09-28 19:03:28
+  bath_reno_date: 2017-09-28 19:03:28
+  roof_type: MyString
+  roof_age: MyString
+  roof_leaks_ind: false
+  plumb_type: MyString
+  plumb_age: MyString
+  plumb_leak_ind: false
+  foundation: MyString
+  heat_type: MyString
+  heat_age: MyString
+  heat_works: false
+  cool_type: MyString
+  cool_age: MyString
+  cool_works: false
+  window_type: MyString
+  window_nbr: 1
+  resn_to_sell: MyString
+  agnt_list_ind: false
+  agnt_exp_date: 2017-09-28 19:03:28
+  quick_close_amt: 1.5
+  amt_owed: 1.5
+  pymnt_crnt: false
+  pymt_amt: 1.5
+  tax_inc_ind: false
+  interest_rate: 1.5
+  pymnt_asum_ind: false
+  sell_by_date: 2017-09-28 19:03:28
+  bck_tx_ind: false
+  bkd_tx_amt: 1.5

@@ -1,0 +1,2 @@
+module InvestorPrefsHelper
+end

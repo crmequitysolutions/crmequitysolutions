@@ -1,0 +1,52 @@
+<%= form_with(model: prop_doc, local: true) do |form| %>
+  <% if prop_doc.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(prop_doc.errors.count, "error") %> prohibited this prop_doc from being saved:</h2>
+
+      <ul>
+      <% prop_doc.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :prop_doc_id %>
+    <%= form.number_field :prop_doc_id, id: :prop_doc_prop_doc_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :property_id %>
+    <%= form.number_field :property_id, id: :prop_doc_property_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_field :content, id: :prop_doc_content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mime_type %>
+    <%= form.text_field :mime_type, id: :prop_doc_mime_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :file_name %>
+    <%= form.text_field :file_name, id: :prop_doc_file_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :file_type %>
+    <%= form.text_field :file_type, id: :prop_doc_file_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :upload_date %>
+    <%= form.datetime_select :upload_date, id: :prop_doc_upload_date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

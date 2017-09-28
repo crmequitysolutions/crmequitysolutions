@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Prop Docs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop doc</th>
+      <th>Property</th>
+      <th>Content</th>
+      <th>Mime type</th>
+      <th>File name</th>
+      <th>File type</th>
+      <th>Upload date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @prop_docs.each do |prop_doc| %>
+      <tr>
+        <td><%= prop_doc.prop_doc_id %></td>
+        <td><%= prop_doc.property_id %></td>
+        <td><%= prop_doc.content %></td>
+        <td><%= prop_doc.mime_type %></td>
+        <td><%= prop_doc.file_name %></td>
+        <td><%= prop_doc.file_type %></td>
+        <td><%= prop_doc.upload_date %></td>
+        <td><%= link_to 'Show', prop_doc %></td>
+        <td><%= link_to 'Edit', edit_prop_doc_path(prop_doc) %></td>
+        <td><%= link_to 'Destroy', prop_doc, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Prop Doc', new_prop_doc_path %>

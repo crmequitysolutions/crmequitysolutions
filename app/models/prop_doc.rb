@@ -1,0 +1,2 @@
+class PropDoc < ApplicationRecord
+end

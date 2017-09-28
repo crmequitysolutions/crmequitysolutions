@@ -1,0 +1,52 @@
+<%= form_with(model: business, local: true) do |form| %>
+  <% if business.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(business.errors.count, "error") %> prohibited this business from being saved:</h2>
+
+      <ul>
+      <% business.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :business_id %>
+    <%= form.number_field :business_id, id: :business_business_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :business_name %>
+    <%= form.text_field :business_name, id: :business_business_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address_id %>
+    <%= form.number_field :address_id, id: :business_address_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :url %>
+    <%= form.text_field :url, id: :business_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :business_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :prim_contact_id %>
+    <%= form.number_field :prim_contact_id, id: :business_prim_contact_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sec_contact_id %>
+    <%= form.number_field :sec_contact_id, id: :business_sec_contact_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

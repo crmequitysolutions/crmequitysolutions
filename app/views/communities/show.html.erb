@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Community:</strong>
+  <%= @community.community_id %>
+</p>
+
+<p>
+  <strong>Community name:</strong>
+  <%= @community.community_name %>
+</p>
+
+<p>
+  <strong>Zip code:</strong>
+  <%= @community.zip_code %>
+</p>
+
+<%= link_to 'Edit', edit_community_path(@community) %> |
+<%= link_to 'Back', communities_path %>

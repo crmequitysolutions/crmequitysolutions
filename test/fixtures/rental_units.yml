@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rental_unit_id: 1
+  property_id: 1
+  bd_rms: 1
+  ba_rms: 1
+  rent: 1.5
+  occupied_ind: false
+  pay_heat_ind: false
+  pay_wtr_ind: false
+  pay_gas_ind: false
+  pay_elec_ind: false
+  tenant: 1
+
+two:
+  rental_unit_id: 1
+  property_id: 1
+  bd_rms: 1
+  ba_rms: 1
+  rent: 1.5
+  occupied_ind: false
+  pay_heat_ind: false
+  pay_wtr_ind: false
+  pay_gas_ind: false
+  pay_elec_ind: false
+  tenant: 1

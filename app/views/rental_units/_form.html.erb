@@ -1,0 +1,72 @@
+<%= form_with(model: rental_unit, local: true) do |form| %>
+  <% if rental_unit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(rental_unit.errors.count, "error") %> prohibited this rental_unit from being saved:</h2>
+
+      <ul>
+      <% rental_unit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :rental_unit_id %>
+    <%= form.number_field :rental_unit_id, id: :rental_unit_rental_unit_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :property_id %>
+    <%= form.number_field :property_id, id: :rental_unit_property_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bd_rms %>
+    <%= form.number_field :bd_rms, id: :rental_unit_bd_rms %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ba_rms %>
+    <%= form.number_field :ba_rms, id: :rental_unit_ba_rms %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rent %>
+    <%= form.text_field :rent, id: :rental_unit_rent %>
+  </div>
+
+  <div class="field">
+    <%= form.label :occupied_ind %>
+    <%= form.check_box :occupied_ind, id: :rental_unit_occupied_ind %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pay_heat_ind %>
+    <%= form.check_box :pay_heat_ind, id: :rental_unit_pay_heat_ind %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pay_wtr_ind %>
+    <%= form.check_box :pay_wtr_ind, id: :rental_unit_pay_wtr_ind %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pay_gas_ind %>
+    <%= form.check_box :pay_gas_ind, id: :rental_unit_pay_gas_ind %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pay_elec_ind %>
+    <%= form.check_box :pay_elec_ind, id: :rental_unit_pay_elec_ind %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tenant %>
+    <%= form.number_field :tenant, id: :rental_unit_tenant %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

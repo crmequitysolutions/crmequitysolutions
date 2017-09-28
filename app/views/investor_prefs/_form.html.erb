@@ -1,0 +1,72 @@
+<%= form_with(model: investor_pref, local: true) do |form| %>
+  <% if investor_pref.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(investor_pref.errors.count, "error") %> prohibited this investor_pref from being saved:</h2>
+
+      <ul>
+      <% investor_pref.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :investor_pref_id %>
+    <%= form.number_field :investor_pref_id, id: :investor_pref_investor_pref_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contact_id %>
+    <%= form.number_field :contact_id, id: :investor_pref_contact_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :zip_code %>
+    <%= form.number_field :zip_code, id: :investor_pref_zip_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :community_id %>
+    <%= form.number_field :community_id, id: :investor_pref_community_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :property_type %>
+    <%= form.text_field :property_type, id: :investor_pref_property_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bd_rms %>
+    <%= form.number_field :bd_rms, id: :investor_pref_bd_rms %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ba_rms %>
+    <%= form.number_field :ba_rms, id: :investor_pref_ba_rms %>
+  </div>
+
+  <div class="field">
+    <%= form.label :max %>
+    <%= form.text_field :max, id: :investor_pref_max %>
+  </div>
+
+  <div class="field">
+    <%= form.label :min %>
+    <%= form.text_field :min, id: :investor_pref_min %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rehab_ind %>
+    <%= form.check_box :rehab_ind, id: :investor_pref_rehab_ind %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_st_ind %>
+    <%= form.check_box :main_st_ind, id: :investor_pref_main_st_ind %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

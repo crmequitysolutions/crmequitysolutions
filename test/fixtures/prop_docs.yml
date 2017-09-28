@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  prop_doc_id: 1
+  property_id: 1
+  content: MyString
+  mime_type: MyString
+  file_name: MyString
+  file_type: MyString
+  upload_date: 2017-09-28 18:50:30
+
+two:
+  prop_doc_id: 1
+  property_id: 1
+  content: MyString
+  mime_type: MyString
+  file_name: MyString
+  file_type: MyString
+  upload_date: 2017-09-28 18:50:30

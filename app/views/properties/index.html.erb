@@ -1,0 +1,117 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Properties</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Address</th>
+      <th>Owner</th>
+      <th>Property type</th>
+      <th>Time on mrkt</th>
+      <th>Construction</th>
+      <th>Basement ind</th>
+      <th>Public water ind</th>
+      <th>Offstreet parking ind</th>
+      <th>Main st ind</th>
+      <th>Garage ind</th>
+      <th>Sqft</th>
+      <th>Yr built</th>
+      <th>Bd rms</th>
+      <th>Ba rms</th>
+      <th>Rooms</th>
+      <th>Kitch reno date</th>
+      <th>Bath reno date</th>
+      <th>Roof type</th>
+      <th>Roof age</th>
+      <th>Roof leaks ind</th>
+      <th>Plumb type</th>
+      <th>Plumb age</th>
+      <th>Plumb leak ind</th>
+      <th>Foundation</th>
+      <th>Heat type</th>
+      <th>Heat age</th>
+      <th>Heat works</th>
+      <th>Cool type</th>
+      <th>Cool age</th>
+      <th>Cool works</th>
+      <th>Window type</th>
+      <th>Window nbr</th>
+      <th>Resn to sell</th>
+      <th>Agnt list ind</th>
+      <th>Agnt exp date</th>
+      <th>Quick close amt</th>
+      <th>Amt owed</th>
+      <th>Pymnt crnt</th>
+      <th>Pymt amt</th>
+      <th>Tax inc ind</th>
+      <th>Interest rate</th>
+      <th>Pymnt asum ind</th>
+      <th>Sell by date</th>
+      <th>Bck tx ind</th>
+      <th>Bkd tx amt</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @properties.each do |property| %>
+      <tr>
+        <td><%= property.property_id %></td>
+        <td><%= property.address_id %></td>
+        <td><%= property.owner %></td>
+        <td><%= property.property_type %></td>
+        <td><%= property.time_on_mrkt %></td>
+        <td><%= property.construction %></td>
+        <td><%= property.basement_ind %></td>
+        <td><%= property.public_water_ind %></td>
+        <td><%= property.offstreet_parking_ind %></td>
+        <td><%= property.main_st_ind %></td>
+        <td><%= property.garage_ind %></td>
+        <td><%= property.sqft %></td>
+        <td><%= property.yr_built %></td>
+        <td><%= property.bd_rms %></td>
+        <td><%= property.ba_rms %></td>
+        <td><%= property.rooms %></td>
+        <td><%= property.kitch_reno_date %></td>
+        <td><%= property.bath_reno_date %></td>
+        <td><%= property.roof_type %></td>
+        <td><%= property.roof_age %></td>
+        <td><%= property.roof_leaks_ind %></td>
+        <td><%= property.plumb_type %></td>
+        <td><%= property.plumb_age %></td>
+        <td><%= property.plumb_leak_ind %></td>
+        <td><%= property.foundation %></td>
+        <td><%= property.heat_type %></td>
+        <td><%= property.heat_age %></td>
+        <td><%= property.heat_works %></td>
+        <td><%= property.cool_type %></td>
+        <td><%= property.cool_age %></td>
+        <td><%= property.cool_works %></td>
+        <td><%= property.window_type %></td>
+        <td><%= property.window_nbr %></td>
+        <td><%= property.resn_to_sell %></td>
+        <td><%= property.agnt_list_ind %></td>
+        <td><%= property.agnt_exp_date %></td>
+        <td><%= property.quick_close_amt %></td>
+        <td><%= property.amt_owed %></td>
+        <td><%= property.pymnt_crnt %></td>
+        <td><%= property.pymt_amt %></td>
+        <td><%= property.tax_inc_ind %></td>
+        <td><%= property.interest_rate %></td>
+        <td><%= property.pymnt_asum_ind %></td>
+        <td><%= property.sell_by_date %></td>
+        <td><%= property.bck_tx_ind %></td>
+        <td><%= property.bkd_tx_amt %></td>
+        <td><%= link_to 'Show', property %></td>
+        <td><%= link_to 'Edit', edit_property_path(property) %></td>
+        <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Property', new_property_path %>

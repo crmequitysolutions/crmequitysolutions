@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  investor_pref_id: 1
+  contact_id: 1
+  zip_code: 1
+  community_id: 1
+  property_type: MyString
+  bd_rms: 1
+  ba_rms: 1
+  max: 1.5
+  min: 1.5
+  rehab_ind: false
+  main_st_ind: false
+
+two:
+  investor_pref_id: 1
+  contact_id: 1
+  zip_code: 1
+  community_id: 1
+  property_type: MyString
+  bd_rms: 1
+  ba_rms: 1
+  max: 1.5
+  min: 1.5
+  rehab_ind: false
+  main_st_ind: false
