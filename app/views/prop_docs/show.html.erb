@@ -1,13 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Prop doc:</strong>
-  <%= @prop_doc.prop_doc_id %>
-</p>
-
-<p>
   <strong>Property:</strong>
-  <%= @prop_doc.property_id %>
+  <%= link_to Address.where(["address_id = ?", Property.where(["property_id = ?", @prop_doc.property_id]).first.address_id]).first.line_1, Property.where(["property_id = ?", @prop_doc.property_id]).first %>
 </p>
 
 <p>

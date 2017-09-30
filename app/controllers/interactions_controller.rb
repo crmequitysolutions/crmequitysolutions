@@ -4,7 +4,11 @@ class InteractionsController < ApplicationController
   # GET /interactions
   # GET /interactions.json
   def index
-    @interactions = Interaction.all
+    @interactions = Interaction.order(:interaction_id)
+  end
+  
+  def update_order
+    @interactions = Interaction.order(params[:column_name])
   end
 
   # GET /interactions/1
@@ -69,6 +73,6 @@ class InteractionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def interaction_params
-      params.require(:interaction).permit(:interaction_id, :contact_id, :date_time, :type, :result, :note, :property_id)
+      params.require(:interaction).permit(:interaction_id, :contact_id, :date_time, :interaction_type, :result, :note, :property_id)
     end
 end

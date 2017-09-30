@@ -1,11 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Address:</strong>
-  <%= @address.address_id %>
-</p>
-
-<p>
   <strong>Line 1:</strong>
   <%= @address.line_1 %>
 </p>
@@ -42,7 +37,7 @@
 
 <p>
   <strong>Community:</strong>
-  <%= @address.community_id %>
+  <%= link_to Community.where(["community_id = ?", @address.community_id]).first.community_name, Community.where(["community_id = ?", @address.community_id]).first %>
 </p>
 
 <p>

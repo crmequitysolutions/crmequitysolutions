@@ -4,7 +4,11 @@ class PropertiesController < ApplicationController
   # GET /properties
   # GET /properties.json
   def index
-    @properties = Property.all
+    @properties = Property.order(:property_id)
+  end
+  
+  def update_order
+    @properties = Property.order(params[:column_name])
   end
 
   # GET /properties/1

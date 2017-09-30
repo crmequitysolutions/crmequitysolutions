@@ -1,18 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Business:</strong>
-  <%= @business.business_id %>
-</p>
-
-<p>
   <strong>Business name:</strong>
   <%= @business.business_name %>
 </p>
 
 <p>
   <strong>Address:</strong>
-  <%= @business.address_id %>
+  <%= link_to Address.where(["address_id = ?", @business.address_id]).first.line_1, Address.where(["address_id = ?", @business.address_id]).first %>
 </p>
 
 <p>
@@ -27,12 +22,12 @@
 
 <p>
   <strong>Prim contact:</strong>
-  <%= @business.prim_contact_id %>
+  <%= link_to Contact.where(["contact_id = ?", @business.prim_contact_id]).first.last_name, Contact.where(["contact_id = ?", @business.prim_contact_id]).first %>
 </p>
 
 <p>
   <strong>Sec contact:</strong>
-  <%= @business.sec_contact_id %>
+  <%= link_to Contact.where(["contact_id = ?", @business.sec_contact_id]).first.last_name, Contact.where(["contact_id = ?", @business.sec_contact_id]).first %>
 </p>
 
 <%= link_to 'Edit', edit_business_path(@business) %> |

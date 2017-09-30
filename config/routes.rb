@@ -22,6 +22,17 @@ Rails.application.routes.draw do
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  
+      get 'addresses/order/:column_name' => 'addresses#update_order', as: :update_address_order
+      get 'businesses/order/:column_name' => 'businesses#update_order', as: :update_business_order
+      get 'communities/order/:column_name' => 'communities#update_order', as: :update_community_order
+      get 'contacts/order/:column_name' => 'contacts#update_order', as: :update_contact_order
+      get 'interactions/order/:column_name' => 'interactions#update_order', as: :update_interaction_order
+      get 'investor_prefs/order/:column_name' => 'investor_prefs#update_order', as: :update_investor_pref_order
+      get 'prop_docs/order/:column_name' => 'prop_docs#update_order', as: :update_prop_doc_order
+      get 'properties/order/:column_name' => 'properties#update_order', as: :update_property_order
+      get 'rental_units/order/:column_name' => 'rental_units#update_order', as: :update_rental_unit_order
+      get 'transactions/order/:column_name' => 'transactions#update_order', as: :update_transaction_order
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products

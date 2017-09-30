@@ -1,13 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Investor pref:</strong>
-  <%= @investor_pref.investor_pref_id %>
-</p>
-
-<p>
   <strong>Contact:</strong>
-  <%= @investor_pref.contact_id %>
+  <%= link_to Contact.where(["contact_id = ?", @investor_pref.contact_id]).first.last_name, Contact.where(["contact_id = ?", @investor_pref.contact_id]).first %>
 </p>
 
 <p>
@@ -17,7 +12,7 @@
 
 <p>
   <strong>Community:</strong>
-  <%= @investor_pref.community_id %>
+  <%= link_to Community.where(["community_id = ?", @investor_pref.community_id]).first.community_name, Community.where(["community_id = ?", @investor_pref.community_id]).first %>
 </p>
 
 <p>

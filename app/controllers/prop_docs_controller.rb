@@ -6,6 +6,10 @@ class PropDocsController < ApplicationController
   def index
     @prop_docs = PropDoc.all
   end
+  
+  def update_order
+    @prop_docs = PropDoc.order(params[:column_name])
+  end
 
   # GET /prop_docs/1
   # GET /prop_docs/1.json

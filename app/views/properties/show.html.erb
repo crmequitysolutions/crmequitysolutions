@@ -1,18 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Property:</strong>
-  <%= @property.property_id %>
-</p>
-
-<p>
   <strong>Address:</strong>
-  <%= @property.address_id %>
+  <%= link_to Address.where(["address_id = ?", @property.address_id]).first.line_1, Address.where(["address_id = ?", @property.address_id]).first %>
 </p>
 
 <p>
   <strong>Owner:</strong>
-  <%= @property.owner %>
+  <%= link_to Contact.where(["contact_id = ?", @property.owner]).first.last_name, Contact.where(["contact_id = ?", @property.owner]).first %>
 </p>
 
 <p>

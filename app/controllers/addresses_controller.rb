@@ -4,7 +4,11 @@ class AddressesController < ApplicationController
   # GET /addresses
   # GET /addresses.json
   def index
-    @addresses = Address.all
+    @addresses = Address.order(:address_id)
+  end
+  
+  def update_order
+    @addresses = Address.order(params[:column_name])
   end
 
   # GET /addresses/1

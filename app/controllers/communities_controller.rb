@@ -4,7 +4,11 @@ class CommunitiesController < ApplicationController
   # GET /communities
   # GET /communities.json
   def index
-    @communities = Community.all
+    @communities = Community.order(:community_id)
+  end
+  
+  def update_order
+    @communities = Community.order(params[:column_name])
   end
 
   # GET /communities/1

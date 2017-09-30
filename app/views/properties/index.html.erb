@@ -5,7 +5,6 @@
 <table>
   <thead>
     <tr>
-      <th>Property</th>
       <th>Address</th>
       <th>Owner</th>
       <th>Property type</th>
@@ -58,9 +57,8 @@
   <tbody>
     <% @properties.each do |property| %>
       <tr>
-        <td><%= property.property_id %></td>
-        <td><%= property.address_id %></td>
-        <td><%= property.owner %></td>
+        <td><%= link_to Address.where(["address_id = ?", property.address_id]).first.line_1, Address.where(["address_id = ?", property.address_id]).first %></td>
+        <td><%= link_to Contact.where(["contact_id = ?", property.owner]).first.last_name, Contact.where(["contact_id = ?", property.owner]).first %></td>
         <td><%= property.property_type %></td>
         <td><%= property.time_on_mrkt %></td>
         <td><%= property.construction %></td>

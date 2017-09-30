@@ -1,13 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Interaction:</strong>
-  <%= @interaction.interaction_id %>
-</p>
-
-<p>
   <strong>Contact:</strong>
-  <%= @interaction.contact_id %>
+  <%= link_to Contact.where(["contact_id = ?", @interaction.contact_id]).first.last_name, Contact.where(["contact_id = ?", @interaction.contact_id]).first %>
 </p>
 
 <p>
@@ -17,7 +12,7 @@
 
 <p>
   <strong>Type:</strong>
-  <%= @interaction.type %>
+  <%= @interaction.interaction_type %>
 </p>
 
 <p>
@@ -32,7 +27,7 @@
 
 <p>
   <strong>Property:</strong>
-  <%= @interaction.property_id %>
+  <%= link_to Address.where(["address_id = ?", Property.where(["property_id = ?", @interaction.property_id]).first.address_id]).first.line_1, Property.where(["property_id = ?", @interaction.property_id]).first %>
 </p>
 
 <%= link_to 'Edit', edit_interaction_path(@interaction) %> |
