@@ -1,13 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Rental unit:</strong>
-  <%= @rental_unit.rental_unit_id %>
-</p>
-
-<p>
   <strong>Property:</strong>
-  <%= @rental_unit.property_id %>
+  <%= link_to Address.where(["address_id = ?", Property.where(["property_id = ?", @rental_unit.property_id]).first.address_id]).first.line_1, Property.where(["property_id = ?", @rental_unit.property_id]).first %>
 </p>
 
 <p>
@@ -52,7 +47,7 @@
 
 <p>
   <strong>Tenant:</strong>
-  <%= @rental_unit.tenant %>
+  <%= link_to Contact.where(["contact_id = ?", @rental_unit.tenant]).first.last_name, Contact.where(["contact_id = ?", @rental_unit.tenant]).first %>
 </p>
 
 <%= link_to 'Edit', edit_rental_unit_path(@rental_unit) %> |

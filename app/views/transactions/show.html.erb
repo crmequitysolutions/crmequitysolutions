@@ -1,13 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Transaction:</strong>
-  <%= @transaction.transaction_id %>
-</p>
-
-<p>
   <strong>Purchased by:</strong>
-  <%= @transaction.purchased_by %>
+  <%= link_to Contact.where(["contact_id = ?", @transaction.purchased_by]).first.last_name, Contact.where(["contact_id = ?", @transaction.purchased_by]).first %>
 </p>
 
 <p>
@@ -17,7 +12,7 @@
 
 <p>
   <strong>Property:</strong>
-  <%= @transaction.property_id %>
+  <%= link_to Address.where(["address_id = ?", Property.where(["property_id = ?", @transaction.property_id]).first.address_id]).first.line_1, Property.where(["property_id = ?", @transaction.property_id]).first %>
 </p>
 
 <p>

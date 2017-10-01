@@ -4,7 +4,11 @@ class RentalUnitsController < ApplicationController
   # GET /rental_units
   # GET /rental_units.json
   def index
-    @rental_units = RentalUnit.all
+    @rental_units = RentalUnit.order(:rental_unit_id)
+  end
+  
+  def update_order
+    @rental_units = RentalUnit.order(params[:column_name])
   end
 
   # GET /rental_units/1
