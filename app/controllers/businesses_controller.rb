@@ -4,11 +4,13 @@ class BusinessesController < ApplicationController
   # GET /businesses
   # GET /businesses.json
   def index
-    @businesses = Business.order(:business_id)
+    @q = Business.ransack(params[:q])
+    @businesses = @q.result(distinct: true)
   end
   
   def update_order
-    @businesses = Business.order(params[:column_name])
+    @q = Business.ransack(params[:q])
+    @businesses = @q.result(distinct: true).order(params[:column_name])
   end
 
   # GET /businesses/1

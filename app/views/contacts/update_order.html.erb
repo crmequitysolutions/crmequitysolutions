@@ -2,6 +2,29 @@
 
 <h1>Contacts</h1>
 
+<%= search_form_for @q do |f| %>
+
+  <%= f.label :first_name_cont %>
+  <%= f.search_field :first_name_cont %>
+  
+  <%= f.label :middle_name_cont %>
+  <%= f.search_field :middle_name_cont %>
+  
+  <%= f.label :last_name_cont %>
+  <%= f.search_field :last_name_cont %>
+  
+  <%= f.label :phone_cont %>
+  <%= f.search_field :phone_cont %>
+  
+  <%= f.label :email_cont %>
+  <%= f.search_field :email_cont %>
+  
+  <%= f.label :contact_type_cont %>
+  <%= f.search_field :contact_type_cont %>
+  
+  <%= f.submit %>
+<% end %>
+
 <table>
   <thead>
     <tr>
@@ -23,7 +46,7 @@
   <tbody>
     <% @contacts.each do |contact| %>
       <tr>
-        <td><%= contact.address_id %></td>
+        <td><%= link_to Address.where(["address_id = ?", contact.address_id]).first.line_1, Address.where(["address_id = ?", contact.address_id]).first %></td>
         <td><%= contact.first_name %></td>
         <td><%= contact.middle_name %></td>
         <td><%= contact.last_name %></td>

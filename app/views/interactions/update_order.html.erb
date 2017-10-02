@@ -2,6 +2,20 @@
 
 <h1>Interactions</h1>
 
+<%= search_form_for @q do |f| %>
+
+  <%= f.label :interaction_type_cont %>
+  <%= f.search_field :interaction_type_cont %>
+  
+  <%= f.label :result_cont %>
+  <%= f.search_field :result_cont %>
+  
+  <%= f.label :note_cont %>
+  <%= f.search_field :note_cont %>
+
+  <%= f.submit %>
+<% end %>
+
 <table>
   <thead>
     <tr>

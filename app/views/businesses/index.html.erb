@@ -2,6 +2,20 @@
 
 <h1>Businesses</h1>
 
+<%= search_form_for @q do |f| %>
+
+  <%= f.label :business_name_cont %>
+  <%= f.search_field :business_name_cont %>
+  
+  <%= f.label :url_cont %>
+  <%= f.search_field :url_cont %>
+  
+  <%= f.label :email_cont %>
+  <%= f.search_field :email_cont %>
+
+  <%= f.submit %>
+<% end %>
+
 <table>
   <thead>
     <tr>

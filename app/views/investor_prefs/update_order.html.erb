@@ -2,6 +2,29 @@
 
 <h1>Investor Prefs</h1>
 
+<%= search_form_for @q do |f| %>
+
+  <%= f.label :zip_code_cont %>
+  <%= f.search_field :zip_code_cont %>
+  
+  <%= f.label :property_type_cont %>
+  <%= f.search_field :property_type_cont %>
+  
+  <%= f.label :bd_rms_cont %>
+  <%= f.search_field :bd_rms_cont %>
+  
+  <%= f.label :ba_rms_cont %>
+  <%= f.search_field :ba_rms_cont %>
+  
+  <%= f.label :max_cont %>
+  <%= f.search_field :max_cont %>
+  
+  <%= f.label :min_cont %>
+  <%= f.search_field :min_cont %>
+
+  <%= f.submit %>
+<% end %>
+
 <table>
   <thead>
     <tr>

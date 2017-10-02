@@ -2,6 +2,32 @@
 
 <h1>Addresses</h1>
 
+<%= search_form_for @q do |f| %>
+
+  <%= f.label :line_1_cont %>
+  <%= f.search_field :line_1_cont %>
+  
+  <%= f.label :city_cont %>
+  <%= f.search_field :city_cont %>
+  
+  <%= f.label :state_cont %>
+  <%= f.search_field :state_cont %>
+  
+  <%= f.label :zip_code_cont %>
+  <%= f.search_field :zip_code_cont %>
+  
+  <%= f.label :county_cont %>
+  <%= f.search_field :county_cont %>
+  
+  <%= f.label :country_cont %>
+  <%= f.search_field :country_cont %>
+  
+  <%= f.label :school_district_cont %>
+  <%= f.search_field :school_district_cont %>
+  
+  <%= f.submit %>
+<% end %>
+
 <table>
   <thead>
     <tr>

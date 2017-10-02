@@ -2,6 +2,20 @@
 
 <h1>Rental Units</h1>
 
+<%= search_form_for @q do |f| %>
+  
+  <%= f.label :bd_rms_cont %>
+  <%= f.search_field :bd_rms_cont %>
+  
+  <%= f.label :ba_rms_cont %>
+  <%= f.search_field :ba_rms_cont %>
+  
+  <%= f.label :rent_cont %>
+  <%= f.search_field :rent_cont %>
+  
+  <%= f.submit %>
+<% end %>
+
 <table>
   <thead>
     <tr>

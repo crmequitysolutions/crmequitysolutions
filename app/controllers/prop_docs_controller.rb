@@ -4,11 +4,13 @@ class PropDocsController < ApplicationController
   # GET /prop_docs
   # GET /prop_docs.json
   def index
-    @prop_docs = PropDoc.all
+    @q = PropDoc.ransack(params[:q])
+    @prop_docs = @q.result(distinct: true)
   end
   
   def update_order
-    @prop_docs = PropDoc.order(params[:column_name])
+    @q = PropDoc.ransack(params[:q])
+    @prop_docs = @q.result(distinct: true).order(params[:column_name])
   end
 
   # GET /prop_docs/1

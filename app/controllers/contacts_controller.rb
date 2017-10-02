@@ -4,11 +4,13 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.order(:contact_id)
+    @q = Contact.ransack(params[:q])
+    @contacts = @q.result(distinct: true)
   end
   
   def update_order
-    @contacts = Contact.order(params[:column_name])
+    @q = Contact.ransack(params[:q])
+    @contacts = @q.result(distinct: true).order(params[:column_name])
   end
 
   # GET /contacts/1

@@ -2,6 +2,23 @@
 
 <h1>Prop Docs</h1>
 
+<%= search_form_for @q do |f| %>
+
+  <%= f.label :content_cont %>
+  <%= f.search_field :content_cont %>
+  
+  <%= f.label :mime_type_cont %>
+  <%= f.search_field :mime_type_cont %>
+  
+  <%= f.label :file_name_cont %>
+  <%= f.search_field :file_name_cont %>
+  
+  <%= f.label :file_type_cont %>
+  <%= f.search_field :file_type_cont %>
+  
+  <%= f.submit %>
+<% end %>
+
 <table>
   <thead>
     <tr>

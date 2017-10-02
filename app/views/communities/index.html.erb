@@ -2,6 +2,17 @@
 
 <h1>Communities</h1>
 
+<%= search_form_for @q do |f| %>
+
+  <%= f.label :community_name_cont %>
+  <%= f.search_field :community_name_cont %>
+  
+  <%= f.label :zip_code_cont %>
+  <%= f.search_field :zip_code_cont %>
+
+  <%= f.submit %>
+<% end %>
+
 <table>
   <thead>
     <tr>

@@ -2,6 +2,92 @@
 
 <h1>Properties</h1>
 
+<%= search_form_for @q do |f| %>
+
+  <%= f.label :property_type_cont %>
+  <%= f.search_field :property_type_cont %>
+  
+  <%= f.label :time_on_mrkt_cont %>
+  <%= f.search_field :time_on_mrkt_cont %>
+  
+  <%= f.label :construction_cont %>
+  <%= f.search_field :construction_cont %>
+  
+  <%= f.label :sqft_cont %>
+  <%= f.search_field :sqft_cont %>
+  
+  <%= f.label :yr_built_cont %>
+  <%= f.search_field :yr_built_cont %>
+  
+  <%= f.label :bd_rms_cont %>
+  <%= f.search_field :bd_rms_cont %>
+  
+  <%= f.label :ba_rms_cont %>
+  <%= f.search_field :ba_rms_cont %>
+  
+  <%= f.label :rooms_cont %>
+  <%= f.search_field :rooms_cont %>
+  
+  <%= f.label :roof_type_cont %>
+  <%= f.search_field :roof_type_cont %>
+  
+  <%= f.label :roof_age_cont %>
+  <%= f.search_field :roof_age_cont %>
+  
+  <%= f.label :plumb_type_cont %>
+  <%= f.search_field :plumb_type_cont %>
+  
+  <%= f.label :plumb_age_cont %>
+  <%= f.search_field :plumb_age_cont %>
+  
+  <%= f.label :foundation_cont %>
+  <%= f.search_field :foundation_cont %>
+  
+  <%= f.label :heat_type_cont %>
+  <%= f.search_field :heat_type_cont %>
+  
+  <%= f.label :heat_age_cont %>
+  <%= f.search_field :heat_age_cont %>
+  
+  <%= f.label :cool_type_cont %>
+  <%= f.search_field :cool_type_cont %>
+  
+  <%= f.label :cool_age_cont %>
+  <%= f.search_field :cool_age_cont %>
+  
+  <%= f.label :window_type_cont %>
+  <%= f.search_field :window_type_cont %>
+  
+  <%= f.label :window_nbr_cont %>
+  <%= f.search_field :window_nbr_cont %>
+  
+  <%= f.label :resn_to_sell_cont %>
+  <%= f.search_field :resn_to_sell_cont %>
+  
+  <%= f.label :quick_close_amt_cont %>
+  <%= f.search_field :quick_close_amt_cont %>
+  
+  <%= f.label :amt_owed_cont %>
+  <%= f.search_field :amt_owed_cont %>
+  
+  <%= f.label :pymnt_crnt_cont %>
+  <%= f.search_field :pymnt_crnt_cont %>
+  
+  <%= f.label :sqft_cont %>
+  <%= f.search_field :sqft_cont %>
+  
+  <%= f.label :pymt_amt_cont %>
+  <%= f.search_field :pymt_amt_cont %>
+  
+  <%= f.label :interest_rate_cont %>
+  <%= f.search_field :interest_rate_cont %>
+  
+  <%= f.label :bkd_tx_amt_cont %>
+  <%= f.search_field :bkd_tx_amt_cont %>
+  
+  <%= f.submit %>
+<% end %>
+
 <table>
   <thead>
     <tr>

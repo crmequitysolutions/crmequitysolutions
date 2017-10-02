@@ -2,6 +2,17 @@
 
 <h1>Transactions</h1>
 
+<%= search_form_for @q do |f| %>
+  
+  <%= f.label :price_cont %>
+  <%= f.search_field :price_cont %>
+  
+  <%= f.label :transaction_type_cont %>
+  <%= f.search_field :transaction_type_cont %>
+  
+  <%= f.submit %>
+<% end %>
+
 <table>
   <thead>
     <tr>
