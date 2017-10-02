@@ -25,6 +25,7 @@ gem 'sdoc'
 gem 'devise'
 gem 'phonelib'
 gem 'ransack'
+gem 'yarn'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
