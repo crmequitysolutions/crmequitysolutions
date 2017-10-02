@@ -3,6 +3,17 @@
 <h1>Communities</h1>
 
 <%= search_form_for @q do |f| %>
+  
+  <h3>Search Database</h3>
+  
+  <%= f.search_field :community_name_or_zip_code_cont %>
+
+  <%= f.submit %>
+<% end %>
+
+<%= search_form_for @q do |f| %>
+
+  <h3>Search By Column</h3>
 
   <%= f.label :community_name_cont %>
   <%= f.search_field :community_name_cont %>

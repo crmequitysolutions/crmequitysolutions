@@ -3,6 +3,17 @@
 <h1>Properties</h1>
 
 <%= search_form_for @q do |f| %>
+  
+  <h3>Search Database</h3>
+  
+  <%= f.search_field :property_type_or_time_on_mrkt_or_construction_or_sqft_or_yr_built_or_bd_rms_or_ba_rms_or_rooms_or_roof_type_or_roof_age_or_plumb_type_or_plumb_age_or_foundation_or_heat_type_or_heat_age_or_cool_type_or_cool_age_or_window_type_or_window_nbr_or_resn_to_sell_or_quick_close_amt_or_amt_owed_or_pymnt_crnt_or_pymt_amt_or_interest_rate_or_bkd_tx_amt_cont %>
+
+  <%= f.submit %>
+<% end %>
+
+<%= search_form_for @q do |f| %>
+
+  <h3>Search By Column</h3>
 
   <%= f.label :property_type_cont %>
   <%= f.search_field :property_type_cont %>
@@ -72,9 +83,6 @@
   
   <%= f.label :pymnt_crnt_cont %>
   <%= f.search_field :pymnt_crnt_cont %>
-  
-  <%= f.label :sqft_cont %>
-  <%= f.search_field :sqft_cont %>
   
   <%= f.label :pymt_amt_cont %>
   <%= f.search_field :pymt_amt_cont %>

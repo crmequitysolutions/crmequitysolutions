@@ -3,6 +3,17 @@
 <h1>Prop Docs</h1>
 
 <%= search_form_for @q do |f| %>
+  
+  <h3>Search Database</h3>
+  
+  <%= f.search_field :content_or_mime_type_or_file_name_or_file_type_cont %>
+
+  <%= f.submit %>
+<% end %>
+
+<%= search_form_for @q do |f| %>
+
+  <h3>Search By Column</h3>
 
   <%= f.label :content_cont %>
   <%= f.search_field :content_cont %>

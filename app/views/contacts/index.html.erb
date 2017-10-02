@@ -3,6 +3,17 @@
 <h1>Contacts</h1>
 
 <%= search_form_for @q do |f| %>
+  
+  <h3>Search Database</h3>
+  
+  <%= f.search_field :first_name_or_middle_name_or_last_name_or_phone_or_email_or_contact_type_cont %>
+
+  <%= f.submit %>
+<% end %>
+
+<%= search_form_for @q do |f| %>
+
+  <h3>Search By Column</h3>
 
   <%= f.label :first_name_cont %>
   <%= f.search_field :first_name_cont %>

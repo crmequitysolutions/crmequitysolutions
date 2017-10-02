@@ -3,9 +3,23 @@
 <h1>Addresses</h1>
 
 <%= search_form_for @q do |f| %>
+  
+  <h3>Search Database</h3>
+  
+  <%= f.search_field :line_1_or_line_2_or_city_or_state_or_zip_code_or_county_or_country_or_school_district_cont %>
+
+  <%= f.submit %>
+<% end %>
+
+<%= search_form_for @q do |f| %>
+
+  <h3>Search By Column</h3>
 
   <%= f.label :line_1_cont %>
   <%= f.search_field :line_1_cont %>
+  
+  <%= f.label :line_2_cont %>
+  <%= f.search_field :line_2_cont %>
   
   <%= f.label :city_cont %>
   <%= f.search_field :city_cont %>

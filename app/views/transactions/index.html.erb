@@ -4,6 +4,17 @@
 
 <%= search_form_for @q do |f| %>
   
+  <h3>Search Database</h3>
+  
+  <%= f.search_field :price_or_transaction_type_cont %>
+
+  <%= f.submit %>
+<% end %>
+
+<%= search_form_for @q do |f| %>
+
+  <h3>Search By Column</h3>
+  
   <%= f.label :price_cont %>
   <%= f.search_field :price_cont %>
   

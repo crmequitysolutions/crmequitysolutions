@@ -4,6 +4,17 @@
 
 <%= search_form_for @q do |f| %>
   
+  <h3>Search Database</h3>
+  
+  <%= f.search_field :bd_rms_or_ba_rms_or_rent_cont %>
+
+  <%= f.submit %>
+<% end %>
+
+<%= search_form_for @q do |f| %>
+
+  <h3>Search By Column</h3>
+  
   <%= f.label :bd_rms_cont %>
   <%= f.search_field :bd_rms_cont %>
   

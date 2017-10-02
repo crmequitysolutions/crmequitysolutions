@@ -3,6 +3,17 @@
 <h1>Businesses</h1>
 
 <%= search_form_for @q do |f| %>
+  
+  <h3>Search Database</h3>
+  
+  <%= f.search_field :business_name_or_url_or_email_cont %>
+
+  <%= f.submit %>
+<% end %>
+
+<%= search_form_for @q do |f| %>
+
+  <h3>Search By Column</h3>
 
   <%= f.label :business_name_cont %>
   <%= f.search_field :business_name_cont %>

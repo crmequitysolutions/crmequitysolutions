@@ -3,6 +3,17 @@
 <h1>Interactions</h1>
 
 <%= search_form_for @q do |f| %>
+  
+  <h3>Search Database</h3>
+  
+  <%= f.search_field :interaction_type_or_result_or_note_cont %>
+
+  <%= f.submit %>
+<% end %>
+
+<%= search_form_for @q do |f| %>
+
+  <h3>Search By Column</h3>
 
   <%= f.label :interaction_type_cont %>
   <%= f.search_field :interaction_type_cont %>
