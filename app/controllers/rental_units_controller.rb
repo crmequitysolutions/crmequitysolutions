@@ -7,11 +7,6 @@ class RentalUnitsController < ApplicationController
     @q = RentalUnit.ransack(params[:q])
     @rental_units = @q.result(distinct: true)
   end
-  
-  def update_order
-    @q = RentalUnit.ransack(params[:q])
-    @rental_units = @q.result(distinct: true).order(params[:column_name])
-  end
 
   # GET /rental_units/1
   # GET /rental_units/1.json

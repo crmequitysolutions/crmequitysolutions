@@ -16,8 +16,8 @@
 <table>
   <thead>
     <tr>
-      <th><%= link_to "Community Name", update_community_order_path(:community_name) %></th>
-      <th><%= link_to "Zip Code", update_community_order_path(:zip_code) %></th>
+      <th><%= sort_link(@q, :community_name) %></th>
+      <th><%= sort_link(@q, :zip_code) %></th>
       <th colspan="3"></th>
     </tr>
   </thead>

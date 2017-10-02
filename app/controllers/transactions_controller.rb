@@ -7,11 +7,6 @@ class TransactionsController < ApplicationController
     @q = Transaction.ransack(params[:q])
     @transactions = @q.result(distinct: true)
   end
-  
-  def update_order
-    @q = Transaction.ransack(params[:q])
-    @transactions = @q.result(distinct: true).order(params[:column_name])
-  end
 
   # GET /transactions/1
   # GET /transactions/1.json

@@ -7,11 +7,6 @@ class InvestorPrefsController < ApplicationController
     @q = InvestorPref.ransack(params[:q])
     @investor_prefs = @q.result(distinct: true)
   end
-  
-  def update_order
-    @q = InvestorPref.ransack(params[:q])
-    @investor_prefs = @q.result(distinct: true).order(params[:column_name])
-  end
 
   # GET /investor_prefs/1
   # GET /investor_prefs/1.json

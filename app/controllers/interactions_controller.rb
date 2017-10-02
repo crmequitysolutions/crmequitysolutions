@@ -7,11 +7,6 @@ class InteractionsController < ApplicationController
     @q = Interaction.ransack(params[:q])
     @interactions = @q.result(distinct: true)
   end
-  
-  def update_order
-    @q = Interaction.ransack(params[:q])
-    @interactions = @q.result(distinct: true).order(params[:column_name])
-  end
 
   # GET /interactions/1
   # GET /interactions/1.json

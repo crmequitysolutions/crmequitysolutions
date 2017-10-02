@@ -7,11 +7,6 @@ class PropDocsController < ApplicationController
     @q = PropDoc.ransack(params[:q])
     @prop_docs = @q.result(distinct: true)
   end
-  
-  def update_order
-    @q = PropDoc.ransack(params[:q])
-    @prop_docs = @q.result(distinct: true).order(params[:column_name])
-  end
 
   # GET /prop_docs/1
   # GET /prop_docs/1.json

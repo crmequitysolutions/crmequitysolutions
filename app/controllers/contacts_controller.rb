@@ -7,11 +7,6 @@ class ContactsController < ApplicationController
     @q = Contact.ransack(params[:q])
     @contacts = @q.result(distinct: true)
   end
-  
-  def update_order
-    @q = Contact.ransack(params[:q])
-    @contacts = @q.result(distinct: true).order(params[:column_name])
-  end
 
   # GET /contacts/1
   # GET /contacts/1.json

@@ -7,11 +7,6 @@ class BusinessesController < ApplicationController
     @q = Business.ransack(params[:q])
     @businesses = @q.result(distinct: true)
   end
-  
-  def update_order
-    @q = Business.ransack(params[:q])
-    @businesses = @q.result(distinct: true).order(params[:column_name])
-  end
 
   # GET /businesses/1
   # GET /businesses/1.json

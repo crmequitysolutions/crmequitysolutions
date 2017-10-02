@@ -7,11 +7,6 @@ class CommunitiesController < ApplicationController
     @q = Community.ransack(params[:q])
     @communities = @q.result(distinct: true)
   end
-  
-  def update_order
-    @q = Community.ransack(params[:q])
-    @communities = @q.result(distinct: true).order(params[:column_name])
-  end
 
   # GET /communities/1
   # GET /communities/1.json

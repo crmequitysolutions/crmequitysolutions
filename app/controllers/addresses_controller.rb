@@ -7,11 +7,6 @@ class AddressesController < ApplicationController
     @q = Address.ransack(params[:q])
     @addresses = @q.result(distinct: true)
   end
-  
-  def update_order
-    @q = Address.ransack(params[:q])
-    @addresses = @q.result(distinct: true).order(params[:column_name])
-  end
 
   # GET /addresses/1
   # GET /addresses/1.json

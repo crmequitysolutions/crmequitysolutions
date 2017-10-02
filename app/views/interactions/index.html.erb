@@ -19,12 +19,12 @@
 <table>
   <thead>
     <tr>
-      <th><%= link_to "Contact", update_interaction_order_path(:contact_id) %></th>
-      <th><%= link_to "Date and Time", update_interaction_order_path(:date_time) %></th>
-      <th><%= link_to "Interaction Type", update_interaction_order_path(:interaction_type) %></th>
-      <th><%= link_to "Result", update_interaction_order_path(:result) %></th>
-      <th><%= link_to "Notes", update_interaction_order_path(:note) %></th>
-      <th><%= link_to "Property", update_interaction_order_path(:property_id) %></th>
+      <th><%= sort_link(@q, :contact_id) %></th>
+      <th><%= sort_link(@q, :date_time) %></th>
+      <th><%= sort_link(@q, :interaction_type) %></th>
+      <th><%= sort_link(@q, :result) %></th>
+      <th><%= sort_link(@q, :note) %></th>
+      <th><%= sort_link(@q, :property_id) %></th>
       <th colspan="3"></th>
     </tr>
   </thead>

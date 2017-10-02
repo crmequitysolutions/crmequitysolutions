@@ -28,16 +28,16 @@
 <table>
   <thead>
     <tr>
-      <th><%= link_to "Contact", update_investor_pref_order_path(:contact_id) %></th>
-      <th><%= link_to "Zip Code", update_investor_pref_order_path(:zip_code) %></th>
-      <th><%= link_to "Community", update_investor_pref_order_path(:community_id) %></th>
-      <th><%= link_to "Property Type", update_investor_pref_order_path(:property_type) %></th>
-      <th><%= link_to "Bedrooms", update_investor_pref_order_path(:bd_rms) %></th>
-      <th><%= link_to "Bathrooms", update_investor_pref_order_path(:ba_rms) %></th>
-      <th><%= link_to "Max", update_investor_pref_order_path(:max) %></th>
-      <th><%= link_to "Min", update_investor_pref_order_path(:min) %></th>
-      <th><%= link_to "Rehab Needed", update_investor_pref_order_path(:rehab_ind) %></th>
-      <th><%= link_to "On Main St", update_investor_pref_order_path(:main_st_ind) %></th>
+      <th><%= sort_link(@q, :contact_id) %></th>
+      <th><%= sort_link(@q, :zip_code) %></th>
+      <th><%= sort_link(@q, :community_id) %></th>
+      <th><%= sort_link(@q, :property_type) %></th>
+      <th><%= sort_link(@q, :bd_rms) %></th>
+      <th><%= sort_link(@q, :ba_rms) %></th>
+      <th><%= sort_link(@q, :max) %></th>
+      <th><%= sort_link(@q, :min) %></th>
+      <th><%= sort_link(@q, :rehab_ind) %></th>
+      <th><%= sort_link(@q, :main_st_ind) %></th>
       <th colspan="3"></th>
     </tr>
   </thead>

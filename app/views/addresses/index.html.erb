@@ -31,15 +31,15 @@
 <table>
   <thead>
     <tr>
-      <th><%= link_to "Line 1", update_address_order_path(:line_1) %></th>
-      <th><%= link_to "Line 2", update_address_order_path(:line_2) %></th>
-      <th><%= link_to "City", update_address_order_path(:city) %></th>
-      <th><%= link_to "State", update_address_order_path(:state) %></th>
-      <th><%= link_to "Zip Code", update_address_order_path(:zip_code) %></th>
-      <th><%= link_to "County", update_address_order_path(:county) %></th>
-      <th><%= link_to "Country", update_address_order_path(:country) %></th>
-      <th><%= link_to "Community", update_address_order_path(:community_id) %></th>
-      <th><%= link_to "School District", update_address_order_path(:school_district) %></th>
+      <th><%= sort_link(@q, :line_1) %></th>
+      <th><%= sort_link(@q, :line_2) %></th>
+      <th><%= sort_link(@q, :city) %></th>
+      <th><%= sort_link(@q, :state) %></th>
+      <th><%= sort_link(@q, :zip_code) %></th>
+      <th><%= sort_link(@q, :county) %></th>
+      <th><%= sort_link(@q, :country) %></th>
+      <th><%= sort_link(@q, :community_id) %></th>
+      <th><%= sort_link(@q, :school_district) %></th>
       <th colspan="3"></th>
     </tr>
   </thead>

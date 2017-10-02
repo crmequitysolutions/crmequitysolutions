@@ -16,11 +16,11 @@
 <table>
   <thead>
     <tr>
-      <th><%= link_to "Purchased By", update_transaction_order_path(:purchased_by) %></th>
-      <th><%= link_to "Date", update_transaction_order_path(:date) %></th>
-      <th><%= link_to "Property", update_transaction_order_path(:property_id) %></th>
-      <th><%= link_to "Price", update_transaction_order_path(:price) %></th>
-      <th><%= link_to "Transaction Type", update_transaction_order_path(:transaction_type) %></th>
+      <th><%= sort_link(@q, :purchased_by) %></th>
+      <th><%= sort_link(@q, :date) %></th>
+      <th><%= sort_link(@q, :property_id) %></th>
+      <th><%= sort_link(@q, :price) %></th>
+      <th><%= sort_link(@q, :transaction_type) %></th>
       <th colspan="3"></th>
     </tr>
   </thead>

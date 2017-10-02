@@ -7,11 +7,6 @@ class PropertiesController < ApplicationController
     @q = Property.ransack(params[:q])
     @properties = @q.result(distinct: true)
   end
-  
-  def update_order
-    @q = Property.ransack(params[:q])
-    @properties = @q.result(distinct: true).order(params[:column_name])
-  end
 
   # GET /properties/1
   # GET /properties/1.json
