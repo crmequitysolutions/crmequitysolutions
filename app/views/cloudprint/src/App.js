@@ -30,7 +30,5 @@ class App extends Component {
         );
     }
 }
-const style = {
-    margin: 15,
-};
+
 export default App;
