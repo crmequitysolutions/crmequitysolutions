@@ -2,19 +2,44 @@
 
 <h1>Rental Units</h1>
 
+<%= search_form_for @q do |f| %>
+  
+  <h3>Search Database</h3>
+  
+  <%= f.search_field :bd_rms_or_ba_rms_or_rent_cont %>
+
+  <%= f.submit %>
+<% end %>
+
+<%= search_form_for @q do |f| %>
+
+  <h3>Search By Column</h3>
+  
+  <%= f.label :bd_rms_cont %>
+  <%= f.search_field :bd_rms_cont %>
+  
+  <%= f.label :ba_rms_cont %>
+  <%= f.search_field :ba_rms_cont %>
+  
+  <%= f.label :rent_cont %>
+  <%= f.search_field :rent_cont %>
+  
+  <%= f.submit %>
+<% end %>
+
 <table>
   <thead>
     <tr>
-      <th><%= link_to "Property", update_rental_unit_order_path(:property_id) %></th>
-      <th><%= link_to "Bedrooms", update_rental_unit_order_path(:bd_rms) %></th>
-      <th><%= link_to "Bathrooms", update_rental_unit_order_path(:ba_rms) %></th>
-      <th><%= link_to "Rent", update_rental_unit_order_path(:rent) %></th>
-      <th><%= link_to "Occupied", update_rental_unit_order_path(:occupied_ind) %></th>
-      <th><%= link_to "Pay for Heat", update_rental_unit_order_path(:pay_heat_ind) %></th>
-      <th><%= link_to "Pay for Water", update_rental_unit_order_path(:pay_wtr_ind) %></th>
-      <th><%= link_to "Pay for Gas", update_rental_unit_order_path(:pay_gas_ind) %></th>
-      <th><%= link_to "Pay for Electricity", update_rental_unit_order_path(:pay_elec_ind) %></th>
-      <th><%= link_to "Tenant", update_rental_unit_order_path(:tenant) %></th>
+      <th><%= sort_link(@q, :property_id) %></th>
+      <th><%= sort_link(@q, :bd_rms) %></th>
+      <th><%= sort_link(@q, :ba_rms) %></th>
+      <th><%= sort_link(@q, :rent) %></th>
+      <th><%= sort_link(@q, :occupied_ind) %></th>
+      <th><%= sort_link(@q, :pay_heat_ind) %></th>
+      <th><%= sort_link(@q, :pay_wtr_ind) %></th>
+      <th><%= sort_link(@q, :pay_gas_ind) %></th>
+      <th><%= sort_link(@q, :pay_elec_ind) %></th>
+      <th><%= sort_link(@q, :tenant) %></th>
       <th colspan="3"></th>
     </tr>
   </thead>

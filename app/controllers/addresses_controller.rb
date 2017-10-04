@@ -4,11 +4,8 @@ class AddressesController < ApplicationController
   # GET /addresses
   # GET /addresses.json
   def index
-    @addresses = Address.order(:address_id)
-  end
-  
-  def update_order
-    @addresses = Address.order(params[:column_name])
+    @q = Address.ransack(params[:q])
+    @addresses = @q.result(distinct: true)
   end
 
   # GET /addresses/1

@@ -4,11 +4,8 @@ class InteractionsController < ApplicationController
   # GET /interactions
   # GET /interactions.json
   def index
-    @interactions = Interaction.order(:interaction_id)
-  end
-  
-  def update_order
-    @interactions = Interaction.order(params[:column_name])
+    @q = Interaction.ransack(params[:q])
+    @interactions = @q.result(distinct: true)
   end
 
   # GET /interactions/1

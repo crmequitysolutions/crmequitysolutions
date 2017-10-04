@@ -2,54 +2,148 @@
 
 <h1>Properties</h1>
 
+<%= search_form_for @q do |f| %>
+  
+  <h3>Search Database</h3>
+  
+  <%= f.search_field :property_type_or_time_on_mrkt_or_construction_or_sqft_or_yr_built_or_bd_rms_or_ba_rms_or_rooms_or_roof_type_or_roof_age_or_plumb_type_or_plumb_age_or_foundation_or_heat_type_or_heat_age_or_cool_type_or_cool_age_or_window_type_or_window_nbr_or_resn_to_sell_or_quick_close_amt_or_amt_owed_or_pymnt_crnt_or_pymt_amt_or_interest_rate_or_bkd_tx_amt_cont %>
+
+  <%= f.submit %>
+<% end %>
+
+<%= search_form_for @q do |f| %>
+
+  <h3>Search By Column</h3>
+
+  <%= f.label :property_type_cont %>
+  <%= f.search_field :property_type_cont %>
+  
+  <%= f.label :time_on_mrkt_cont %>
+  <%= f.search_field :time_on_mrkt_cont %>
+  
+  <%= f.label :construction_cont %>
+  <%= f.search_field :construction_cont %>
+  
+  <%= f.label :sqft_cont %>
+  <%= f.search_field :sqft_cont %>
+  
+  <%= f.label :yr_built_cont %>
+  <%= f.search_field :yr_built_cont %>
+  
+  <%= f.label :bd_rms_cont %>
+  <%= f.search_field :bd_rms_cont %>
+  
+  <%= f.label :ba_rms_cont %>
+  <%= f.search_field :ba_rms_cont %>
+  
+  <%= f.label :rooms_cont %>
+  <%= f.search_field :rooms_cont %>
+  
+  <%= f.label :roof_type_cont %>
+  <%= f.search_field :roof_type_cont %>
+  
+  <%= f.label :roof_age_cont %>
+  <%= f.search_field :roof_age_cont %>
+  
+  <%= f.label :plumb_type_cont %>
+  <%= f.search_field :plumb_type_cont %>
+  
+  <%= f.label :plumb_age_cont %>
+  <%= f.search_field :plumb_age_cont %>
+  
+  <%= f.label :foundation_cont %>
+  <%= f.search_field :foundation_cont %>
+  
+  <%= f.label :heat_type_cont %>
+  <%= f.search_field :heat_type_cont %>
+  
+  <%= f.label :heat_age_cont %>
+  <%= f.search_field :heat_age_cont %>
+  
+  <%= f.label :cool_type_cont %>
+  <%= f.search_field :cool_type_cont %>
+  
+  <%= f.label :cool_age_cont %>
+  <%= f.search_field :cool_age_cont %>
+  
+  <%= f.label :window_type_cont %>
+  <%= f.search_field :window_type_cont %>
+  
+  <%= f.label :window_nbr_cont %>
+  <%= f.search_field :window_nbr_cont %>
+  
+  <%= f.label :resn_to_sell_cont %>
+  <%= f.search_field :resn_to_sell_cont %>
+  
+  <%= f.label :quick_close_amt_cont %>
+  <%= f.search_field :quick_close_amt_cont %>
+  
+  <%= f.label :amt_owed_cont %>
+  <%= f.search_field :amt_owed_cont %>
+  
+  <%= f.label :pymnt_crnt_cont %>
+  <%= f.search_field :pymnt_crnt_cont %>
+  
+  <%= f.label :pymt_amt_cont %>
+  <%= f.search_field :pymt_amt_cont %>
+  
+  <%= f.label :interest_rate_cont %>
+  <%= f.search_field :interest_rate_cont %>
+  
+  <%= f.label :bkd_tx_amt_cont %>
+  <%= f.search_field :bkd_tx_amt_cont %>
+  
+  <%= f.submit %>
+<% end %>
+
 <table>
   <thead>
     <tr>
-      <th><%= link_to "Address", update_property_order_path(:address_id) %></th>
-      <th><%= link_to "Owner", update_property_order_path(:owner) %></th>
-      <th><%= link_to "Property Type", update_property_order_path(:property_type) %></th>
-      <th><%= link_to "Time on Market", update_property_order_path(:time_on_mrkt) %></th>
-      <th><%= link_to "Construction", update_property_order_path(:construction) %></th>
-      <th><%= link_to "Basement", update_property_order_path(:basement_ind) %></th>
-      <th><%= link_to "Public Water", update_property_order_path(:public_water_ind) %></th>
-      <th><%= link_to "Offstreet Parking", update_property_order_path(:offstreet_parking_ind) %></th>
-      <th><%= link_to "On Main St", update_property_order_path(:main_st_ind) %></th>
-      <th><%= link_to "Garage", update_property_order_path(:garage_ind) %></th>
-      <th><%= link_to "Sq Ft", update_property_order_path(:sqft) %></th>
-      <th><%= link_to "Year Built", update_property_order_path(:yr_built) %></th>
-      <th><%= link_to "Bedrooms", update_property_order_path(:bd_rms) %></th>
-      <th><%= link_to "Bathrooms", update_property_order_path(:ba_rms) %></th>
-      <th><%= link_to "Rooms", update_property_order_path(:rooms) %></th>
-      <th><%= link_to "Kitchen Renovation Date", update_property_order_path(:kitch_reno_date) %></th>
-      <th><%= link_to "Bathroom Renovation Date", update_property_order_path(:bath_reno_date) %></th>
-      <th><%= link_to "Roof Type", update_property_order_path(:roof_type) %></th>
-      <th><%= link_to "Roof Age", update_property_order_path(:roof_age) %></th>
-      <th><%= link_to "Roof Leaks", update_property_order_path(:roof_leaks_ind) %></th>
-      <th><%= link_to "Plumbing Type", update_property_order_path(:plumb_type) %></th>
-      <th><%= link_to "Plumbing Age", update_property_order_path(:plumb_age) %></th>
-      <th><%= link_to "Plumbing Leaks", update_property_order_path(:plumb_leak_ind) %></th>
-      <th><%= link_to "Foundation", update_property_order_path(:foundation) %></th>
-      <th><%= link_to "Heat Type", update_property_order_path(:heat_type) %></th>
-      <th><%= link_to "Heat Age", update_property_order_path(:heat_age) %></th>
-      <th><%= link_to "Heat Works", update_property_order_path(:heat_works) %></th>
-      <th><%= link_to "AC Type", update_property_order_path(:cool_type) %></th>
-      <th><%= link_to "AC Age", update_property_order_path(:cool_age) %></th>
-      <th><%= link_to "AC Works", update_property_order_path(:cool_works) %></th>
-      <th><%= link_to "Window Type", update_property_order_path(:window_type) %></th>
-      <th><%= link_to "Number of Windows", update_property_order_path(:window_nbr) %></th>
-      <th><%= link_to "Reason to Sell", update_property_order_path(:resn_to_sell) %></th>
-      <th><%= link_to "Agent Listed", update_property_order_path(:agnt_list_ind) %></th>
-      <th><%= link_to "Agent Expiration Date", update_property_order_path(:agnt_exp_date) %></th>
-      <th><%= link_to "Quick Close Amount", update_property_order_path(:quick_close_amt) %></th>
-      <th><%= link_to "Amount Owed", update_property_order_path(:amt_owed) %></th>
-      <th><%= link_to "Payment Current", update_property_order_path(:pymnt_crnt) %></th>
-      <th><%= link_to "Payment Amount", update_property_order_path(:pymt_amt) %></th>
-      <th><%= link_to "Tax Increment", update_property_order_path(:tax_inc_ind) %></th>
-      <th><%= link_to "Interest Rate", update_property_order_path(:interest_rate) %></th>
-      <th><%= link_to "Payment Assumed", update_property_order_path(:pymnt_asum_ind) %></th>
-      <th><%= link_to "Sell By Date", update_property_order_path(:sell_by_date) %></th>
-      <th><%= link_to "Back Taxes", update_property_order_path(:bck_tx_ind) %></th>
-      <th><%= link_to "Back Tax Amount", update_property_order_path(:bkd_tx_amt) %></th>
+      <th><%= sort_link(@q, :address_id) %></th>
+      <th><%= sort_link(@q, :owner) %></th>
+      <th><%= sort_link(@q, :property_type) %></th>
+      <th><%= sort_link(@q, :time_on_mrkt) %></th>
+      <th><%= sort_link(@q, :construction) %></th>
+      <th><%= sort_link(@q, :basement_ind) %></th>
+      <th><%= sort_link(@q, :public_water_ind) %></th>
+      <th><%= sort_link(@q, :offstreet_parking_ind) %></th>
+      <th><%= sort_link(@q, :main_st_ind) %></th>
+      <th><%= sort_link(@q, :garage_ind) %></th>
+      <th><%= sort_link(@q, :sqft) %></th>
+      <th><%= sort_link(@q, :yr_built) %></th>
+      <th><%= sort_link(@q, :bd_rms) %></th>
+      <th><%= sort_link(@q, :ba_rms) %></th>
+      <th><%= sort_link(@q, :rooms) %></th>
+      <th><%= sort_link(@q, :kitch_reno_date) %></th>
+      <th><%= sort_link(@q, :bath_reno_date) %></th>
+      <th><%= sort_link(@q, :roof_type) %></th>
+      <th><%= sort_link(@q, :roof_age) %></th>
+      <th><%= sort_link(@q, :roof_leaks_ind) %></th>
+      <th><%= sort_link(@q, :plumb_type) %></th>
+      <th><%= sort_link(@q, :plumb_age) %></th>
+      <th><%= sort_link(@q, :plumb_leak_ind) %></th>
+      <th><%= sort_link(@q, :foundation) %></th>
+      <th><%= sort_link(@q, :heat_type) %></th>
+      <th><%= sort_link(@q, :heat_age) %></th>
+      <th><%= sort_link(@q, :heat_works) %></th>
+      <th><%= sort_link(@q, :cool_type) %></th>
+      <th><%= sort_link(@q, :cool_age) %></th>
+      <th><%= sort_link(@q, :cool_works) %></th>
+      <th><%= sort_link(@q, :window_type) %></th>
+      <th><%= sort_link(@q, :window_nbr) %></th>
+      <th><%= sort_link(@q, :resn_to_sell) %></th>
+      <th><%= sort_link(@q, :agnt_list_ind) %></th>
+      <th><%= sort_link(@q, :agnt_exp_date) %></th>
+      <th><%= sort_link(@q, :quick_close_amt) %></th>
+      <th><%= sort_link(@q, :amt_owed) %></th>
+      <th><%= sort_link(@q, :pymnt_crnt) %></th>
+      <th><%= sort_link(@q, :pymt_amt) %></th>
+      <th><%= sort_link(@q, :tax_inc_ind) %></th>
+      <th><%= sort_link(@q, :interest_rate) %></th>
+      <th><%= sort_link(@q, :pymnt_asum_ind) %></th>
+      <th><%= sort_link(@q, :sell_by_date) %></th>
+      <th><%= sort_link(@q, :bck_tx_ind) %></th>
+      <th><%= sort_link(@q, :bkd_tx_amt) %></th>
       <th colspan="3"></th>
     </tr>
   </thead>

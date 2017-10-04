@@ -4,11 +4,8 @@ class InvestorPrefsController < ApplicationController
   # GET /investor_prefs
   # GET /investor_prefs.json
   def index
-    @investor_prefs = InvestorPref.order(:investor_pref_id)
-  end
-  
-  def update_order
-    @investor_prefs = InvestorPref.order(params[:column_name])
+    @q = InvestorPref.ransack(params[:q])
+    @investor_prefs = @q.result(distinct: true)
   end
 
   # GET /investor_prefs/1

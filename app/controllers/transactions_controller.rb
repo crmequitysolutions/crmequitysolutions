@@ -4,11 +4,8 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = Transaction.order(:transaction_id)
-  end
-  
-  def update_order
-    @transactions = Transaction.order(params[:column_name])
+    @q = Transaction.ransack(params[:q])
+    @transactions = @q.result(distinct: true)
   end
 
   # GET /transactions/1

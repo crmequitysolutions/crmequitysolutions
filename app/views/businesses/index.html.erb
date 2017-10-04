@@ -2,15 +2,40 @@
 
 <h1>Businesses</h1>
 
+<%= search_form_for @q do |f| %>
+  
+  <h3>Search Database</h3>
+  
+  <%= f.search_field :business_name_or_url_or_email_cont %>
+
+  <%= f.submit %>
+<% end %>
+
+<%= search_form_for @q do |f| %>
+
+  <h3>Search By Column</h3>
+
+  <%= f.label :business_name_cont %>
+  <%= f.search_field :business_name_cont %>
+  
+  <%= f.label :url_cont %>
+  <%= f.search_field :url_cont %>
+  
+  <%= f.label :email_cont %>
+  <%= f.search_field :email_cont %>
+
+  <%= f.submit %>
+<% end %>
+
 <table>
   <thead>
     <tr>
-      <th><%= link_to "Business Name", update_business_order_path(:business_name) %></th>
-      <th><%= link_to "Address", update_business_order_path(:address_id) %></th>
-      <th><%= link_to "URL", update_business_order_path(:url) %></th>
-      <th><%= link_to "Email", update_business_order_path(:email) %></th>
-      <th><%= link_to "Primary Contact", update_business_order_path(:prim_contact_id) %></th>
-      <th><%= link_to "Secondary Contact", update_business_order_path(:sec_contact_id) %></th>
+      <th><%= sort_link(@q, :business_name) %></th>
+      <th><%= sort_link(@q, :address_id) %></th>
+      <th><%= sort_link(@q, :url) %></th>
+      <th><%= sort_link(@q, :email) %></th>
+      <th><%= sort_link(@q, :prim_contact_id) %></th>
+      <th><%= sort_link(@q, :sec_contact_id) %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
