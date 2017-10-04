@@ -229,11 +229,8 @@ DEPENDENCIES
   phonelib
   rails (>= 5.0)
   rails_12factor
-<<<<<<< HEAD
   rails_bootstrap_navbar
-=======
   ransack
->>>>>>> 1dc08efe6378ca04d020186a4c21f3aacc17f08c
   react-rails
   sass-rails
   sdoc
