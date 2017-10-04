@@ -105,12 +105,9 @@ GEM
     parslet (1.8.0)
     pg (0.21.0)
     phonelib (0.6.15)
-<<<<<<< HEAD
     popper_js (1.11.1)
-=======
     polyamorous (1.3.1)
       activerecord (>= 3.0)
->>>>>>> 1dc08efe6378ca04d020186a4c21f3aacc17f08c
     rack (2.0.3)
     rack-test (0.7.0)
       rack (>= 1.0, < 3)
