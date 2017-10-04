@@ -1,0 +1,13 @@
+I"(function() {
+  this.property_display = React.createClass({
+    render: function() {
+      return React.DOM.div({
+        className: 'property_display'
+      }, React.DOM.h1({
+        className: 'title'
+      }, 'property_display'));
+    }
+  });
+
+}).call(this);
+:ET

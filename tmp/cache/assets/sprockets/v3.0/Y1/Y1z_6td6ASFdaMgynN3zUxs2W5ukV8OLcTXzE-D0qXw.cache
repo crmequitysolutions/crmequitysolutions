@@ -1,0 +1,25 @@
+I"ê(function() {
+  this.property_displays = React.createClass({
+    getInitialState: function() {
+      return {
+        property_displays: this.props.data
+      };
+    },
+    getDefaultProps: function() {
+      return {
+        property_displays: []
+      };
+    },
+    render: function() {
+      return React.DOM.div({
+        className: 'property_displays'
+      }, React.DOM.h1({
+        className: 'title'
+      }, 'Property Information'), React.DOM.table({
+        className: 'table table-bordered'
+      }, React.DOM.thead(null, React.DOM.tr(null, React.DOM.th(null, 'Address'), React.DOM.th(null, 'Owner Name'), React.DOM.th(null, 'Owner Number'), React.DOM.th(null, 'Property Value')), React.DOM.tbody(null))));
+    }
+  });
+
+}).call(this);
+:ET

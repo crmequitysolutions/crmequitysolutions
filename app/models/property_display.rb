@@ -1,0 +1,2 @@
+class PropertyDisplay < ApplicationRecord
+end

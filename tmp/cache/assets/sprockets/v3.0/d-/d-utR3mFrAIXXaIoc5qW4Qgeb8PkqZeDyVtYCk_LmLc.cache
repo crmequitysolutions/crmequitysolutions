@@ -1,0 +1,21 @@
+I"¥(function() {
+  this.PropertyDisplay = react.createClass({
+    getInitialState: function() {
+      return {
+        PropertyDisplay: this.props.data
+      };
+    },
+    getDefaultProps: function() {
+      return PropertyDisplay([]);
+    },
+    render: function() {
+      return React.DOM.div({
+        className: 'PropertyDisplay'
+      }, React.DOM.h1({
+        classname: 'title'
+      }));
+    }
+  });
+
+}).call(this);
+:ET

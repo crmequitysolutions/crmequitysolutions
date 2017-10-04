@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :property_displays
   resources :transactions
   resources :rental_units
   resources :properties
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
   resources :communities
   resources :businesses
   resources :addresses
+  resources :abouts
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
