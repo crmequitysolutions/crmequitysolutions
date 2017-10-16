@@ -1,8 +1,14 @@
-var React = require('react');
+import React, { Component}  from 'react-rails';
 
-var property_views= React.createClass({
-  render: function() {
-    return (
+
+class PropertyView extends Component{
+  constructor() 
+    {
+        super();
+    }
+    
+    render(){
+      return(
       <div>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -179,9 +185,13 @@ var property_views= React.createClass({
           </div>
         </div>
         {/* Bootstrap core JavaScript
-    ================================================== */}
+          ============================================================ */}
         {/* Placed at the end of the document so the pages load faster */}
-      </div>
-    );
-  }
-});
+      </div>  
+      );
+    }
+  
+}
+
+
+export default PropertyView;
