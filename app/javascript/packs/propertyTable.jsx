@@ -1,7 +1,8 @@
-import React, { Component}  from 'react-rails';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
 
-class PropertyView extends Component{
+export default class PropertyView extends React.Component{
   constructor() 
     {
         super();
@@ -12,68 +13,17 @@ class PropertyView extends Component{
       <div>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="property_views" content="width=device-width, initial-scale=1" />
+        <meta name="PropertyViews" content="width=device-width, initial-scale=1" />
         <title>CRM | Properties</title>
         {/* Bootstrap core CSS */}
         <link href="css/bootstrap.min.css" rel="stylesheet" />
         <link href="css/style.css" rel="stylesheet" />
-        <nav className="navbar navbar-default">
-          <div className="container">
-            <div className="navbar-header">
-              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span className="sr-only">Toggle navigation</span>
-                <span className="icon-bar" />
-                <span className="icon-bar" />
-                <span className="icon-bar" />
-              </button>
-              <a className="navbar-brand" href="#">CRM Equity Solutions</a>
-            </div>
-            <div id="navbar" className="collapse navbar-collapse">
-              <ul className="nav navbar-nav">
-                <li className="active"><a href="properties.html">Home</a></li>
-                <li><a href="guide.html">Guide</a></li>
-                <li><a href="contact.html">Contact</a></li>
-              </ul>
-              <ul className="nav navbar-nav navbar-right">
-                <li><a href="#">Welcome, Duvall</a></li>
-                <li><a href="login.html">Logout</a></li>
-              </ul>
-            </div>{/*/.nav-collapse */}
-          </div>
-        </nav>
-        <header id="header">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-10">
-                <h1><span className="glyphicon glyphicon-home" aria-hidden="true" /> Properties<small> Manage Properties</small></h1>
-              </div>
-              <div className="col-md-2">
-                <div className="dropdown create">
-                  <button className="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <span className="glyphicon glyphicon-plus" aria-hidden="true" /> New
-                    <span className="caret" />
-                  </button>
-                  <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">Add Property</a></li>
-                    <li><a href="#">Add Investor</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
+        
+        
         <section id="main">
           <div className="container">
             <div className="row">
-              <div className="col-md-3">
-                <div className="list-group">
-                  <a href="index.html" className="list-group-item active main-color-bg">
-                    <span className="glyphicon glyphicon-list" aria-hidden="true" /> Tables
-                  </a>
-                  <a href="properties.html" className="list-group-item"><span className="glyphicon glyphicon-home" aria-hidden="true" /> Properties <span className="badge">4</span></a>
-                  <a href="investors.html" className="list-group-item"><span className="glyphicon glyphicon-usd" aria-hidden="true" /> Investors <span className="badge">5</span></a>
-                </div>
-              </div>
+              
               <div className="col-md-9">
                 {/* Website Overview */}
                 <div className="panel panel-default">
@@ -193,5 +143,3 @@ class PropertyView extends Component{
   
 }
 
-
-export default PropertyView;
