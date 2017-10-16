@@ -4,7 +4,7 @@ import Navbar from './navbar'
 import Header from './header'
 import TableSelector from './tableSelector'
 import PropertyTable from './propertyTable'
-
+import Footer from './footer';
 
 class Main extends Component{
     render(){
@@ -15,13 +15,15 @@ class Main extends Component{
                 <Navbar/>,
                 <Header/>,
                 <TableSelector/>,
-                <PropertyTable/>
+                <PropertyTable/>,
+                <Footer/>
             )
         )
     }
 }
 
+
 ReactDOM.render(
-  <Main />,
+    <Main/>,
   document.body
 );

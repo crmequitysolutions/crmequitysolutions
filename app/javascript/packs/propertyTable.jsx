@@ -11,19 +11,11 @@ export default class PropertyView extends React.Component{
     render(){
       return(
       <div>
-        <meta charSet="utf-8" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="PropertyViews" content="width=device-width, initial-scale=1" />
-        <title>CRM | Properties</title>
-        {/* Bootstrap core CSS */}
-        <link href="css/bootstrap.min.css" rel="stylesheet" />
-        <link href="css/style.css" rel="stylesheet" />
         
         
         <section id="main">
           <div className="container">
             <div className="row">
-              
               <div className="col-md-9">
                 {/* Website Overview */}
                 <div className="panel panel-default">
@@ -90,9 +82,7 @@ export default class PropertyView extends React.Component{
             </div>
           </div>
         </section>
-        <footer id="footer">
-          <p>CRM Equity Solutions, © 2017</p>
-        </footer>
+        
         {/* Modals */}
         {/* Add Page */}
         <div className="modal fade" id="addPage" tabIndex={-1} role="dialog" aria-labelledby="myModalLabel">
@@ -134,9 +124,6 @@ export default class PropertyView extends React.Component{
             </div>
           </div>
         </div>
-        {/* Bootstrap core JavaScript
-          ============================================================ */}
-        {/* Placed at the end of the document so the pages load faster */}
       </div>  
       );
     }
