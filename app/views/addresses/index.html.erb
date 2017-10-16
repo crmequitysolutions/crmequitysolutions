@@ -2,18 +2,58 @@
 
 <h1>Addresses</h1>
 
+<%= search_form_for @q do |f| %>
+  
+  <h3>Search Database</h3>
+  
+  <%= f.search_field :line_1_or_line_2_or_city_or_state_or_zip_code_or_county_or_country_or_school_district_cont %>
+
+  <%= f.submit %>
+<% end %>
+
+<%= search_form_for @q do |f| %>
+
+  <h3>Search By Column</h3>
+
+  <%= f.label :line_1_cont %>
+  <%= f.search_field :line_1_cont %>
+  
+  <%= f.label :line_2_cont %>
+  <%= f.search_field :line_2_cont %>
+  
+  <%= f.label :city_cont %>
+  <%= f.search_field :city_cont %>
+  
+  <%= f.label :state_cont %>
+  <%= f.search_field :state_cont %>
+  
+  <%= f.label :zip_code_cont %>
+  <%= f.search_field :zip_code_cont %>
+  
+  <%= f.label :county_cont %>
+  <%= f.search_field :county_cont %>
+  
+  <%= f.label :country_cont %>
+  <%= f.search_field :country_cont %>
+  
+  <%= f.label :school_district_cont %>
+  <%= f.search_field :school_district_cont %>
+  
+  <%= f.submit %>
+<% end %>
+
 <table>
   <thead>
     <tr>
-      <th><%= link_to "Line 1", update_address_order_path(:line_1) %></th>
-      <th><%= link_to "Line 2", update_address_order_path(:line_2) %></th>
-      <th><%= link_to "City", update_address_order_path(:city) %></th>
-      <th><%= link_to "State", update_address_order_path(:state) %></th>
-      <th><%= link_to "Zip Code", update_address_order_path(:zip_code) %></th>
-      <th><%= link_to "County", update_address_order_path(:county) %></th>
-      <th><%= link_to "Country", update_address_order_path(:country) %></th>
-      <th><%= link_to "Community", update_address_order_path(:community_id) %></th>
-      <th><%= link_to "School District", update_address_order_path(:school_district) %></th>
+      <th><%= sort_link(@q, :line_1) %></th>
+      <th><%= sort_link(@q, :line_2) %></th>
+      <th><%= sort_link(@q, :city) %></th>
+      <th><%= sort_link(@q, :state) %></th>
+      <th><%= sort_link(@q, :zip_code) %></th>
+      <th><%= sort_link(@q, :county) %></th>
+      <th><%= sort_link(@q, :country) %></th>
+      <th><%= sort_link(@q, :community_id) %></th>
+      <th><%= sort_link(@q, :school_district) %></th>
       <th colspan="3"></th>
     </tr>
   </thead>

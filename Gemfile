@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'bootstrap', '~> 4.0.0.alpha3.1'
+gem 'rails_bootstrap_navbar'
 gem 'rails', '>= 5.0'
 # Use SCSS for stylesheets
 gem 'sass-rails'
@@ -24,6 +26,7 @@ gem 'sdoc'
 # provide support for user authentication
 gem 'devise'
 gem 'phonelib'
+gem 'ransack'
 gem 'yarn'
 
 # Use ActiveModel has_secure_password

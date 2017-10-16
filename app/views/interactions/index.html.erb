@@ -2,15 +2,40 @@
 
 <h1>Interactions</h1>
 
+<%= search_form_for @q do |f| %>
+  
+  <h3>Search Database</h3>
+  
+  <%= f.search_field :interaction_type_or_result_or_note_cont %>
+
+  <%= f.submit %>
+<% end %>
+
+<%= search_form_for @q do |f| %>
+
+  <h3>Search By Column</h3>
+
+  <%= f.label :interaction_type_cont %>
+  <%= f.search_field :interaction_type_cont %>
+  
+  <%= f.label :result_cont %>
+  <%= f.search_field :result_cont %>
+  
+  <%= f.label :note_cont %>
+  <%= f.search_field :note_cont %>
+
+  <%= f.submit %>
+<% end %>
+
 <table>
   <thead>
     <tr>
-      <th><%= link_to "Contact", update_interaction_order_path(:contact_id) %></th>
-      <th><%= link_to "Date and Time", update_interaction_order_path(:date_time) %></th>
-      <th><%= link_to "Interaction Type", update_interaction_order_path(:interaction_type) %></th>
-      <th><%= link_to "Result", update_interaction_order_path(:result) %></th>
-      <th><%= link_to "Notes", update_interaction_order_path(:note) %></th>
-      <th><%= link_to "Property", update_interaction_order_path(:property_id) %></th>
+      <th><%= sort_link(@q, :contact_id) %></th>
+      <th><%= sort_link(@q, :date_time) %></th>
+      <th><%= sort_link(@q, :interaction_type) %></th>
+      <th><%= sort_link(@q, :result) %></th>
+      <th><%= sort_link(@q, :note) %></th>
+      <th><%= sort_link(@q, :property_id) %></th>
       <th colspan="3"></th>
     </tr>
   </thead>

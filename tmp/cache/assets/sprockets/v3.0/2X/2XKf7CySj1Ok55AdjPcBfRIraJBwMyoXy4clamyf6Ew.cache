@@ -1,0 +1,17 @@
+I"}(function() {
+  +(this.PropertyDisplay = React.createClass);
+
+  +({
+    render: function() {}
+  });
+
+  +React.DOM.tr(null, +React.DOM.td(null, this.props.property_display.Address));
+
+  +React.DOM.td(null, this.props.property_display.owner);
+
+  +React.DOM.td(null, this.props.property_display.contactInfo);
+
+  +React.DOM.td(null, this.props.property_display.value);
+
+}).call(this);
+:ET

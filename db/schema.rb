@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170930214051) do
+ActiveRecord::Schema.define(version: 20171001191247) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "address_id"
@@ -151,6 +151,15 @@ ActiveRecord::Schema.define(version: 20170930214051) do
     t.datetime "sell_by_date"
     t.boolean "bck_tx_ind"
     t.float "bkd_tx_amt"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "property_displays", force: :cascade do |t|
+    t.string "Address"
+    t.string "owner"
+    t.string "contactInfo"
+    t.float "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
