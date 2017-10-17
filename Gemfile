@@ -20,6 +20,9 @@ gem 'jquery-rails'
 gem 'react-rails'
 gem 'webpacker'
 gem 'turbolinks'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 # bundle exec rake doc:rails generates the API under doc/api.

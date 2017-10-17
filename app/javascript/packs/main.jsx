@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import Navbar from './navbar'
 import Header from './header'
 import TableSelector from './tableSelector'
-import PropertyTable from './propertyTable'
+import Table from './table'
 import Footer from './footer';
 
 class Main extends Component{
@@ -15,7 +15,7 @@ class Main extends Component{
                 <Navbar/>,
                 <Header/>,
                 <TableSelector/>,
-                <PropertyTable/>,
+                <Table/>,
                 <Footer/>
             )
         )
@@ -23,7 +23,4 @@ class Main extends Component{
 }
 
 
-ReactDOM.render(
-    <Main/>,
-  document.body
-);
+ReactDOM.render(<Main/>, document.body);

@@ -12,7 +12,7 @@ export default class MyNavBar extends Component{
         <nav className="navbar navbar-default">
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-          <meta name="PropertyViews" content="width=device-width, initial-scale=1" />
+          <meta name="Navbar" content="width=device-width, initial-scale=1" />
           <title>CRM | Properties</title>
           {/* Bootstrap core CSS */}
           <link href="css/bootstrap.min.css" rel="stylesheet" />

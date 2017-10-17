@@ -2,10 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 
-export default class PropertyView extends React.Component{
+export default class Table extends React.Component{
   constructor() 
     {
         super();
+        this.state = {
+          
+        }
     }
     
     render(){
@@ -13,7 +16,7 @@ export default class PropertyView extends React.Component{
       <div>
         
         
-        <section id="main">
+        <section id="table">
           <div className="container">
             <div className="row">
               <div className="col-md-9">
