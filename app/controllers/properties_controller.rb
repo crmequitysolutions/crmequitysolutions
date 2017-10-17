@@ -21,6 +21,10 @@ class PropertiesController < ApplicationController
   # GET /properties/1/edit
   def edit
   end
+  
+  def images
+    @images = Image.where(["property_id = ?", params[:id]])
+  end
 
   # POST /properties
   # POST /properties.json

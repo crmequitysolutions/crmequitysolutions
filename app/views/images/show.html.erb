@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+ 
+<p>
+  <strong>Property:</strong>
+  <%= link_to Address.where(["address_id = ?", Property.where(["property_id = ?", @image.property_id]).first.address_id]).first.line_1, Property.where(["property_id = ?", @image.property_id]).first %>
+</p>
+ 
+<p>
+  <strong>Description:</strong>
+  <%= @image.description %>
+</p>
+ 
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @image.image.normal.url %>
+</p>
+ 
+<%= link_to 'Edit', edit_image_path(@image) %> |
+<%= link_to 'Back', see_images_path(@image.property_id) %>

@@ -144,7 +144,7 @@
       <th><%= sort_link(@q, :sell_by_date) %></th>
       <th><%= sort_link(@q, :bck_tx_ind) %></th>
       <th><%= sort_link(@q, :bkd_tx_amt) %></th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -197,6 +197,7 @@
         <td><%= property.bck_tx_ind %></td>
         <td><%= property.bkd_tx_amt %></td>
         <td><%= link_to 'Show', property %></td>
+        <td><%= link_to 'See Images', see_images_path(property.property_id) %></td>
         <td><%= link_to 'Edit', edit_property_path(property) %></td>
         <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
