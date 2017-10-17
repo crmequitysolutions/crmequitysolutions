@@ -18,7 +18,11 @@
 
   <div class="field">
     <%= form.label :contact_id %>
-    <%= form.number_field :contact_id, id: :investor_pref_contact_id %>
+    <%= form.select(:contact_id) do %>
+      <% Contact.all.each do |c| -%>
+        <%= content_tag(:option, c.last_name, value: c.contact_id) %>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
@@ -28,7 +32,11 @@
 
   <div class="field">
     <%= form.label :community_id %>
-    <%= form.number_field :community_id, id: :investor_pref_community_id %>
+    <%= form.select(:community_id) do %>
+      <% Community.all.each do |c| -%>
+        <%= content_tag(:option, c.community_name, value: c.community_id) %>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">

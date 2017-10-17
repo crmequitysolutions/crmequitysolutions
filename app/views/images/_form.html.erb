@@ -13,7 +13,11 @@
  
   <div class="field">
     <%= f.label :property_id %><br>
-    <%= f.number_field :property_id %>
+    <%= f.select(:property_id) do %>
+      <% Property.all.each do |c| -%>
+        <%= content_tag(:option, Address.where(["address_id = ?", c.address_id]).first.line_1, value: c.property_id) %>
+      <% end %>
+    <% end %>
   </div>
   <div class="field">
     <%= f.label :description %><br>

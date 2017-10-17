@@ -18,7 +18,11 @@
 
   <div class="field">
     <%= form.label :address_id %>
-    <%= form.number_field :address_id, id: :contact_address_id %>
+    <%= form.select(:address_id) do %>
+      <% Address.all.each do |c| -%>
+        <%= content_tag(:option, c.line_1, value: c.address_id) %>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">

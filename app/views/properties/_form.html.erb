@@ -18,12 +18,20 @@
 
   <div class="field">
     <%= form.label :address_id %>
-    <%= form.number_field :address_id, id: :property_address_id %>
+    <%= form.select(:address_id) do %>
+      <% Address.all.each do |c| -%>
+        <%= content_tag(:option, c.line_1, value: c.address_id) %>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.label :owner %>
-    <%= form.number_field :owner, id: :property_owner %>
+    <%= form.select(:owner) do %>
+      <% Contact.all.each do |c| -%>
+        <%= content_tag(:option, c.last_name, value: c.contact_id) %>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">

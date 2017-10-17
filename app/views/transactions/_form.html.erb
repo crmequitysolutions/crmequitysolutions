@@ -18,7 +18,11 @@
 
   <div class="field">
     <%= form.label :purchased_by %>
-    <%= form.number_field :purchased_by, id: :transaction_purchased_by %>
+    <%= form.select(:purchased_by) do %>
+      <% Contact.all.each do |c| -%>
+        <%= content_tag(:option, c.last_name, value: c.contact_id) %>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
@@ -28,7 +32,11 @@
 
   <div class="field">
     <%= form.label :property_id %>
-    <%= form.number_field :property_id, id: :transaction_property_id %>
+    <%= form.select(:property_id) do %>
+      <% Property.all.each do |c| -%>
+        <%= content_tag(:option, Address.where(["address_id = ?", c.address_id]).first.line_1, value: c.property_id) %>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
