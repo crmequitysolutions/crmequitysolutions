@@ -14,9 +14,6 @@ export default class MyNavBar extends Component{
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="Navbar" content="width=device-width, initial-scale=1" />
           <title>CRM | Properties</title>
-          {/* Bootstrap core CSS */}
-          <link href="css/bootstrap.min.css" rel="stylesheet" />
-          <link href="css/style.css" rel="stylesheet" />
           <div className="container">
             <div className="navbar-header">
               <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
