@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :property_displays
   resources :transactions
   resources :rental_units
