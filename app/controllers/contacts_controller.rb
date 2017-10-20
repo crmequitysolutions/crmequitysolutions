@@ -1,5 +1,7 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
+  before_action :check_address, only: [:new]
+  
 
   # GET /contacts
   # GET /contacts.json
@@ -55,6 +57,42 @@ class ContactsController < ApplicationController
   # DELETE /contacts/1
   # DELETE /contacts/1.json
   def destroy
+    Business.where(["prim_contact_id = ?", @contact.contact_id]).each do |business|
+      business.destroy
+    end
+    Business.where(["sec_contact_id = ?", @contact.contact_id]).each do |business|
+      business.destroy
+    end
+    Interaction.where(["contact_id = ?", @contact.contact_id]).each do |interaction|
+      interaction.destroy
+    end
+    InvestorPref.where(["contact_id = ?", @contact.contact_id]).each do |investor_pref|
+      investor_pref.destroy
+    end
+    Property.where(["owner = ?", @contact.contact_id]).each do |property|
+      Image.where(["property_id = ?", property.property_id]).each do |image|
+        image.destroy
+      end
+      Interaction.where(["property_id = ?", property.property_id]).each do |interaction|
+        interaction.destroy
+      end
+      PropDoc.where(["property_id = ?", property.property_id]).each do |prop_doc|
+        prop_doc.destroy
+      end
+      RentalUnit.where(["property_id = ?", property.property_id]).each do |rental_unit|
+        rental_unit.destroy
+      end
+      Transaction.where(["property_id = ?", property.property_id]).each do |transaction|
+        transaction.destroy
+      end
+      property.destroy
+    end
+    RentalUnit.where(["tenant = ?", @contact.contact_id]).each do |rental_unit|
+      rental_unit.destroy
+    end
+    Transaction.where(["purchased_by = ?", @contact.contact_id]).each do |transaction|
+      transaction.destroy
+    end
     @contact.destroy
     respond_to do |format|
       format.html { redirect_to contacts_url, notice: 'Contact was successfully destroyed.' }
@@ -66,6 +104,13 @@ class ContactsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_contact
       @contact = Contact.find(params[:id])
+    end
+    
+    def check_address
+      unless Address.all.size > 0
+        flash[:error] = "You need an address first!"
+        redirect_to new_address_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,5 +1,7 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: [:show, :edit, :update, :destroy]
+  before_action :check_address, only: [:new]
+  before_action :check_contact, only: [:new]
 
   # GET /properties
   # GET /properties.json
@@ -59,6 +61,21 @@ class PropertiesController < ApplicationController
   # DELETE /properties/1
   # DELETE /properties/1.json
   def destroy
+    Image.where(["property_id = ?", @property.property_id]).each do |image|
+      image.destroy
+    end
+    Interaction.where(["property_id = ?", @property.property_id]).each do |interaction|
+      interaction.destroy
+    end
+    PropDoc.where(["property_id = ?", @property.property_id]).each do |prop_doc|
+      prop_doc.destroy
+    end
+    RentalUnit.where(["property_id = ?", @property.property_id]).each do |rental_unit|
+      rental_unit.destroy
+    end
+    Transaction.where(["property_id = ?", @property.property_id]).each do |transaction|
+      transaction.destroy
+    end
     @property.destroy
     respond_to do |format|
       format.html { redirect_to properties_url, notice: 'Property was successfully destroyed.' }
@@ -70,6 +87,20 @@ class PropertiesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_property
       @property = Property.find(params[:id])
+    end
+    
+    def check_address
+      unless Address.all.size > 0
+        flash[:error] = "You need an address first!"
+        redirect_to new_address_path
+      end
+    end
+    
+    def check_contact
+      unless Contact.all.size > 0
+        flash[:error] = "You need a contact first!"
+        redirect_to new_contact_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

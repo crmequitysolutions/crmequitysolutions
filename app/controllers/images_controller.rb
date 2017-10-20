@@ -1,5 +1,6 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
+  before_action :check_property, only: [:new]
 
   # GET /images
   # GET /images.json
@@ -65,6 +66,13 @@ class ImagesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_image
       @image = Image.find(params[:id])
+    end
+    
+    def check_property
+      unless Property.all.size > 0
+        flash[:error] = "You need a property first!"
+        redirect_to new_property_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
