@@ -10,7 +10,7 @@ const paragraph = React.createElement('p', {}, 'CRM Equity Solutions is an organ
 export default class Splash extends React.Component{
     
     launchApp(){
-        window.location = '/property_views'
+        window.location = '/logins'
     }    
     
     render(){

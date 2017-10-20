@@ -4,10 +4,6 @@ export default class Button extends Component{
     
     constructor(props){
         super(props);
-        this.state = {
-            text : props.name,
-            hover: false
-        }
     }
     
 
@@ -34,7 +30,7 @@ export default class Button extends Component{
                 onMouseLeave : this.mouseOut.bind(this),
                 onClick: this.props.onClick.bind(this) 
             },
-            this.state.text
+            this.props.name
         );
     }
 }
