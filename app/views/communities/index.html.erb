@@ -40,7 +40,7 @@
         <td><%= community.zip_code %></td>
         <td><%= link_to 'Show', community %></td>
         <td><%= link_to 'Edit', edit_community_path(community) %></td>
-        <td><%= link_to 'Destroy', community, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', community, method: :delete, data: { confirm: 'Are you sure you want to delete this community and all related information?' } %></td>
       </tr>
     <% end %>
   </tbody>

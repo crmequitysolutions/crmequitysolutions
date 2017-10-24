@@ -72,7 +72,7 @@
         <td><%= address.school_district %></td>
         <td><%= link_to 'Show', address %></td>
         <td><%= link_to 'Edit', edit_address_path(address) %></td>
-        <td><%= link_to 'Destroy', address, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', address, method: :delete, data: { confirm: 'Are you sure you want to delete this address and all related information?' } %></td>
       </tr>
     <% end %>
   </tbody>

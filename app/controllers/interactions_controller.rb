@@ -1,5 +1,7 @@
 class InteractionsController < ApplicationController
   before_action :set_interaction, only: [:show, :edit, :update, :destroy]
+  before_action :check_contact, only: [:new]
+  before_action :check_property, only: [:new]
 
   # GET /interactions
   # GET /interactions.json
@@ -66,6 +68,20 @@ class InteractionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_interaction
       @interaction = Interaction.find(params[:id])
+    end
+    
+    def check_contact
+      unless Contact.all.size > 0
+        flash[:error] = "You need a contact first!"
+        redirect_to new_contact_path
+      end
+    end
+    
+    def check_property
+      unless Property.all.size > 0
+        flash[:error] = "You need a property first!"
+        redirect_to new_property_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

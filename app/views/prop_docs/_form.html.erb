@@ -18,7 +18,11 @@
 
   <div class="field">
     <%= form.label :property_id %>
-    <%= form.number_field :property_id, id: :prop_doc_property_id %>
+    <%= form.select(:property_id) do %>
+      <% Property.all.each do |c| -%>
+        <%= content_tag(:option, Address.where(["address_id = ?", c.address_id]).first.line_1, value: c.property_id) %>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="field">
