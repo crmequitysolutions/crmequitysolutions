@@ -38,7 +38,11 @@ class InvestorPrefsController < ApplicationController
   # POST /investor_prefs.json
   def create
     @investor_pref = InvestorPref.new(investor_pref_params)
-
+    @num = 1
+    while InvestorPref.where(["investor_pref_id = ?", @num]).size > 0
+      @num = Random.rand(1000000000)
+    end
+    @investor_pref.investor_pref_id = @num
     respond_to do |format|
       if @investor_pref.save
         format.html { redirect_to @investor_pref, notice: 'Investor pref was successfully created.' }

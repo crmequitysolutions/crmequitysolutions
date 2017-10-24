@@ -28,7 +28,11 @@ class BusinessesController < ApplicationController
   # POST /businesses.json
   def create
     @business = Business.new(business_params)
-
+    @num = 1
+    while Business.where(["business_id = ?", @num]).size > 0
+      @num = Random.rand(1000000000)
+    end
+    @business.business_id = @num
     respond_to do |format|
       if @business.save
         format.html { redirect_to @business, notice: 'Business was successfully created.' }

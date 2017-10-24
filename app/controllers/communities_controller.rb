@@ -26,7 +26,11 @@ class CommunitiesController < ApplicationController
   # POST /communities.json
   def create
     @community = Community.new(community_params)
-
+    @num = 1
+    while Community.where(["community_id = ?", @num]).size > 0
+      @num = Random.rand(1000000000)
+    end
+    @community.community_id = @num
     respond_to do |format|
       if @community.save
         format.html { redirect_to @community, notice: 'Community was successfully created.' }

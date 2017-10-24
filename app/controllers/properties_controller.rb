@@ -41,7 +41,11 @@ class PropertiesController < ApplicationController
   # POST /properties.json
   def create
     @property = Property.new(property_params)
-
+    @num = 1
+    while Property.where(["property_id = ?", @num]).size > 0
+      @num = Random.rand(1000000000)
+    end
+    @property.property_id = @num
     respond_to do |format|
       if @property.save
         format.html { redirect_to @property, notice: 'Property was successfully created.' }
