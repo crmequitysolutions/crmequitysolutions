@@ -1,0 +1,33 @@
+<%= form_for @image, html: { multipart: true } do |f| %>
+  <% if @image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>
+ 
+      <ul>
+      <% @image.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <div class="field">
+    <%= f.label :property_id %><br>
+    <%= f.select(:property_id) do %>
+      <% Property.all.each do |c| -%>
+        <%= content_tag(:option, Address.where(["address_id = ?", c.address_id]).first.line_1, value: c.property_id) %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

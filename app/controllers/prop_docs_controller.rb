@@ -1,5 +1,6 @@
 class PropDocsController < ApplicationController
   before_action :set_prop_doc, only: [:show, :edit, :update, :destroy]
+  before_action :check_property, only: [:new]
 
   # GET /prop_docs
   # GET /prop_docs.json
@@ -66,6 +67,13 @@ class PropDocsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_prop_doc
       @prop_doc = PropDoc.find(params[:id])
+    end
+    
+    def check_property
+      unless Property.all.size > 0
+        flash[:error] = "You need a property first!"
+        redirect_to new_property_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

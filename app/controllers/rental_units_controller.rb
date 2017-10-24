@@ -1,5 +1,7 @@
 class RentalUnitsController < ApplicationController
   before_action :set_rental_unit, only: [:show, :edit, :update, :destroy]
+  before_action :check_address, only: [:new]
+  before_action :check_contact, only: [:new]
 
   # GET /rental_units
   # GET /rental_units.json
@@ -66,6 +68,20 @@ class RentalUnitsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_rental_unit
       @rental_unit = RentalUnit.find(params[:id])
+    end
+    
+    def check_address
+      unless Address.all.size > 0
+        flash[:error] = "You need an address first!"
+        redirect_to new_address_path
+      end
+    end
+    
+    def check_contact
+      unless Contact.all.size > 0
+        flash[:error] = "You need a contact first!"
+        redirect_to new_contact_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

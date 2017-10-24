@@ -9,6 +9,7 @@ local.properties
 
 # Generic Android ignores #
 ###########################
+bin/
 target
 gen/
 
@@ -44,6 +45,7 @@ gen/
 
 # Logs and databases #
 ######################
+log/
 *.log
 *.sql
 *.sqlite
@@ -83,6 +85,8 @@ DerivedData
 *.pydevproject
 .metadata
 .gradle
+bin/
+tmp/
 *.tmp
 *.bak
 *.swp
@@ -120,3 +124,6 @@ local.properties
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/public/packs
+/public/packs-test
+/node_modules

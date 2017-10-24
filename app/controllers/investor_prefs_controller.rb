@@ -1,5 +1,7 @@
 class InvestorPrefsController < ApplicationController
   before_action :set_investor_pref, only: [:show, :edit, :update, :destroy]
+  before_action :check_contact, only: [:new]
+  before_action :check_community, only: [:new]
 
   # GET /investor_prefs
   # GET /investor_prefs.json
@@ -66,6 +68,20 @@ class InvestorPrefsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_investor_pref
       @investor_pref = InvestorPref.find(params[:id])
+    end
+    
+    def check_contact
+      unless Contact.all.size > 0
+        flash[:error] = "You need a contact first!"
+        redirect_to new_contact_path
+      end
+    end
+    
+    def check_community
+      unless Community.all.size > 0
+        flash[:error] = "You need a community first!"
+        redirect_to new_community_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

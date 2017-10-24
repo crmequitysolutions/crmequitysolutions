@@ -1,5 +1,6 @@
 class AddressesController < ApplicationController
   before_action :set_address, only: [:show, :edit, :update, :destroy]
+  before_action :check_community, only: [:new]
 
   # GET /addresses
   # GET /addresses.json
@@ -55,6 +56,66 @@ class AddressesController < ApplicationController
   # DELETE /addresses/1
   # DELETE /addresses/1.json
   def destroy
+    Business.where(["address_id = ?", @address.address_id]).each do |business|
+      business.destroy
+    end
+    Contact.where(["address_id = ?", @address.address_id]).each do |contact|
+      Business.where(["prim_contact_id = ?", contact.contact_id]).each do |business|
+        business.destroy
+      end
+      Business.where(["sec_contact_id = ?", contact.contact_id]).each do |business|
+        business.destroy
+      end
+      Interaction.where(["contact_id = ?", contact.contact_id]).each do |interaction|
+        interaction.destroy
+      end
+      InvestorPref.where(["contact_id = ?", contact.contact_id]).each do |investor_pref|
+        investor_pref.destroy
+      end
+      Property.where(["owner = ?", contact.contact_id]).each do |property|
+        Image.where(["property_id = ?", property.property_id]).each do |image|
+          image.destroy
+        end
+        Interaction.where(["property_id = ?", property.property_id]).each do |interaction|
+          interaction.destroy
+        end
+        PropDoc.where(["property_id = ?", property.property_id]).each do |prop_doc|
+          prop_doc.destroy
+        end
+        RentalUnit.where(["property_id = ?", property.property_id]).each do |rental_unit|
+          rental_unit.destroy
+        end
+        Transaction.where(["property_id = ?", property.property_id]).each do |transaction|
+          transaction.destroy
+        end
+        property.destroy
+      end
+      RentalUnit.where(["tenant = ?", contact.contact_id]).each do |rental_unit|
+        rental_unit.destroy
+      end
+      Transaction.where(["purchased_by = ?", contact.contact_id]).each do |transaction|
+        transaction.destroy
+      end
+      contact.destroy
+    end
+    Property.where(["address_id = ?", @address.address_id]).each do |property|
+      Image.where(["property_id = ?", property.property_id]).each do |image|
+        image.destroy
+      end
+      Interaction.where(["property_id = ?", property.property_id]).each do |interaction|
+        interaction.destroy
+      end
+      PropDoc.where(["property_id = ?", property.property_id]).each do |prop_doc|
+        prop_doc.destroy
+      end
+      RentalUnit.where(["property_id = ?", property.property_id]).each do |rental_unit|
+        rental_unit.destroy
+      end
+      Transaction.where(["property_id = ?", property.property_id]).each do |transaction|
+        transaction.destroy
+      end
+      property.destroy
+    end
     @address.destroy
     respond_to do |format|
       format.html { redirect_to addresses_url, notice: 'Address was successfully destroyed.' }
@@ -66,6 +127,13 @@ class AddressesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_address
       @address = Address.find(params[:id])
+    end
+    
+    def check_community
+      unless Community.all.size > 0
+        flash[:error] = "You need a community first!"
+        redirect_to new_community_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
