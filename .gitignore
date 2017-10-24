@@ -9,6 +9,7 @@ local.properties
 
 # Generic Android ignores #
 ###########################
+bin/
 target
 gen/
 
@@ -44,6 +45,7 @@ gen/
 
 # Logs and databases #
 ######################
+log/
 *.log
 *.sql
 *.sqlite
@@ -83,6 +85,8 @@ DerivedData
 *.pydevproject
 .metadata
 .gradle
+bin/
+tmp/
 *.tmp
 *.bak
 *.swp
