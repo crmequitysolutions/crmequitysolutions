@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :logins
   resources :property_views
   resources :contact_page
+  resources :guides
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
