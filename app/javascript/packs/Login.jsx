@@ -52,6 +52,9 @@ export default class LoginPage extends Component{
                   </div>
                   <button type="submit" className="btn btn-default btn-block">Login</button>
                 </form>
+                <form id="signup" action="users/sign_up" className="well">
+                  <button type="signup" className="btn btn-default btn-block">Sign Up</button>
+                </form>
               </div>
             </div>
           </div>
