@@ -27,7 +27,11 @@ class AddressesController < ApplicationController
   # POST /addresses.json
   def create
     @address = Address.new(address_params)
-
+    @num = 1
+    while Address.where(["address_id = ?", @num]).size > 0
+      @num = Random.rand(1000000000)
+    end
+    @address.address_id = @num
     respond_to do |format|
       if @address.save
         format.html { redirect_to @address, notice: 'Address was successfully created.' }

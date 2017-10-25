@@ -23,12 +23,26 @@ class InvestorPrefsController < ApplicationController
   # GET /investor_prefs/1/edit
   def edit
   end
+  
+  def properties
+    @investor_pref = InvestorPref.where(["investor_pref_id = ?", params[:id]]).first
+    @addresses = Address.where(["zip_code = ? and community_id = ?", @investor_pref.zip_code, @investor_pref.community_id]).pluck(:address_id)
+    @temp = Property.where(["property_type = ? and bd_rms = ? and ba_rms = ? and quick_close_amt < ? and quick_close_amt > ?", @investor_pref.property_type, @investor_pref.bd_rms, 
+      @investor_pref.ba_rms, @investor_pref.max, @investor_pref.min
+    ])
+    @q = @temp.where({ address_id: @addresses }).ransack(params[:q])
+    @properties = @q.result(distinct: true)
+  end
 
   # POST /investor_prefs
   # POST /investor_prefs.json
   def create
     @investor_pref = InvestorPref.new(investor_pref_params)
-
+    @num = 1
+    while InvestorPref.where(["investor_pref_id = ?", @num]).size > 0
+      @num = Random.rand(1000000000)
+    end
+    @investor_pref.investor_pref_id = @num
     respond_to do |format|
       if @investor_pref.save
         format.html { redirect_to @investor_pref, notice: 'Investor pref was successfully created.' }

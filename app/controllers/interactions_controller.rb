@@ -28,7 +28,11 @@ class InteractionsController < ApplicationController
   # POST /interactions.json
   def create
     @interaction = Interaction.new(interaction_params)
-
+    @num = 1
+    while Interaction.where(["interaction_id = ?", @num]).size > 0
+      @num = Random.rand(1000000000)
+    end
+    @interaction.interaction_id = @num
     respond_to do |format|
       if @interaction.save
         format.html { redirect_to @interaction, notice: 'Interaction was successfully created.' }

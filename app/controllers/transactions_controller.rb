@@ -28,7 +28,11 @@ class TransactionsController < ApplicationController
   # POST /transactions.json
   def create
     @transaction = Transaction.new(transaction_params)
-
+    @num = 1
+    while Transaction.where(["transaction_id = ?", @num]).size > 0
+      @num = Random.rand(1000000000)
+    end
+    @transaction.transaction_id = @num
     respond_to do |format|
       if @transaction.save
         format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }

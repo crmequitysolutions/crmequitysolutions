@@ -27,12 +27,25 @@ class PropertiesController < ApplicationController
   def images
     @images = Image.where(["property_id = ?", params[:id]])
   end
+  
+  def investors
+    @property = Property.where(["property_id = ?", params[:id]]).first
+    @address = Address.where(["address_id = ?", @property.address_id]).first
+    @q = InvestorPref.where(["zip_code = ? and community_id = ? and property_type = ? and bd_rms = ? and ba_rms = ? and max > ? and min < ? and main_st_ind = ?", @address.zip_code, 
+      @address.community_id, @property.property_type, @property.bd_rms, @property.ba_rms, @property.quick_close_amt, @property.quick_close_amt, @property.main_st_ind
+    ]).ransack(params[:q])
+    @investor_prefs = @q.result(distinct: true)
+  end
 
   # POST /properties
   # POST /properties.json
   def create
     @property = Property.new(property_params)
-
+    @num = 1
+    while Property.where(["property_id = ?", @num]).size > 0
+      @num = Random.rand(1000000000)
+    end
+    @property.property_id = @num
     respond_to do |format|
       if @property.save
         format.html { redirect_to @property, notice: 'Property was successfully created.' }

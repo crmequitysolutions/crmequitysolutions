@@ -28,7 +28,11 @@ class RentalUnitsController < ApplicationController
   # POST /rental_units.json
   def create
     @rental_unit = RentalUnit.new(rental_unit_params)
-
+    @num = 1
+    while RentalUnit.where(["rental_unit_id = ?", @num]).size > 0
+      @num = Random.rand(1000000000)
+    end
+    @rental_unit.rental_unit_id = @num
     respond_to do |format|
       if @rental_unit.save
         format.html { redirect_to @rental_unit, notice: 'Rental unit was successfully created.' }
