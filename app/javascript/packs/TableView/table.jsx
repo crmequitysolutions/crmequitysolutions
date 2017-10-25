@@ -14,7 +14,6 @@ export default class Table extends React.Component{
     let headers;
     if(this.props.data.headers){
       headers = this.props.data.headers.map( (header,index) => {
-        console.log(index,header);
         return(
           <HeaderCell key={header+index} name={header} />
           )
@@ -24,13 +23,12 @@ export default class Table extends React.Component{
     let entries;
     if(this.props.data.entries){
       entries = this.props.data.entries.map( (entry,index) => {
-        console.log(entry, index);
         return(
-          <tr> 
+          <tr key={index} onClick={(event) => {this.props.entryClicked(event, entry)}}> 
           {
-            Object.keys(entry).map( (key, index) => { return(<td key={key+index}> { entry[key] } </td>) })
+            entry.map( (item, index) => { return(<td key={item+index}> { item } </td>) })
           }
-            <td><a className="btn btn-default" href="edit.html">Edit</a> <a className="btn btn-danger" href="#">Delete</a></td>
+          {this.props.button? <td>{this.props.button}</td> : null}
           </tr>
         )    
       })
@@ -59,42 +57,6 @@ export default class Table extends React.Component{
                         {headers}
                         </tr>
                         {entries}
-                        <tr>
-                          <td>Bob Smith</td>
-                          <td>919-828-3232</td>
-                          <td>902 Segdefield St</td>
-                          <td>Durham</td>
-                          <td>27705</td>
-                          <td>$132,000</td>
-                          <td><a className="btn btn-default" href="edit.html">Edit</a> <a className="btn btn-danger" href="#">Delete</a></td>
-                        </tr>
-                        <tr>
-                          <td>Kyle Smith</td>
-                          <td>201-828-3232</td>
-                          <td>8th St</td>
-                          <td>Durham</td>
-                          <td>27705</td>
-                          <td>$75,000</td>
-                          <td><a className="btn btn-default" href="edit.html">Edit</a> <a className="btn btn-danger" href="#">Delete</a></td>
-                        </tr>
-                        <tr>
-                          <td>Sam Smith</td>
-                          <td>973-828-3232</td>
-                          <td>846 Forbs Dr</td>
-                          <td>Chapel Hill</td>
-                          <td>27705</td>
-                          <td>$232,000</td>
-                          <td><a className="btn btn-default" href="edit.html">Edit</a> <a className="btn btn-danger" href="#">Delete</a></td>
-                        </tr>
-                        <tr>
-                          <td>Berg Smith</td>
-                          <td>804-828-3232</td>
-                          <td>1738 Franklin St</td>
-                          <td>Raleigh</td>
-                          <td>27705</td>
-                          <td>$100,000</td>
-                          <td><a className="btn btn-default" href="edit.html">Edit</a> <a className="btn btn-danger" href="#">Delete</a></td>
-                        </tr>
                       </tbody></table>
                   </div>
                 </div>

@@ -28,34 +28,33 @@ const titleStyle = {
 };
 
 
-export default class MatchView extends React.Component {
+export default class ListAllDataView extends React.Component {
   constructor() {
     super();
-    this.send = this.send.bind(this);
   }
   
-  send(){
-    console.log("Send Clicked");
-  }
 
-  render() {
-    return (
+    render() {
+        let items;
+        if(this.props.entry){
+            items = Object.keys(this.props.entry).map( (key, index) => {
+                console.log(index, key, this.props.entry[key])
+                return(
+                    <tr>
+                        <td>{key}</td>
+                        <td>{this.props.entry[key]}</td>
+                    </tr>
+                    )
+            })
+        }
+        return (
       <Modal isOpen={this.props.modalIsOpen}
                         onRequestClose={this.props.closeModal}
                         style={customStyles}
-                        contentLabel="Example Modal">
+                        contentLabel="See All Information Regarding this Entry">
           <button onClick={this.props.closeModal}>close</button>
-          <h2 ref={subtitle => this.subtitle = subtitle} style={titleStyle}>Matches</h2>
-          <table className="table table-striped table-hover">
-            <tbody>
-              <tr>
-                <th>Key</th>
-                <th>Value</th>
-              </tr>
-              {this.props.table}
-            </tbody>
-          </table>
-          <button onClick={this.send}> {this.props.sendButtonTitle} </button>
+          <h2 ref={subtitle => this.subtitle = subtitle} style={titleStyle}>All Info</h2>
+          {items}
       </Modal>
     );
   }
