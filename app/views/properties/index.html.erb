@@ -1,11 +1,6 @@
-<%= javascript_pack_tag 'main' %>
-
-<%= content_tag 'table', 
-    id: "table_data",
-    data: @properties.to_json do %>
-<% end %>
 
 
+<!-- 
 <p id="notice"><%= notice %></p>
 
 <h1>Properties</h1>
@@ -217,3 +212,12 @@
 <br>
 
 <%= link_to 'New Property', new_property_path %>
+
+-->
+
+<%= javascript_pack_tag 'main' %>
+
+<%= content_tag 'table', 
+    id: "table_data",
+    data: @properties.to_json do %>
+<% end %>

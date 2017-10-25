@@ -54,7 +54,16 @@ export default class ListAllDataView extends React.Component {
                         contentLabel="See All Information Regarding this Entry">
           <button onClick={this.props.closeModal}>close</button>
           <h2 ref={subtitle => this.subtitle = subtitle} style={titleStyle}>All Info</h2>
-          {items}
+          <table className="table table-striped table-hover">
+            <tbody>
+              <tr>
+                <th>Key</th>
+                <th>Value</th>
+              </tr>
+              {items}
+            </tbody>
+          </table>
+          
       </Modal>
     );
   }

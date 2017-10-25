@@ -10,7 +10,7 @@ import ListAllDataView from './listAllData';
 
 
 
-const property_table_headers = ["Owner", "Contact", "Address", "Prop. Type", "Time on Mkt.", "Bed", "Bath", " "]
+const property_table_headers = ["Owner", "Contact", "Address", "Prop. Type", "Time on Mkt.", "Bed", "Bath", " ", " "]
 const investor_table_headers = ["Investor", "Contact","Prop. Type","Bed","Bath","Max", "Min"]
 
 class Main extends Component{
@@ -23,7 +23,7 @@ class Main extends Component{
             listInfoViewEntry: null,
             table : {
                 headers: property_table_headers,
-                entries : []
+                entries : null
             }
         };
         
@@ -36,7 +36,6 @@ class Main extends Component{
         this.closeListView = this.closeListView.bind(this)
     }
     
-
     componentDidMount(){
         console.log('didMount')
         let entries = this.getPropertyEntries();
@@ -53,19 +52,32 @@ class Main extends Component{
         let d = this.props.tableData
         if(this.props.tableData){
             entries = this.props.tableData.map((item, index) => {
-                return([
-                    item.owner,  "null", item.address_id, item.property_type, item.time_on_mrkt, item.bd_rms, item.ba_rms
-                    ])
+                let ref = "properties/"+item.owner+"/edit.html";
+                return({full: item, display: [
+                    item.owner,  "null", item.address_id, item.property_type, 
+                    item.time_on_mrkt, item.bd_rms, item.ba_rms,
+                    <a className="btn btn-default" onClick={(e) => {
+                        e.stopPropagation();
+                        this.openModal();
+                        }
+                    }>Match</a>,
+                    <a href={ref} onClick={(e) => {e.stopPropagation()}} className="btn btn-danger" >Edit</a>
+                    ]})
             });
         }
         console.log("GET PROPERTIES", entries)
         return entries
     }
+    
+    getInvestorEntries(){
+        return null
+    }
 
     switchTableToProperties(){
         this.setState({
             table : {
-                headers: property_table_headers
+                headers: property_table_headers,
+                entries : this.getPropertyEntries()
             }
         }, () => {console.log(this.state.table.headers);});
     }
@@ -74,7 +86,8 @@ class Main extends Component{
         
         this.setState( {
             table : {
-                headers: investor_table_headers
+                headers: investor_table_headers,
+                entries: this.getInvestorEntries()
             }
         }, () => {
             console.log(this.state.table.headers);
@@ -83,7 +96,6 @@ class Main extends Component{
     }
     
     openModal(event) {
-        event.preventDefault();
         this.setState({matchViewIsOpen: true});
     }
 
@@ -106,6 +118,7 @@ class Main extends Component{
             listInfoViewEntry: entry
         });
     }
+    
     closeListView(){
         this.setState({
             listInfoViewIsOpen:false,
@@ -114,9 +127,6 @@ class Main extends Component{
     }
     
     render(){
-        console.log('render called');
-        console.log(this.props);
-        console.log(this.state);
         return(
                 <div>
                     <Navbar />
@@ -124,12 +134,6 @@ class Main extends Component{
                     <TableSelector investorButtonAction={this.switchTableToInvestors} propertyButtonAction={this.switchTableToProperties}/>
                     <Table  data={this.state.table} 
                             entryClicked={this.onEntryClick} 
-                            buttons={
-                                [<a className="btn btn-default" 
-                                onClick={this.openModal}>Matches</a>,
-                                <a className="btn btn-default" 
-                                onClick={this.openModal}>Matches</a>]
-                                } 
                     />
                     <Footer />
                     <MatchView  
@@ -146,6 +150,7 @@ class Main extends Component{
                 </div>
         )
     }
+    
 }
 
 document.addEventListener('DOMContentLoaded', () => {
