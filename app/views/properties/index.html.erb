@@ -1,23 +1,27 @@
-
 <html>
-<nav class="navbar navbar-inverse">
+<nav className="navbar navbar-default">
+  <meta charSet="utf-8" />
+  <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="Navbar" content="width=device-width, initial-scale=1" />
   <div class="container">
     <div class="navbar-header">
-      <%= link_to 'CRM', root_path, class: 'navbar-brand' %>
+      <%= link_to 'CRM Equity Solutions', root_path, class: 'navbar-brand' %>
     </div>
-    <div id="navbar">
-      <ul class="nav navbar-nav">
-        <li><%= link_to 'Home', root_path %></li>
-      </ul>
-      <ul class="nav navbar-nav pull-right">
+    <div id="navbar" className="collapse navbar-collapse">
+      <div class="nav navbar-nav">
+        <li><a href="properties">Home</a></li>
+        <li><a href="guide.html">Guide</a></li>
+        <li><a href="contact_page">Contact Me</a></li>
+      </div>
+      <div class="nav pull-right">
         <% if user_signed_in? %>
-            <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-            <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+          <li><%= link_to (current_user.email), edit_user_registration_path, :class => 'navbar-link' %></li> 
+          <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
         <% else %>
           <li><%= link_to 'Log In', new_user_session_path %></li>
           <li><%= link_to 'Sign Up', new_user_registration_path %></li>
         <% end %>
-      </ul>
+      </div>
     </div>
   </div>
 </nav>
