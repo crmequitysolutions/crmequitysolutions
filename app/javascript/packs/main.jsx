@@ -124,8 +124,13 @@ class Main extends Component{
                     <TableSelector investorButtonAction={this.switchTableToInvestors} propertyButtonAction={this.switchTableToProperties}/>
                     <Table  data={this.state.table} 
                             entryClicked={this.onEntryClick} 
-                            button={<a className="btn btn-default" 
-                                onClick={this.openModal}>Matches</a>} />
+                            buttons={
+                                [<a className="btn btn-default" 
+                                onClick={this.openModal}>Matches</a>,
+                                <a className="btn btn-default" 
+                                onClick={this.openModal}>Matches</a>]
+                                } 
+                    />
                     <Footer />
                     <MatchView  
                         sendButtonTitle={"Send to Investors"} 
