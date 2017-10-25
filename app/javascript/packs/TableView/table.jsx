@@ -4,6 +4,7 @@ import HeaderCell from './headerCell'
 
 
 
+
 export default class Table extends React.Component{
   
   constructor(){
@@ -12,12 +13,13 @@ export default class Table extends React.Component{
     
   render(){
     console.log(this.props.data)
-    let headers = this.props.data.headers? this.props.data.headers.map( (header,index) => {
+    let headers = this.props.data.headers? 
+    <tr>{this.props.data.headers.map( (header,index) => {
         return(
-          <HeaderCell key={header+index} name={header} />
-          )
+          <HeaderCell key={header+""+index} name={header} />
+          );
         }
-      ) : null;
+      )}</tr> : null;
     let entries = this.props.data.entries? Object.keys(this.props.data.entries).map( (key,index) => {
         let entry = this.props.data.entries[key]
         return(
@@ -31,13 +33,13 @@ export default class Table extends React.Component{
                           
     return(
         <section id="table">
-          <div className="container" >
-            <div className="row">
+          <div className="container" style={style}>
               <div className="col-md-9">
                 {/* Website Overview */}
                 <div className="panel panel-default">
                   <div className="panel-heading main-color-bg">
-                    <h3 className="panel-title">Properties</h3>
+                    <h3 className="panel-title">Properties </h3>
+                    
                   </div>
                   <div className="panel-body">
                     <div className="row">
@@ -48,15 +50,15 @@ export default class Table extends React.Component{
                     <br />
                     <table className="table table-striped table-hover">
                       <tbody>
-                        <tr>
+                        
                         {headers}
-                        </tr>
+                        
                         {entries}
+                        
                       </tbody></table>
                   </div>
                 </div>
               </div>
-            </div>
           </div>
         </section>
     );
@@ -64,3 +66,11 @@ export default class Table extends React.Component{
   
 }
 
+
+const style = {
+    content : {
+    width: 'auto',
+    marginLeft: 'auto',
+    marginRight: 'auto'
+    }
+}

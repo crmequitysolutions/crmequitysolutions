@@ -11,6 +11,8 @@ const customStyles = {
         backgroundColor   : 'rgba(0, 0, 0, 0.6)'
     },
     content : {
+        overflow              : 'auto',
+        maxHeight            : '80vh',
         top                   : '50%',
         left                  : '50%',
         right                 : 'auto',
@@ -52,7 +54,7 @@ export default class ListAllDataView extends React.Component {
                         onRequestClose={this.props.closeModal}
                         style={customStyles}
                         contentLabel="See All Information Regarding this Entry">
-          <button onClick={this.props.closeModal}>close</button>
+          <a className="btn btn-default" onClick={this.props.closeModal}>Back</a>
           <h2 ref={subtitle => this.subtitle = subtitle} style={titleStyle}>All Info</h2>
           <table className="table table-striped table-hover">
             <tbody>

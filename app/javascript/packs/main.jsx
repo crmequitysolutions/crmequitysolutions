@@ -5,13 +5,13 @@ import Header from './header'
 import TableSelector from './tableSelector'
 import Table from './TableView/table'
 import Footer from './footer';
-import MatchView from './MatchViews/matchView';
+import MatchView from './matchView';
 import ListAllDataView from './listAllData';
 
 
 
 const property_table_headers = ["Owner", "Contact", "Address", "Prop. Type", "Time on Mkt.", "Bed", "Bath", " ", " "]
-const investor_table_headers = ["Investor", "Contact","Prop. Type","Bed","Bath","Max", "Min"]
+const investor_table_headers = ["Name", "Email","Phone","Prop. Type","Bed","Bath","Max", "Min", " ", " "]
 
 class Main extends Component{
     
@@ -49,7 +49,6 @@ class Main extends Component{
     
     getPropertyEntries(){
         var entries;
-        let d = this.props.tableData
         if(this.props.tableData){
             entries = this.props.tableData.map((item, index) => {
                 let ref = "properties/"+item.owner+"/edit.html";
@@ -129,7 +128,6 @@ class Main extends Component{
     render(){
         return(
                 <div>
-                    <Navbar />
                     <Header />
                     <TableSelector investorButtonAction={this.switchTableToInvestors} propertyButtonAction={this.switchTableToProperties}/>
                     <Table  data={this.state.table} 
@@ -140,7 +138,7 @@ class Main extends Component{
                         sendButtonTitle={"Send to Investors"} 
                         modalIsOpen={this.state.matchViewIsOpen}
                         closeModal={this.closeModal}
-                        table={<Table data={this.state.table}/>}
+                        headers={investor_table_headers}
                     />
                     <ListAllDataView  
                         modalIsOpen={this.state.listInfoViewIsOpen}
@@ -153,12 +151,29 @@ class Main extends Component{
     
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const node1 = document.getElementById('table_data');
-  const tableData = JSON.parse(node1.getAttribute('data'));
-  console.log("Pre-render:", tableData);
-  ReactDOM.render(
-    <Main tableData={tableData}  />,
-    document.body.appendChild(document.createElement('div'))
-  )
-});
+
+const render = () => {
+    let table_node = document.getElementById('table_data');
+    let table_data = JSON.parse(table_node.getAttribute('data'));
+    console.log('***prerender***');
+    console.log(table_node.getAttribute('data'));
+    console.log(table_data);
+    ReactDOM.render(
+        <Main 
+        tableData={table_data} 
+        //contactData={JSON.parse(document.getElementById('contact_data').getAttribute('data'))} 
+        />,
+        document.body.appendChild(document.createElement('div'))
+    );
+};
+if (document.readyState !== "loading") {
+    console.log("readyState");
+    render();
+} else {
+    console.log("addEventListener");
+    document.addEventListener('DOMContentLoaded', () =>{
+        render();
+        }
+    );
+}
+

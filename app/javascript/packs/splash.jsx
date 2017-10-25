@@ -22,12 +22,18 @@ export default class Splash extends React.Component{
             <link href="css/style.css" rel="stylesheet" />,
             title,
             paragraph,
-            <Button name={"Launch Application"}  onClick={this.launchApp} />
+            <div style={{textAlign:'center'}}>
+                <a className="btn btn-primary" style={buttonStyle} onClick={this.launchApp}> Launch Application </a>
+            </div>
             )
         )
         
     }
     
+}
+
+const buttonStyle = {
+    margin:'16px'
 }
 
 ReactDOM.render(<Splash />, document.getElementById("root"))
