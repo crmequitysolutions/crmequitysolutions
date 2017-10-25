@@ -11,28 +11,23 @@ export default class Table extends React.Component{
   }
     
   render(){
-    let headers;
-    if(this.props.data.headers){
-      headers = this.props.data.headers.map( (header,index) => {
+    console.log(this.props.data)
+    let headers = this.props.data.headers? this.props.data.headers.map( (header,index) => {
         return(
           <HeaderCell key={header+index} name={header} />
           )
         }
-      );
-    }
-    let entries;
-    if(this.props.data.entries){
-      entries = this.props.data.entries.map( (entry,index) => {
+      ) : null;
+    let entries = this.props.data.entries? Object.keys(this.props.data.entries).map( (key,index) => {
+        let entry = this.props.data.entries[key]
         return(
-          <tr key={index} onClick={(event) => {this.props.entryClicked(event, entry)}}> 
+          <tr key={index} onClick={(event) => {this.props.entryClicked(event, entry.full)}}> 
           {
-            entry.map( (item, index) => { return(<td key={item+index}> { item } </td>) })
+            entry.display.map( (item, index) => { return(<td key={item+index}> { item } </td>) })
           }
-          {this.props.button? <td>{this.props.button}</td> : null}
-          </tr>
-        )    
-      })
-    }
+          </tr>)    
+        }
+      ) : null;
                           
     return(
         <section id="table">

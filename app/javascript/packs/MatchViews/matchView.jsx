@@ -46,15 +46,7 @@ export default class MatchView extends React.Component {
                         contentLabel="Example Modal">
           <button onClick={this.props.closeModal}>close</button>
           <h2 ref={subtitle => this.subtitle = subtitle} style={titleStyle}>Matches</h2>
-          <table className="table table-striped table-hover">
-            <tbody>
-              <tr>
-                <th>Key</th>
-                <th>Value</th>
-              </tr>
-              {this.props.table}
-            </tbody>
-          </table>
+          {this.props.table}
           <button onClick={this.send}> {this.props.sendButtonTitle} </button>
       </Modal>
     );
