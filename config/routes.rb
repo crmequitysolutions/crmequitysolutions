@@ -27,6 +27,10 @@ Rails.application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
   
   get 'properties/:id/images' => 'properties#images', as: :see_images
+  
+  scope :auth do
+    get 'is_signed_in', to: 'auth#is_signed_in?'
+  end
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
