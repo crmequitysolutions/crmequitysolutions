@@ -2,6 +2,7 @@ class PropertiesController < ApplicationController
   before_action :set_property, only: [:show, :edit, :update, :destroy]
   before_action :check_address, only: [:new]
   before_action :check_contact, only: [:new]
+  before_action :authenticate_user!
 
   # GET /properties
   # GET /properties.json
