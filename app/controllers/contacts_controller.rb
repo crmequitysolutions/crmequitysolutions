@@ -28,7 +28,11 @@ class ContactsController < ApplicationController
   # POST /contacts.json
   def create
     @contact = Contact.new(contact_params)
-
+    @num = 1
+    while Contact.where(["contact_id = ?", @num]).size > 0
+      @num = Random.rand(1000000000)
+    end
+    @contact.contact_id = @num
     respond_to do |format|
       if @contact.save
         format.html { redirect_to @contact, notice: 'Contact was successfully created.' }

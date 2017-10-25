@@ -27,7 +27,11 @@ class PropDocsController < ApplicationController
   # POST /prop_docs.json
   def create
     @prop_doc = PropDoc.new(prop_doc_params)
-
+    @num = 1
+    while PropDoc.where(["prop_doc_id = ?", @num]).size > 0
+      @num = Random.rand(1000000000)
+    end
+    @prop_doc.prop_doc_id = @num
     respond_to do |format|
       if @prop_doc.save
         format.html { redirect_to @prop_doc, notice: 'Prop doc was successfully created.' }

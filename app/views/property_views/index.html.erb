@@ -1,3 +1,6 @@
 <%# app/views/property_views/index.html.erb %>
-<div id="main"></div>
-<%= javascript_pack_tag 'main' %>
+<%= javascript_pack_tag 'main', 
+    id: "table_data",
+    data: @addresses.to_json do %> 
+<% end %>
+
