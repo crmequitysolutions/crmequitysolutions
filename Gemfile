@@ -33,7 +33,6 @@ gem 'phonelib'
 gem 'ransack'
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.3'
-gem 'yarn'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
