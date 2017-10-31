@@ -1,7 +1,11 @@
 {
+  "buildpacks": [
+    { "url": "heroku/nodejs" },
+    { "url": "heroku/ruby" }
+  ],
   "engines": {
     "node": ">=6.11.0",
-    "yarn": ">=1.0.0",
+    "yarn": ">=1.0.0"
   },
   "scripts": {
     "dev": "webpack-dev-server --env.development",
