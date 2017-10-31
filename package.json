@@ -1,7 +1,11 @@
 {
   "buildpacks": [
-    { "url": "heroku/nodejs" },
-    { "url": "heroku/ruby" }
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/ruby"
+    }
   ],
   "engines": {
     "node": ">=6.11.0",
