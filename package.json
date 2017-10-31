@@ -1,4 +1,13 @@
 {
+  "engines": {
+    "node": ">=6.11.0",
+    "yarn": ">=1.2.0",
+    "npm": ">=5.0.0"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server --env.development",
+    "prod": "webpack --env.production"
+  },
   "dependencies": {
     "@rails/webpacker": "^3.0.2",
     "axios": "^0.16.2",
@@ -10,6 +19,7 @@
     "react": "^16.0.0",
     "react-devise": "^0.0.18",
     "react-dom": "^16.0.0",
+    "react-modal": "^3.1.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
