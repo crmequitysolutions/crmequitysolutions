@@ -1,4 +1,5 @@
 require 'test_helper'
+include Warden::Test::Helpers
 
 class ContactTest < ActiveSupport::TestCase
   # test "the truth" do
@@ -6,6 +7,8 @@ class ContactTest < ActiveSupport::TestCase
   # end
   
   test "validates email" do
+    @david = User.create(email: "david@mail.com", password: Devise::Encryptor.digest(User, "helloworld"))
+    login_as(@david)
     contact = Contact.new
     contact.contact_id = 123456
     contact.address_id = 123456
@@ -15,11 +18,13 @@ class ContactTest < ActiveSupport::TestCase
     contact.contact_type = "Student"
     contact.email = "abcdef"
     assert_not contact.save
-    contact.email = "nko2@duke.edu"
+    contact.email = "noah.over@hosscorp.com"
     assert contact.save
   end
   
   test "validates phone" do
+    @david = User.create(email: "david@mail.com", password: Devise::Encryptor.digest(User, "helloworld"))
+    login_as(@david)
     contact = Contact.new
     contact.contact_id = 123456
     contact.address_id = 123456
@@ -40,6 +45,8 @@ class ContactTest < ActiveSupport::TestCase
   end
   
   test "validates id uniqueness" do
+    @david = User.create(email: "david@mail.com", password: Devise::Encryptor.digest(User, "helloworld"))
+    login_as(@david)
     contact = Contact.new
     contact.contact_id = 123456
     contact.address_id = 123456
@@ -63,6 +70,8 @@ class ContactTest < ActiveSupport::TestCase
   end
   
   test "validates presence of ..." do
+    @david = User.create(email: "david@mail.com", password: Devise::Encryptor.digest(User, "helloworld"))
+    login_as(@david)
     contact = Contact.new
     contact.address_id = 123456
     contact.first_name = "Noah"
