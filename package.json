@@ -6,7 +6,8 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --env.development",
-    "prod": "webpack --env.production"
+    "prod": "webpack --env.production",
+    "postinstall":"rake db:migrate"
   },
   "dependencies": {
     "@rails/webpacker": "^3.0.2",
