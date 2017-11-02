@@ -1,12 +1,13 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
   before_action :check_address, only: [:new]
+  before_action :authenticate_user!
   
 
   # GET /contacts
   # GET /contacts.json
   def index
-    @q = Contact.ransack(params[:q])
+    @q = Contact.where(["user_email = ?", current_user.email]).ransack(params[:q])
     @contacts = @q.result(distinct: true)
   end
 
@@ -30,9 +31,10 @@ class ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
     @num = 1
     while Contact.where(["contact_id = ?", @num]).size > 0
-      @num = Random.rand(1000000000)
+      @num = @num + 1
     end
     @contact.contact_id = @num
+    @contact.user_email = current_user.email
     respond_to do |format|
       if @contact.save
         format.html { redirect_to @contact, notice: 'Contact was successfully created.' }

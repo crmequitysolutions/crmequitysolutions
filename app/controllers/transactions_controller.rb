@@ -2,11 +2,12 @@ class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
   before_action :check_contact, only: [:new]
   before_action :check_address, only: [:new]
+  before_action :authenticate_user!
 
   # GET /transactions
   # GET /transactions.json
   def index
-    @q = Transaction.ransack(params[:q])
+    @q = Transaction.where(["user_email = ?", current_user.email]).ransack(params[:q])
     @transactions = @q.result(distinct: true)
   end
 
@@ -30,9 +31,10 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new(transaction_params)
     @num = 1
     while Transaction.where(["transaction_id = ?", @num]).size > 0
-      @num = Random.rand(1000000000)
+      @num = @num + 1
     end
     @transaction.transaction_id = @num
+    @transaction.user_email = current_user.email
     respond_to do |format|
       if @transaction.save
         format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }

@@ -1,11 +1,12 @@
 class AddressesController < ApplicationController
   before_action :set_address, only: [:show, :edit, :update, :destroy]
   before_action :check_community, only: [:new]
+  before_action :authenticate_user!
 
   # GET /addresses
   # GET /addresses.json
   def index
-    @q = Address.ransack(params[:q])
+    @q = Address.where(["user_email = ?", current_user.email]).ransack(params[:q])
     @addresses = @q.result(distinct: true)
   end
 
@@ -29,9 +30,10 @@ class AddressesController < ApplicationController
     @address = Address.new(address_params)
     @num = 1
     while Address.where(["address_id = ?", @num]).size > 0
-      @num = Random.rand(1000000000)
+      @num = @num+1
     end
     @address.address_id = @num
+    @address.user_email = current_user.email
     respond_to do |format|
       if @address.save
         format.html { redirect_to @address, notice: 'Address was successfully created.' }

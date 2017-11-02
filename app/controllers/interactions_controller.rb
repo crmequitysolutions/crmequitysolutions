@@ -2,11 +2,12 @@ class InteractionsController < ApplicationController
   before_action :set_interaction, only: [:show, :edit, :update, :destroy]
   before_action :check_contact, only: [:new]
   before_action :check_property, only: [:new]
+  before_action :authenticate_user!
 
   # GET /interactions
   # GET /interactions.json
   def index
-    @q = Interaction.ransack(params[:q])
+    @q = Interaction.where(["user_email = ?", current_user.email]).ransack(params[:q])
     @interactions = @q.result(distinct: true)
   end
 
@@ -30,9 +31,10 @@ class InteractionsController < ApplicationController
     @interaction = Interaction.new(interaction_params)
     @num = 1
     while Interaction.where(["interaction_id = ?", @num]).size > 0
-      @num = Random.rand(1000000000)
+      @num = @num + 1
     end
     @interaction.interaction_id = @num
+    @interaction.user_email = current_user.email
     respond_to do |format|
       if @interaction.save
         format.html { redirect_to @interaction, notice: 'Interaction was successfully created.' }

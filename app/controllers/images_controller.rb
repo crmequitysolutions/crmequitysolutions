@@ -1,11 +1,12 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
   before_action :check_property, only: [:new]
+  before_action :authenticate_user!
 
   # GET /images
   # GET /images.json
   def index
-    @images = Image.all
+    @images = Image.where(["user_email = ?", current_user.email])
   end
 
   # GET /images/1
@@ -26,7 +27,7 @@ class ImagesController < ApplicationController
   # POST /images.json
   def create
     @image = Image.new(image_params)
-
+    @image.user_email = current_user.email
     respond_to do |format|
       if @image.save
         format.html { redirect_to @image, notice: 'Image was successfully created.' }

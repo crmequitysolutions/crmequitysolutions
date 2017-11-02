@@ -2,11 +2,12 @@ class BusinessesController < ApplicationController
   before_action :set_business, only: [:show, :edit, :update, :destroy]
   before_action :check_address, only: [:new]
   before_action :check_contact, only: [:new]
+  before_action :authenticate_user!
 
   # GET /businesses
   # GET /businesses.json
   def index
-    @q = Business.ransack(params[:q])
+    @q = Business.where(["user_email = ?", current_user.email]).ransack(params[:q])
     @businesses = @q.result(distinct: true)
   end
 
@@ -30,9 +31,10 @@ class BusinessesController < ApplicationController
     @business = Business.new(business_params)
     @num = 1
     while Business.where(["business_id = ?", @num]).size > 0
-      @num = Random.rand(1000000000)
+      @num = @num + 1
     end
     @business.business_id = @num
+    @business.user_email = current_user.email
     respond_to do |format|
       if @business.save
         format.html { redirect_to @business, notice: 'Business was successfully created.' }

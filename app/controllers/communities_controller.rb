@@ -1,10 +1,11 @@
 class CommunitiesController < ApplicationController
   before_action :set_community, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /communities
   # GET /communities.json
   def index
-    @q = Community.ransack(params[:q])
+    @q = Community.where(["user_email = ?", current_user.email]).ransack(params[:q])
     @communities = @q.result(distinct: true)
   end
 
@@ -28,9 +29,10 @@ class CommunitiesController < ApplicationController
     @community = Community.new(community_params)
     @num = 1
     while Community.where(["community_id = ?", @num]).size > 0
-      @num = Random.rand(1000000000)
+      @num = @num+1
     end
     @community.community_id = @num
+    @community.user_email = current_user.email
     respond_to do |format|
       if @community.save
         format.html { redirect_to @community, notice: 'Community was successfully created.' }

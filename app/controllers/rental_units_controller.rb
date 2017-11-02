@@ -2,11 +2,12 @@ class RentalUnitsController < ApplicationController
   before_action :set_rental_unit, only: [:show, :edit, :update, :destroy]
   before_action :check_address, only: [:new]
   before_action :check_contact, only: [:new]
+  before_action :authenticate_user!
 
   # GET /rental_units
   # GET /rental_units.json
   def index
-    @q = RentalUnit.ransack(params[:q])
+    @q = RentalUnit.where(["user_email = ?", current_user.email]).ransack(params[:q])
     @rental_units = @q.result(distinct: true)
   end
 
@@ -30,9 +31,10 @@ class RentalUnitsController < ApplicationController
     @rental_unit = RentalUnit.new(rental_unit_params)
     @num = 1
     while RentalUnit.where(["rental_unit_id = ?", @num]).size > 0
-      @num = Random.rand(1000000000)
+      @num = @num + 1
     end
     @rental_unit.rental_unit_id = @num
+    @rental_unit.user_email = current_user.email
     respond_to do |format|
       if @rental_unit.save
         format.html { redirect_to @rental_unit, notice: 'Rental unit was successfully created.' }
