@@ -37,7 +37,11 @@
 
 <p>
   <strong>Community:</strong>
-  <%= link_to Community.where(["community_id = ?", @address.community_id]).first.community_name, Community.where(["community_id = ?", @address.community_id]).first %>
+  <% if (@address.community_id != -1) %>
+    <%= link_to Community.where(["community_id = ?", @address.community_id]).first.community_name, Community.where(["community_id = ?", @address.community_id]).first %>
+  <% else %>
+    <%= "No Community" %>
+  <% end %>
 </p>
 
 <p>

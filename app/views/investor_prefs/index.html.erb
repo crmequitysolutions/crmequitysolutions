@@ -58,7 +58,11 @@
       <tr>
         <td><%= link_to Contact.where(["contact_id = ?", investor_pref.contact_id]).first.last_name, Contact.where(["contact_id = ?", investor_pref.contact_id]).first %></td>
         <td><%= investor_pref.zip_code %></td>
-        <td><%= link_to Community.where(["community_id = ?", investor_pref.community_id]).first.community_name, Community.where(["community_id = ?", investor_pref.community_id]).first %></td>
+        <% if (investor_pref.community_id != -1) %>
+          <td><%= link_to Community.where(["community_id = ?", investor_pref.community_id]).first.community_name, Community.where(["community_id = ?", investor_pref.community_id]).first %></td>
+        <% else %>
+          <td>No Community</td>
+        <% end %>
         <td><%= investor_pref.property_type %></td>
         <td><%= investor_pref.bd_rms %></td>
         <td><%= investor_pref.ba_rms %></td>

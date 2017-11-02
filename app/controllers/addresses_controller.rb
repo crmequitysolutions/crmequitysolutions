@@ -1,6 +1,5 @@
 class AddressesController < ApplicationController
   before_action :set_address, only: [:show, :edit, :update, :destroy]
-  before_action :check_community, only: [:new]
   before_action :authenticate_user!
 
   # GET /addresses
@@ -136,13 +135,6 @@ class AddressesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_address
       @address = Address.find(params[:id])
-    end
-    
-    def check_community
-      unless Community.all.size > 0
-        flash[:error] = "You need a community first!"
-        redirect_to new_community_path
-      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,7 +1,6 @@
 class InvestorPrefsController < ApplicationController
   before_action :set_investor_pref, only: [:show, :edit, :update, :destroy]
   before_action :check_contact, only: [:new]
-  before_action :check_community, only: [:new]
   before_action :authenticate_user!
 
   # GET /investor_prefs
@@ -90,13 +89,6 @@ class InvestorPrefsController < ApplicationController
       unless Contact.all.size > 0
         flash[:error] = "You need a contact first!"
         redirect_to new_contact_path
-      end
-    end
-    
-    def check_community
-      unless Community.all.size > 0
-        flash[:error] = "You need a community first!"
-        redirect_to new_community_path
       end
     end
 

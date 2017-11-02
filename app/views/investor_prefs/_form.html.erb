@@ -31,6 +31,7 @@
       <% Community.all.each do |c| -%>
         <%= content_tag(:option, c.community_name, value: c.community_id) %>
       <% end %>
+      <option value=-1>No Community</option>
     <% end %>
   </div>
 
