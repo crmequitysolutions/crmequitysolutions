@@ -76,7 +76,7 @@ class PropDocsController < ApplicationController
     end
     
     def check_property
-      unless Property.all.size > 0
+      unless Property.where(["user_email = ?", current_user.email]).size > 0
         flash[:error] = "You need a property first!"
         redirect_to new_property_path
       end

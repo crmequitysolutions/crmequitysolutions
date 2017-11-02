@@ -1,6 +1,7 @@
 class BusinessCardsController < ApplicationController
   before_action :set_business_card, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :check_contact, only: [:new]
 
   # GET /business_cards
   # GET /business_cards.json
@@ -67,6 +68,13 @@ class BusinessCardsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_business_card
       @business_card = BusinessCard.find(params[:id])
+    end
+    
+    def check_contact
+      unless Contact.where(["user_email = ?", current_user.email]).size > 0
+        flash[:error] = "You need a contact first!"
+        redirect_to new_contact_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

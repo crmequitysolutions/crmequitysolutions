@@ -120,7 +120,7 @@ class ContactsController < ApplicationController
     end
     
     def check_address
-      unless Address.all.size > 0
+      unless Address.where(["user_email = ?", current_user.email]).size > 0
         flash[:error] = "You need an address first!"
         redirect_to new_address_path
       end

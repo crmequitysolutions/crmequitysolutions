@@ -77,14 +77,14 @@ class TransactionsController < ApplicationController
     end
     
     def check_contact
-      unless Contact.all.size > 0
+      unless Contact.where(["user_email = ?", current_user.email]).size > 0
         flash[:error] = "You need a contact first!"
         redirect_to new_contact_path
       end
     end
     
     def check_address
-      unless Address.all.size > 0
+      unless Address.where(["user_email = ?", current_user.email]).size > 0
         flash[:error] = "You need an address first!"
         redirect_to new_address_path
       end

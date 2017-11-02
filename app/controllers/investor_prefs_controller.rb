@@ -86,7 +86,7 @@ class InvestorPrefsController < ApplicationController
     end
     
     def check_contact
-      unless Contact.all.size > 0
+      unless Contact.where(["user_email = ?", current_user.email]).size > 0
         flash[:error] = "You need a contact first!"
         redirect_to new_contact_path
       end

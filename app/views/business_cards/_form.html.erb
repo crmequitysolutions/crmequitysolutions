@@ -14,7 +14,7 @@
   <div class="field">
     <%= form.label :contact_id %>
     <%= form.select(:contact_id) do %>
-      <% Contact.all.each do |c| -%>
+      <% Contact.where(["user_email = ?", current_user.email]).each do |c| -%>
         <%= content_tag(:option, c.last_name, value: c.contact_id) %>
       <% end %>
     <% end %>

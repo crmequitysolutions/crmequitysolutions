@@ -14,7 +14,7 @@
   <div class="field">
     <%= form.label :purchased_by %>
     <%= form.select(:purchased_by) do %>
-      <% Contact.all.each do |c| -%>
+      <% Contact.where(["user_email = ?", current_user.email]).each do |c| -%>
         <%= content_tag(:option, c.last_name, value: c.contact_id) %>
       <% end %>
     <% end %>
@@ -28,7 +28,7 @@
   <div class="field">
     <%= form.label :property_id %>
     <%= form.select(:property_id) do %>
-      <% Property.all.each do |c| -%>
+      <% Property.where(["user_email = ?", current_user.email]).each do |c| -%>
         <%= content_tag(:option, Address.where(["address_id = ?", c.address_id]).first.line_1, value: c.property_id) %>
       <% end %>
     <% end %>
