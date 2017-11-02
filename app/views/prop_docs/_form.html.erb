@@ -12,11 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :prop_doc_id %>
-    <%= form.number_field :prop_doc_id, id: :prop_doc_prop_doc_id %>
-  </div>
-
-  <div class="field">
     <%= form.label :property_id %>
     <%= form.select(:property_id) do %>
       <% Property.all.each do |c| -%>

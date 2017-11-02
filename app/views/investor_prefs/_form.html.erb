@@ -12,11 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :investor_pref_id %>
-    <%= form.number_field :investor_pref_id, id: :investor_pref_investor_pref_id %>
-  </div>
-
-  <div class="field">
     <%= form.label :contact_id %>
     <%= form.select(:contact_id) do %>
       <% Contact.all.each do |c| -%>
