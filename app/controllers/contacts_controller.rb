@@ -24,6 +24,10 @@ class ContactsController < ApplicationController
   # GET /contacts/1/edit
   def edit
   end
+  
+  def business_cards
+    @business_cards = BusinessCard.where(["contact_id = ? and user_email = ?", params[:id], current_user.email])
+  end
 
   # POST /contacts
   # POST /contacts.json

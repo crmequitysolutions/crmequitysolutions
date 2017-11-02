@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :business_cards
   devise_for :users
   resources :images
   resources :property_displays
@@ -31,6 +32,7 @@ Rails.application.routes.draw do
   get 'properties/:id/images' => 'properties#images', as: :see_images
   get 'properties/:id/investors' => 'properties#investors', as: :see_investors
   get 'investor_prefs/:id/properties' => 'investor_prefs#properties', as: :see_properties
+  get 'contacts/:id/business_cards' => 'contacts#business_cards', as: :see_business_cards
   
   scope :auth do
     get 'is_signed_in', to: 'auth#is_signed_in?'
