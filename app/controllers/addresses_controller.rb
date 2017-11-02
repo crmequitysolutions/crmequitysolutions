@@ -72,6 +72,9 @@ class AddressesController < ApplicationController
       Business.where(["sec_contact_id = ?", contact.contact_id]).each do |business|
         business.destroy
       end
+      BusinessCard.where(["contact_id = ?", contact.contact_id]).each do |business_card|
+        business_card.destroy
+      end
       Interaction.where(["contact_id = ?", contact.contact_id]).each do |interaction|
         interaction.destroy
       end
