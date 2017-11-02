@@ -12,6 +12,19 @@ class AddressesController < ApplicationController
   # GET /addresses/1
   # GET /addresses/1.json
   def show
+    @line1 = @address.line_1
+    @city = @address.city
+    @state = @address.state
+    @citystate = @city << ", " << @state
+    property = Rubillow::PropertyDetails.deep_search_results({ :address => @line1, :citystatezip => @citystate })
+    @school_district = "Failed"
+    if property.success?
+      data = Rubillow::PropertyDetails.updated_property_details({ :zpid => property.zpid })
+      if data.success?
+        puts "HI"
+        @school_district = data.school_district
+      end
+    end
   end
 
   # GET /addresses/new
