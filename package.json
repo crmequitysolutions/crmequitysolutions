@@ -7,7 +7,6 @@
   "scripts": {
     "dev": "webpack-dev-server --env.development",
     "prod": "webpack --env.production"
-    //"heroku-postbuild": "rake db:migrate"
   },
   "dependencies": {
     "@rails/webpacker": "^3.0.2",
