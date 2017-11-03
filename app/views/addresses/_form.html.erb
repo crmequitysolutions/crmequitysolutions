@@ -12,11 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :address_id %>
-    <%= form.number_field :address_id, id: :address_address_id %>
-  </div>
-
-  <div class="field">
     <%= form.label :line_1 %>
     <%= form.text_field :line_1, id: :address_line_1 %>
   </div>
@@ -54,9 +49,10 @@
   <div class="field">
     <%= form.label :community_id %>
     <%= form.select(:community_id) do %>
-      <% Community.all.each do |c| -%>
+      <% Community.where(["user_email = ?", current_user.email]).each do |c| -%>
         <%= content_tag(:option, c.community_name, value: c.community_id) %>
       <% end %>
+      <option value=-1>No Community</option>
     <% end %>
   </div>
 

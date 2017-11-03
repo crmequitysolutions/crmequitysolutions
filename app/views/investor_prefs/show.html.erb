@@ -12,7 +12,11 @@
 
 <p>
   <strong>Community:</strong>
-  <%= link_to Community.where(["community_id = ?", @investor_pref.community_id]).first.community_name, Community.where(["community_id = ?", @investor_pref.community_id]).first %>
+  <% if (@investor_pref.community_id != -1) %>
+    <%= link_to Community.where(["community_id = ?", @investor_pref.community_id]).first.community_name, Community.where(["community_id = ?", @investor_pref.community_id]).first %>
+  <% else %>
+    <%= "No Community" %>
+  <% end %>
 </p>
 
 <p>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171025013342) do
+ActiveRecord::Schema.define(version: 20171102191851) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "address_id"
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 20171025013342) do
     t.string "school_district"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_email"
+  end
+
+  create_table "business_cards", force: :cascade do |t|
+    t.integer "contact_id"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "user_email"
   end
 
   create_table "businesses", force: :cascade do |t|
@@ -37,6 +46,7 @@ ActiveRecord::Schema.define(version: 20171025013342) do
     t.integer "sec_contact_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_email"
   end
 
   create_table "communities", force: :cascade do |t|
@@ -45,6 +55,7 @@ ActiveRecord::Schema.define(version: 20171025013342) do
     t.integer "zip_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_email"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -62,6 +73,7 @@ ActiveRecord::Schema.define(version: 20171025013342) do
     t.string "contact_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_email"
   end
 
   create_table "images", force: :cascade do |t|
@@ -70,6 +82,7 @@ ActiveRecord::Schema.define(version: 20171025013342) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_email"
   end
 
   create_table "interactions", force: :cascade do |t|
@@ -83,6 +96,7 @@ ActiveRecord::Schema.define(version: 20171025013342) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "type"
+    t.string "user_email"
   end
 
   create_table "investor_prefs", force: :cascade do |t|
@@ -99,6 +113,7 @@ ActiveRecord::Schema.define(version: 20171025013342) do
     t.boolean "main_st_ind"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_email"
   end
 
   create_table "prop_docs", force: :cascade do |t|
@@ -111,6 +126,7 @@ ActiveRecord::Schema.define(version: 20171025013342) do
     t.datetime "upload_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_email"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -162,6 +178,7 @@ ActiveRecord::Schema.define(version: 20171025013342) do
     t.float "bkd_tx_amt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_email"
   end
 
   create_table "property_displays", force: :cascade do |t|
@@ -187,6 +204,7 @@ ActiveRecord::Schema.define(version: 20171025013342) do
     t.integer "tenant"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_email"
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -198,6 +216,7 @@ ActiveRecord::Schema.define(version: 20171025013342) do
     t.string "transaction_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_email"
   end
 
   create_table "users", force: :cascade do |t|
