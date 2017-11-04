@@ -208,13 +208,7 @@ DEPENDENCIES
   rails_12factor
   rails_bootstrap_navbar
   ransack
-<<<<<<< HEAD
   rubillow
-=======
-  react-rails
-  rubillow
-  sass-rails
->>>>>>> df3aa7a86d4638a69a63a963c69b25271296a402
   sdoc
   spring
   sqlite3
