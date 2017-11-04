@@ -1,4 +1,8 @@
 {
+  "engines": {
+    "node" : "6.11.4",
+    "yarn" : "1.2.1"
+  },
   "scripts": {
     "heroku-postbuild": "./bin/rails webpacker:install \n ./bin/rails webpacker:install:react"
   },
