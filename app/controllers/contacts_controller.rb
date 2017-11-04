@@ -1,12 +1,13 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
   before_action :check_address, only: [:new]
+  before_action :authenticate_user!
   
 
   # GET /contacts
   # GET /contacts.json
   def index
-    @q = Contact.ransack(params[:q])
+    @q = Contact.where(["user_email = ?", current_user.email]).ransack(params[:q])
     @contacts = @q.result(distinct: true)
   end
 
@@ -23,6 +24,10 @@ class ContactsController < ApplicationController
   # GET /contacts/1/edit
   def edit
   end
+  
+  def business_cards
+    @business_cards = BusinessCard.where(["contact_id = ? and user_email = ?", params[:id], current_user.email])
+  end
 
   # POST /contacts
   # POST /contacts.json
@@ -30,9 +35,10 @@ class ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
     @num = 1
     while Contact.where(["contact_id = ?", @num]).size > 0
-      @num = Random.rand(1000000000)
+      @num = @num + 1
     end
     @contact.contact_id = @num
+    @contact.user_email = current_user.email
     respond_to do |format|
       if @contact.save
         format.html { redirect_to @contact, notice: 'Contact was successfully created.' }
@@ -66,6 +72,9 @@ class ContactsController < ApplicationController
     end
     Business.where(["sec_contact_id = ?", @contact.contact_id]).each do |business|
       business.destroy
+    end
+    BusinessCard.where(["contact_id = ?", @contact.contact_id]).each do |business_card|
+      business_card.destroy
     end
     Interaction.where(["contact_id = ?", @contact.contact_id]).each do |interaction|
       interaction.destroy
@@ -111,7 +120,7 @@ class ContactsController < ApplicationController
     end
     
     def check_address
-      unless Address.all.size > 0
+      unless Address.where(["user_email = ?", current_user.email]).size > 0
         flash[:error] = "You need an address first!"
         redirect_to new_address_path
       end

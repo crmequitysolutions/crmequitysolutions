@@ -1,17 +1,30 @@
 class AddressesController < ApplicationController
   before_action :set_address, only: [:show, :edit, :update, :destroy]
-  before_action :check_community, only: [:new]
+  before_action :authenticate_user!
 
   # GET /addresses
   # GET /addresses.json
   def index
-    @q = Address.ransack(params[:q])
+    @q = Address.where(["user_email = ?", current_user.email]).ransack(params[:q])
     @addresses = @q.result(distinct: true)
   end
 
   # GET /addresses/1
   # GET /addresses/1.json
   def show
+    @line1 = @address.line_1
+    @city = @address.city
+    @state = @address.state
+    @citystate = @city << ", " << @state
+    property = Rubillow::PropertyDetails.deep_search_results({ :address => @line1, :citystatezip => @citystate })
+    @school_district = "Failed"
+    if property.success?
+      data = Rubillow::PropertyDetails.updated_property_details({ :zpid => property.zpid })
+      if data.success?
+        puts "HI"
+        @school_district = data.school_district
+      end
+    end
   end
 
   # GET /addresses/new
@@ -29,9 +42,10 @@ class AddressesController < ApplicationController
     @address = Address.new(address_params)
     @num = 1
     while Address.where(["address_id = ?", @num]).size > 0
-      @num = Random.rand(1000000000)
+      @num = @num+1
     end
     @address.address_id = @num
+    @address.user_email = current_user.email
     respond_to do |format|
       if @address.save
         format.html { redirect_to @address, notice: 'Address was successfully created.' }
@@ -69,6 +83,9 @@ class AddressesController < ApplicationController
       end
       Business.where(["sec_contact_id = ?", contact.contact_id]).each do |business|
         business.destroy
+      end
+      BusinessCard.where(["contact_id = ?", contact.contact_id]).each do |business_card|
+        business_card.destroy
       end
       Interaction.where(["contact_id = ?", contact.contact_id]).each do |interaction|
         interaction.destroy
@@ -131,13 +148,6 @@ class AddressesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_address
       @address = Address.find(params[:id])
-    end
-    
-    def check_community
-      unless Community.all.size > 0
-        flash[:error] = "You need a community first!"
-        redirect_to new_community_path
-      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

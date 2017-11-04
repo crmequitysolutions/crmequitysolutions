@@ -1,12 +1,12 @@
 class InvestorPrefsController < ApplicationController
   before_action :set_investor_pref, only: [:show, :edit, :update, :destroy]
   before_action :check_contact, only: [:new]
-  before_action :check_community, only: [:new]
+  before_action :authenticate_user!
 
   # GET /investor_prefs
   # GET /investor_prefs.json
   def index
-    @q = InvestorPref.ransack(params[:q])
+    @q = InvestorPref.where(["user_email = ?", current_user.email]).ransack(params[:q])
     @investor_prefs = @q.result(distinct: true)
   end
 
@@ -25,10 +25,10 @@ class InvestorPrefsController < ApplicationController
   end
   
   def properties
-    @investor_pref = InvestorPref.where(["investor_pref_id = ?", params[:id]]).first
-    @addresses = Address.where(["zip_code = ? and community_id = ?", @investor_pref.zip_code, @investor_pref.community_id]).pluck(:address_id)
-    @temp = Property.where(["property_type = ? and bd_rms = ? and ba_rms = ? and quick_close_amt < ? and quick_close_amt > ?", @investor_pref.property_type, @investor_pref.bd_rms, 
-      @investor_pref.ba_rms, @investor_pref.max, @investor_pref.min
+    @investor_pref = InvestorPref.where(["investor_pref_id = ? and user_email = ?", params[:id], current_user.email]).first
+    @addresses = Address.where(["zip_code = ? and community_id = ? and user_email = ?", @investor_pref.zip_code, @investor_pref.community_id, current_user.email]).pluck(:address_id)
+    @temp = Property.where(["property_type = ? and bd_rms = ? and ba_rms = ? and quick_close_amt < ? and quick_close_amt > ? and user_email = ?", @investor_pref.property_type, @investor_pref.bd_rms, 
+      @investor_pref.ba_rms, @investor_pref.max, @investor_pref.min, current_user.email
     ])
     @q = @temp.where({ address_id: @addresses }).ransack(params[:q])
     @properties = @q.result(distinct: true)
@@ -40,9 +40,10 @@ class InvestorPrefsController < ApplicationController
     @investor_pref = InvestorPref.new(investor_pref_params)
     @num = 1
     while InvestorPref.where(["investor_pref_id = ?", @num]).size > 0
-      @num = Random.rand(1000000000)
+      @num = @num + 1
     end
     @investor_pref.investor_pref_id = @num
+    @investor_pref.user_email = current_user.email
     respond_to do |format|
       if @investor_pref.save
         format.html { redirect_to @investor_pref, notice: 'Investor pref was successfully created.' }
@@ -85,16 +86,9 @@ class InvestorPrefsController < ApplicationController
     end
     
     def check_contact
-      unless Contact.all.size > 0
+      unless Contact.where(["user_email = ?", current_user.email]).size > 0
         flash[:error] = "You need a contact first!"
         redirect_to new_contact_path
-      end
-    end
-    
-    def check_community
-      unless Community.all.size > 0
-        flash[:error] = "You need a community first!"
-        redirect_to new_community_path
       end
     end
 

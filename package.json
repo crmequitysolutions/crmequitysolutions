@@ -18,10 +18,10 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-tap-event-plugin": "^3.0.2",
-    "react_ujs": "^2.3.1",
+    "react_ujs": "^2.4.0",
     "redux-form": "^7.1.1"
   },
   "devDependencies": {
-    "webpack-dev-server": "^2.9.2"
+    "webpack-dev-server": "^2.9.3"
   }
 }

@@ -68,7 +68,11 @@
         <td><%= address.zip_code %></td>
         <td><%= address.county %></td>
         <td><%= address.country %></td>
-        <td><%= link_to Community.where(["community_id = ?", address.community_id]).first.community_name, Community.where(["community_id = ?", address.community_id]).first %></td>
+        <% if (address.community_id != -1) %>
+          <td><%= link_to Community.where(["community_id = ?", address.community_id]).first.community_name, Community.where(["community_id = ?", address.community_id]).first %></td>
+        <% else %>
+          <td>No Community</td>
+        <% end %>
         <td><%= address.school_district %></td>
         <td><%= link_to 'Show', address %></td>
         <td><%= link_to 'Edit', edit_address_path(address) %></td>

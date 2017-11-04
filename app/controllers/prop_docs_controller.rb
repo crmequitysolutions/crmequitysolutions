@@ -1,11 +1,12 @@
 class PropDocsController < ApplicationController
   before_action :set_prop_doc, only: [:show, :edit, :update, :destroy]
   before_action :check_property, only: [:new]
+  before_action :authenticate_user!
 
   # GET /prop_docs
   # GET /prop_docs.json
   def index
-    @q = PropDoc.ransack(params[:q])
+    @q = PropDoc.where(["user_email = ?", current_user.email]).ransack(params[:q])
     @prop_docs = @q.result(distinct: true)
   end
 
@@ -29,9 +30,10 @@ class PropDocsController < ApplicationController
     @prop_doc = PropDoc.new(prop_doc_params)
     @num = 1
     while PropDoc.where(["prop_doc_id = ?", @num]).size > 0
-      @num = Random.rand(1000000000)
+      @num = @num + 1
     end
     @prop_doc.prop_doc_id = @num
+    @prop_doc.user_email = current_user.email
     respond_to do |format|
       if @prop_doc.save
         format.html { redirect_to @prop_doc, notice: 'Prop doc was successfully created.' }
@@ -74,7 +76,7 @@ class PropDocsController < ApplicationController
     end
     
     def check_property
-      unless Property.all.size > 0
+      unless Property.where(["user_email = ?", current_user.email]).size > 0
         flash[:error] = "You need a property first!"
         redirect_to new_property_path
       end

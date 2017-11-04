@@ -7,6 +7,7 @@ import Table from './TableView/table'
 import Footer from './footer';
 import MatchView from './matchView';
 import ListAllDataView from './listAllData';
+import ToolsTable from './toolsTable';
 
 
 
@@ -130,6 +131,7 @@ class Main extends Component{
                 <div>
                     <Header />
                     <TableSelector investorButtonAction={this.switchTableToInvestors} propertyButtonAction={this.switchTableToProperties}/>
+                    <ToolsTable />
                     <Table  data={this.state.table} 
                             entryClicked={this.onEntryClick} 
                     />
