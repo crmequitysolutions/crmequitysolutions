@@ -31,6 +31,8 @@ gem 'phonelib'
 gem 'ransack'
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.3'
+gem 'gmaps4rails'
+gem 'rubillow'
 
 gem 'gmaps4rails'
 gem 'rubillow'
