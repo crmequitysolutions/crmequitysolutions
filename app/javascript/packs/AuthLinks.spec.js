@@ -1,8 +1,8 @@
 import React from 'react';
-import {mount} from 'enzyme';
-import {mountToJson} from 'enzyme-to-json';
+//import {mount} from 'enzyme';
+//import {mountToJson} from 'enzyme-to-json';
 import {AuthLinksComponent} from './AuthLinks';
-import {initReactDevise} from '../config';
+//import {initReactDevise} from '../config';
 
 describe('<AuthLinksComponent />', () => {
   const resourceName = 'users';
