@@ -1,4 +1,7 @@
 {
+  "scripts": {
+  "heroku-postbuild": "./bin/rails webpacker:install \n ./bin/rails webpacker:install:react"
+  },
   "dependencies": {
     "@rails/webpacker": "^3.0.2",
     "axios": "^0.16.2",

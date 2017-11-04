@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getConfig} from '../config/index';
+//import {getConfig} from '../config/index';
 import {withRouter} from 'react-router-dom';
 
 const AuthLinksComponent = ({currentUser, location, resourceName, AuthLinksList, AuthLinksListItem}) => {
