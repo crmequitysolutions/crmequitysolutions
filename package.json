@@ -4,6 +4,7 @@
     "yarn" : "1.2.1"
   },
   "scripts": {
+    
   },
   "dependencies": {
     "@rails/webpacker": "^3.0.2",
