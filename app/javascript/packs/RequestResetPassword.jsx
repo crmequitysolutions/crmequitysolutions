@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {reduxForm, Field} from 'redux-form';
-import {requestResetPassword, formAction} from '../actions';
+//import {requestResetPassword, formAction} from '../actions';
 import {required, email} from './validation';
 
 const RequestResetPasswordForm = reduxForm({

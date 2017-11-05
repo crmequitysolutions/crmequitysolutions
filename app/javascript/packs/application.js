@@ -8,3 +8,7 @@
 // layout file, like app/views/layouts/application.html.erb
 
 console.log('Hello World from Webpacker')
+<<<<<<< HEAD
+=======
+
+>>>>>>> f9fbd307a4b16b1914fe34443c5e417d92df7411
