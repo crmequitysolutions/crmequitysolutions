@@ -4,7 +4,12 @@
     "axios": "^0.16.2",
     "babel-preset-react": "^6.24.1",
     "bootstrap": "^3.3.7",
+    "class-autobind": "^0.1.4",
     "coffeescript": "1.12.7",
+    "draft-js": "^0.10.4",
+    "draft-js-dnd-plugin": "^2.0.0-beta1",
+    "draft-js-utils": "^1.2.0",
+    "last-draft": "^3.3.0",
     "material-ui": "^0.19.4",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
@@ -19,6 +24,6 @@
     "redux-form": "^7.1.1"
   },
   "devDependencies": {
-    "webpack-dev-server": "^2.9.3"
+    "webpack-dev-server": "^2.9.4"
   }
 }
