@@ -2,7 +2,7 @@
 
 <h1>Contacts</h1>
 
-<%= search_form_for @q do |f| %>
+<%= search_form_for @q, url: search_home_index_path, html: { method: :post } do |f| %>
   
   <h3>Search Database</h3>
   
@@ -11,7 +11,7 @@
   <%= f.submit %>
 <% end %>
 
-<%= search_form_for @q do |f| %>
+<%= search_form_for @q, url: search_home_index_path, html: { method: :post } do |f| %>
 
   <h3>Search By Column</h3>
 
@@ -83,7 +83,7 @@
 
 <h1>Properties</h1>
 
-<%= search_form_for @q2 do |f| %>
+<%= search_form_for @q2, url: search_home_index_path, html: { method: :post } do |f| %>
   
   <h3>Search Database</h3>
   
@@ -92,7 +92,7 @@
   <%= f.submit %>
 <% end %>
 
-<%= search_form_for @q2 do |f| %>
+<%= search_form_for @q2, url: search_home_index_path, html: { method: :post } do |f| %>
 
   <h3>Search By Column</h3>
 
