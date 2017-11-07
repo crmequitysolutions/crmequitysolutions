@@ -90,64 +90,6 @@
             </a>   
           </div> <!-- End Table Picker  -->
           
-          <br>
-
-          <!-- Single Search -->
-          <div class="list-group"> 
-            <div class="list-group-item main-color-bg">
-              <%= search_form_for @q do |f| %>
-              Search Database
-            </div>
-            
-            <div class="list-group-item"  align='center'>
-              <%= f.search_field :first_name_or_middle_name_or_last_name_or_phone_or_email_or_contact_type_cont %>
-            </div>
-            <div class="list-group-item"  align='center'>
-                <%= f.submit %>
-            </div>    
-            <% end %>
-          </div> <!-- End Single Search  -->
-          
-          <br>
-          <!-- Advanced Search Collapsablet-->
-          <div class="list-group">
-            
-            <div class="list-group-item main-color-bg">
-              <%= search_form_for @q do |f| %>
-              Advance Search
-            </div>
-      
-            <div class="list-group-item" align='center'>
-              <%= f.label :first_name_cont %><br>
-              <%= f.search_field :first_name_cont %>    
-            </div>
-          
-            <div class="list-group-item" align='center'>
-              <%= f.label :middle_name_cont %><br>
-              <%= f.search_field :middle_name_cont %>
-            </div>
-            <div class="list-group-item" align='center'>
-              <%= f.label :last_name_cont %><br>
-              <%= f.search_field :last_name_cont %>
-            </div>
-            <div class="list-group-item" align='center'>
-              <%= f.label :phone_cont %><br>
-              <%= f.search_field :phone_cont %>
-            </div>
-            <div class="list-group-item" align='center'>
-              <%= f.label :email_cont %><br>
-              <%= f.search_field :email_cont %>
-            </div>
-            <div class="list-group-item" align='center'>
-              <%= f.label :contact_type_cont %><br>
-              <%= f.search_field :contact_type_cont %>
-            </div>
-            <div class="list-group-item" align='center'>
-              <%= f.submit %>
-            </div>
-            <% end %>
-          </div> <!-- End Advanced Search  -->
-          
         </div> <!-- End Left Column  -->
       
         <!-- Right Main Column -->
@@ -166,12 +108,38 @@
               <div class="clearfix"></div>
             </div>
             <div class="panel-body">
-              <!-- Filter Bar -->
-              <div class="row">
-                <div class="col-md-12">
-                  <input class="form-control" type="text" placeholder="Filter...">
+              <!-- Search -->
+              <div class='row'>
+              <!-- Search Picker -->
+                <div class="btn-group btn-group-lg col-xs-4 col-xs-offset-4" role="group" >
+                    <button type="button" data-toggle="collapse" href="simpleSearch" class="btn  btn-outline-primary col align-self-center">All</button>
+                    <button type="button" data-toggle="collapse" href="advancedSearch" class="btn  btn-outline-primary col align-self-center">Advanced</button>
                 </div>
-              </div>
+                <br><br>
+                <!-- Simple Filter Bar -->
+                <div id='simpleSearch' class="collapse col-xs-12">
+                    <%= search_form_for @q do |f| %>
+                    <%= f.search_field :first_name_or_middle_name_or_last_name_or_phone_or_email_or_contact_type_cont, :class => "form-control", :placeholder => 'Filter...'%>
+                    <%= f.submit :class => "btn btn-default col align-self-center"%>
+                    <% end %>
+                </div>
+                <!-- Multiple Filter Bars -->
+                <div id='advancedSearch' class='collapse hidden col-xs-12'>
+                  <div class="list-group">
+            
+                    <%= search_form_for @q do |f| %>
+     
+                    <%= f.search_field :first_name_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name'%>    
+                    <%= f.search_field :middle_name_cont, :class => 'list-group-item form-control no-border', :placeholder => 'Middle Name' %>
+                    <%= f.search_field :last_name_cont, :class => 'list-group-item form-control', :placeholder => 'Last Name' %>
+                    <%= f.search_field :phone_cont, :class => 'list-group-item form-control', :placeholder => 'Phone' %>
+                    <%= f.search_field :email_cont, :class => 'list-group-item form-control', :placeholder => 'Email' %>
+                    <%= f.search_field :contact_type_cont, :class => 'list-group-item form-control', :placeholder => 'Contact Type' %>
+                    <%= f.submit :class => 'list-group-item btn btn-default col align-self-center'%>
+                    <% end %>
+                  </div> 
+                </div> <!-- End Multi Search  -->
+              </div> <!--END Search-->
               <br>
               <div class="table-responsive">
               <!-- Actual Table -->
