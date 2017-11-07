@@ -6,20 +6,18 @@ gem 'bootstrap', '~> 4.0.0.alpha3.1'
 gem 'rails_bootstrap_navbar'
 gem 'rails', '>= 5.0'
 # Use SCSS for stylesheets
-gem 'sass-rails'
+###gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier'
+###gem 'uglifier'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails'
+###gem 'coffee-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+###gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'react-rails'
-gem 'webpacker'
-gem 'turbolinks'
+###gem 'turbolinks'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 
@@ -36,9 +34,14 @@ gem 'mini_magick', '~> 4.3'
 gem 'gmaps4rails'
 gem 'rubillow'
 
+gem 'gmaps4rails'
+gem 'rubillow'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+
+gem 'webpacker'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

@@ -1,13 +1,21 @@
 {
+  "scripts": {
+    "heroku-postbuild": "./bin/rails webpacker:install \n ./bin/rails webpacker:install:react"
+  },
   "dependencies": {
     "@rails/webpacker": "^3.0.2",
     "axios": "^0.16.2",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
     "babel-preset-react": "^6.24.1",
     "bootstrap": "^3.3.7",
     "coffeescript": "1.12.7",
     "material-ui": "^0.19.4",
+    "moment": "^2.19.1",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
+    "react-addons-update": "^15.6.2",
+    "react-datetime": "^2.10.3",
     "react-devise": "^0.0.18",
     "react-dom": "^16.0.0",
     "react-modal": "^3.1.0",

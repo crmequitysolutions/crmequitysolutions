@@ -6,7 +6,9 @@ import HeaderCell from './TableView/headerCell'
 
 
 const table_headers = ["Full Name", "Email", "Phone", "Address", ""]
+
 export default class MatchView extends React.Component {
+  
   constructor() {
     super();
     this.send = this.send.bind(this);
