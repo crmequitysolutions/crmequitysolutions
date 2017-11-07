@@ -17,14 +17,10 @@ class AddressesController < ApplicationController
     @state = @address.state
     @citystate = @city << ", " << @state
     property = Rubillow::PropertyDetails.deep_search_results({ :address => @line1, :citystatezip => @citystate })
-    @school_district = "Failed"
     if property.success?
-      data = Rubillow::PropertyDetails.updated_property_details({ :zpid => property.zpid })
-      if data.success?
-        puts "HI"
-        @school_district = data.school_district
-      end
+      @zpid = property.zpid
     end
+    puts Rubillow::PropertyDetails.updated_property_details({ :zpid => '65068086' }).school_district
   end
 
   # GET /addresses/new

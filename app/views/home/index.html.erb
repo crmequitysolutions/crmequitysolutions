@@ -1,0 +1,453 @@
+<html>   
+  <head>
+    <title>CRM Contacts</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  </head>
+  
+  <body>
+    <p id="notice"><%= notice %></p>
+    
+    <!-- HREF Modal -->
+    <!-- Takes a reference and loads it -->
+    <div id="hrefModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+    
+        <!-- Modal content-->
+        <div class="modal-content">
+        
+        </div><!-- END Modal content-->
+      </div>
+    </div> <!-- END HREF Modal -->
+    
+    <!-- Contact Modal -->
+    <!-- Takes contact_id and loads all of 
+    it's attributes into a table       -->
+    <div id="contactsModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+    
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Modal Header</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <!-- Contact Table -->
+            <div class="panel panel-default">
+              <div class="panel-heading main-color-bg">
+                <h3 class="panel-title">Contacts</h3>
+              </div>
+              <div class="panel-body">
+                <div class="table-responsive">
+                  <table class="table table-striped table-hover">
+                    <thead>
+                      <tr align='center'>
+                        <th> Key </th>
+                        <th> Value </th>
+                      </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    </tbody>
+                  </table>
+                </div>
+                  
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+    
+      </div>
+    </div>
+    
+    
+    <div class="container">
+      <div class="page-header">
+        <h1>Investors<small> Manage Investors</small></h1>
+      </div>
+      
+      <div class="row">
+        
+        <!-- Main Left Column -->
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
+          
+          <!-- Table Picker -->
+          <div class="list-group"> 
+            <div class="list-group-item main-color-bg">
+              Tables
+            </div>
+            
+            <a class="list-group-item" href='#'>
+              Properties
+            </a>
+            <a class="list-group-item" href='#'>
+              Contacts <span class="badge"><%= @contacts.length %></span>
+            </a>   
+          </div> <!-- End Table Picker  -->
+          
+        </div> <!-- End Left Column  -->
+      
+        <!-- Right Main Column -->
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-xs-12">
+          
+          <!-- Contacts Panel -->
+          <div class="panel panel-default">
+            <div class="panel-heading main-color-bg ">
+              <div class="panel-title pull-left">Contacts</div>
+              <div class="panel-title pull-right">
+                <%= link_to "New", new_contact_path, :style => 'color:#ffffff' %>
+                <!--
+                <button type='button' class='btn' style='color:#ffffff' 
+                  data-toggle='modal' data-target='#hrefModal'>
+                    New </button>
+                -->
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="panel-body" id='search'>
+              <!-- Search -->
+              <div class='panel row'>
+                <div class="panel-group col-xs-12" id="accordion">
+                  <div class="panel panel-default">
+                    <div class='panel panel-heading'>
+                      <div class="panel-title pull-left">
+                        <h4>Search</h4>
+                      </div>
+                      <!-- Search Picker style="padding-bottom:12px"-->
+                      <div class="panel-title pull-right">
+                        <div class="btn-group btn-group-lg" data-toggle="buttons" >
+                          <label data-toggle="collapse" data-parent="#accordion" data-target="#simpleSearch" class="btn btn-outline-primary col align-self-center active">
+                            <input type="radio" name="options" id="radio1" autocomplete="off" checked> Simple
+                          </label>
+                          <label data-toggle="collapse" data-parent="#accordion" data-target="#advancedSearch"  class="btn  btn-outline-primary col align-self-center">
+                            <input  type="radio" name="options" id="radio2" autocomplete="off"> Advanced
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="simpleSearch" class="panel-collapse collapse">
+                      <div class="panel-body">
+                        <div class="list-group">
+                          <%= search_form_for @q do |f| %>
+                          <%= f.search_field :first_name_or_middle_name_or_last_name_or_phone_or_email_or_contact_type_cont, :class => "list-group-item form-control", :placeholder => 'Filter...'%>
+                          <%= f.submit :class => "list-group-item btn btn-outline-warning col align-self-center"%>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>  <!-- END panel-collapse -->
+                    <div id="advancedSearch" class="panel-collapse collapse">
+                      <div class="panel-body">
+                        <div class="list-group">
+                          <%= search_form_for @q do |f| %>
+           
+                          <%= f.search_field :first_name_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name'%>    
+                          <%= f.search_field :middle_name_cont, :class => 'list-group-item form-control no-border', :placeholder => 'Middle Name' %>
+                          <%= f.search_field :last_name_cont, :class => 'list-group-item form-control', :placeholder => 'Last Name' %>
+                          <%= f.search_field :phone_cont, :class => 'list-group-item form-control', :placeholder => 'Phone' %>
+                          <%= f.search_field :email_cont, :class => 'list-group-item form-control', :placeholder => 'Email' %>
+                          <%= f.search_field :contact_type_cont, :class => 'list-group-item form-control', :placeholder => 'Contact Type' %>
+                          <%= f.submit :class => 'list-group-item btn btn-outline-warning col align-self-center'%>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>  <!-- END panel-collapse -->
+                  </div>  <!-- END panel -->
+                </div> <!-- END panel-group -->
+              </div> <!--END Search-->
+              <br>
+              <div class="table-responsive">
+              <!-- Actual Table -->
+              <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th><%= sort_link(@q, :last_name, "Name") %></th>
+                  <th><%= sort_link(@q, :address_id) %></th>
+                  <th><%= sort_link(@q, :phone) %></th>
+                  <th><%= sort_link(@q, :email) %></th>
+                  <th><%= sort_link(@q, :contact_type) %></th>
+                  <th></th><th></th><th></th>
+                </tr>
+              </thead>
+            
+              <tbody>
+                <% @contacts.each do |contact| %>
+                  <tr align="center" class='contact-entry' data-toggle="modal" data-id="<%= contact.contact_id %>" data-target="#contactsModal"> <!--contactsModal-->
+                    <td><%= contact.last_name << ', ' << contact.first_name << ' ' << contact.middle_name[0] %></td>
+                    <td><%= link_to Address.where(["address_id = ?", contact.address_id]).first.line_1, Address.where(["address_id = ?", contact.address_id]).first %></td>
+                    <td><%= contact.phone %></td>
+                    <td><%= contact.email %></td>
+                    <td><%= contact.contact_type %></td>
+                    <!---<td><%= link_to "<span class='btn btn-default'>Show</span>".html_safe, contact %></td> -->
+                    <td><%= link_to "<span class='btn btn-info'>Card</span>".html_safe, see_business_cards_path(contact.contact_id) %></td>
+                    <!---<td><%= link_to "<span class='btn btn-warning'>Edit</span>".html_safe, edit_contact_path(contact) %></td>-->
+                    <td><a href="<%= edit_contact_path(contact) %>" class='btn btn-warning' data-toggle="modal" data-target="#hrefModal">Edit</a></td>
+                    <td><%= link_to "<span class='btn btn-danger'>Delete</span>".html_safe, contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            </div>
+            </div> <!-- End Panel Body -->
+          </div> <!-- End Contacts Panel -->
+        </div> <!-- End Right Side Main -->
+      
+      </div><!-- End Row -->
+    
+    </div><!-- End Container -->
+    
+    <br>
+      
+
+
+
+    <%= javascript_tag do %>
+      var contacts = <%= @contacts.to_json.html_safe %>;
+      console.log(contacts);
+      $(document).on("click", ".contact-entry", function () {
+        console.log('inside click call');
+        var id = $(this).data('id');
+        var table_body = $(".modal-body #tableBody");
+        var target = undefined
+        for (var i = 0; i < contacts.length; i++){
+          if (contacts[i].contact_id == id){
+            target = contacts[i]
+          }
+        }
+        
+        
+        for (var k in target){
+          if (target.hasOwnProperty(k)) {
+           table_body.append('<tr align="center"><td>' + k + '</td>' +'<td>'+ target[k] +'</td>'+'</tr>')
+          }
+        }
+        
+      });
+      
+      $("#contactsModal").on("hidden.bs.modal", function () {
+        console.log('contacts modal is hidden')
+        var node = $(".modal-body #tableBody");
+        while (node.hasChildNodes()) {
+          node.removeChild(node.lastChild);
+        }
+      });
+    <% end %>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+<h1>Properties</h1>
+
+<%= search_form_for @q2 do |f| %>
+  
+  <h3>Search Database</h3>
+  
+  <%= f.search_field :property_type_or_time_on_mrkt_or_construction_or_sqft_or_yr_built_or_bd_rms_or_ba_rms_or_rooms_or_roof_type_or_roof_age_or_plumb_type_or_plumb_age_or_foundation_or_heat_type_or_heat_age_or_cool_type_or_cool_age_or_window_type_or_window_nbr_or_resn_to_sell_or_quick_close_amt_or_amt_owed_or_pymnt_crnt_or_pymt_amt_or_interest_rate_or_bkd_tx_amt_cont %>
+
+  <%= f.submit %>
+<% end %>
+
+<%= search_form_for @q2 do |f| %>
+
+  <h3>Search By Column</h3>
+
+  <%= f.label :property_type_cont %>
+  <%= f.search_field :property_type_cont %>
+  
+  <%= f.label :time_on_mrkt_cont %>
+  <%= f.search_field :time_on_mrkt_cont %>
+  
+  <%= f.label :construction_cont %>
+  <%= f.search_field :construction_cont %>
+  
+  <%= f.label :sqft_cont %>
+  <%= f.search_field :sqft_cont %>
+  
+  <%= f.label :yr_built_cont %>
+  <%= f.search_field :yr_built_cont %>
+  
+  <%= f.label :bd_rms_cont %>
+  <%= f.search_field :bd_rms_cont %>
+  
+  <%= f.label :ba_rms_cont %>
+  <%= f.search_field :ba_rms_cont %>
+  
+  <%= f.label :rooms_cont %>
+  <%= f.search_field :rooms_cont %>
+  
+  <%= f.label :roof_type_cont %>
+  <%= f.search_field :roof_type_cont %>
+  
+  <%= f.label :roof_age_cont %>
+  <%= f.search_field :roof_age_cont %>
+  
+  <%= f.label :plumb_type_cont %>
+  <%= f.search_field :plumb_type_cont %>
+  
+  <%= f.label :plumb_age_cont %>
+  <%= f.search_field :plumb_age_cont %>
+  
+  <%= f.label :foundation_cont %>
+  <%= f.search_field :foundation_cont %>
+  
+  <%= f.label :heat_type_cont %>
+  <%= f.search_field :heat_type_cont %>
+  
+  <%= f.label :heat_age_cont %>
+  <%= f.search_field :heat_age_cont %>
+  
+  <%= f.label :cool_type_cont %>
+  <%= f.search_field :cool_type_cont %>
+  
+  <%= f.label :cool_age_cont %>
+  <%= f.search_field :cool_age_cont %>
+  
+  <%= f.label :window_type_cont %>
+  <%= f.search_field :window_type_cont %>
+  
+  <%= f.label :window_nbr_cont %>
+  <%= f.search_field :window_nbr_cont %>
+  
+  <%= f.label :resn_to_sell_cont %>
+  <%= f.search_field :resn_to_sell_cont %>
+  
+  <%= f.label :quick_close_amt_cont %>
+  <%= f.search_field :quick_close_amt_cont %>
+  
+  <%= f.label :amt_owed_cont %>
+  <%= f.search_field :amt_owed_cont %>
+  
+  <%= f.label :pymnt_crnt_cont %>
+  <%= f.search_field :pymnt_crnt_cont %>
+  
+  <%= f.label :pymt_amt_cont %>
+  <%= f.search_field :pymt_amt_cont %>
+  
+  <%= f.label :interest_rate_cont %>
+  <%= f.search_field :interest_rate_cont %>
+  
+  <%= f.label :bkd_tx_amt_cont %>
+  <%= f.search_field :bkd_tx_amt_cont %>
+  
+  <%= f.submit %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= sort_link(@q2, :address_id) %></th>
+      <th><%= sort_link(@q2, :owner) %></th>
+      <th><%= sort_link(@q2, :property_type) %></th>
+      <th><%= sort_link(@q2, :time_on_mrkt) %></th>
+      <th><%= sort_link(@q2, :construction) %></th>
+      <th><%= sort_link(@q2, :basement_ind) %></th>
+      <th><%= sort_link(@q2, :public_water_ind) %></th>
+      <th><%= sort_link(@q2, :offstreet_parking_ind) %></th>
+      <th><%= sort_link(@q2, :main_st_ind) %></th>
+      <th><%= sort_link(@q2, :garage_ind) %></th>
+      <th><%= sort_link(@q2, :sqft) %></th>
+      <th><%= sort_link(@q2, :yr_built) %></th>
+      <th><%= sort_link(@q2, :bd_rms) %></th>
+      <th><%= sort_link(@q2, :ba_rms) %></th>
+      <th><%= sort_link(@q2, :rooms) %></th>
+      <th><%= sort_link(@q2, :kitch_reno_date) %></th>
+      <th><%= sort_link(@q2, :bath_reno_date) %></th>
+      <th><%= sort_link(@q2, :roof_type) %></th>
+      <th><%= sort_link(@q2, :roof_age) %></th>
+      <th><%= sort_link(@q2, :roof_leaks_ind) %></th>
+      <th><%= sort_link(@q2, :plumb_type) %></th>
+      <th><%= sort_link(@q2, :plumb_age) %></th>
+      <th><%= sort_link(@q2, :plumb_leak_ind) %></th>
+      <th><%= sort_link(@q2, :foundation) %></th>
+      <th><%= sort_link(@q2, :heat_type) %></th>
+      <th><%= sort_link(@q2, :heat_age) %></th>
+      <th><%= sort_link(@q2, :heat_works) %></th>
+      <th><%= sort_link(@q2, :cool_type) %></th>
+      <th><%= sort_link(@q2, :cool_age) %></th>
+      <th><%= sort_link(@q2, :cool_works) %></th>
+      <th><%= sort_link(@q2, :window_type) %></th>
+      <th><%= sort_link(@q2, :window_nbr) %></th>
+      <th><%= sort_link(@q2, :resn_to_sell) %></th>
+      <th><%= sort_link(@q2, :agnt_list_ind) %></th>
+      <th><%= sort_link(@q2, :agnt_exp_date) %></th>
+      <th><%= sort_link(@q2, :quick_close_amt) %></th>
+      <th><%= sort_link(@q2, :amt_owed) %></th>
+      <th><%= sort_link(@q2, :pymnt_crnt) %></th>
+      <th><%= sort_link(@q2, :pymt_amt) %></th>
+      <th><%= sort_link(@q2, :tax_inc_ind) %></th>
+      <th><%= sort_link(@q2, :interest_rate) %></th>
+      <th><%= sort_link(@q2, :pymnt_asum_ind) %></th>
+      <th><%= sort_link(@q2, :sell_by_date) %></th>
+      <th><%= sort_link(@q2, :bck_tx_ind) %></th>
+      <th><%= sort_link(@q2, :bkd_tx_amt) %></th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @properties.each do |property| %>
+      <tr>
+        <td><%= link_to Address.where(["address_id = ?", property.address_id]).first.line_1, Address.where(["address_id = ?", property.address_id]).first %></td>
+        <td><%= link_to Contact.where(["contact_id = ?", property.owner]).first.last_name, Contact.where(["contact_id = ?", property.owner]).first %></td>
+        <td><%= property.property_type %></td>
+        <td><%= property.time_on_mrkt %></td>
+        <td><%= property.construction %></td>
+        <td><%= property.basement_ind %></td>
+        <td><%= property.public_water_ind %></td>
+        <td><%= property.offstreet_parking_ind %></td>
+        <td><%= property.main_st_ind %></td>
+        <td><%= property.garage_ind %></td>
+        <td><%= property.sqft %></td>
+        <td><%= property.yr_built %></td>
+        <td><%= property.bd_rms %></td>
+        <td><%= property.ba_rms %></td>
+        <td><%= property.rooms %></td>
+        <td><%= property.kitch_reno_date %></td>
+        <td><%= property.bath_reno_date %></td>
+        <td><%= property.roof_type %></td>
+        <td><%= property.roof_age %></td>
+        <td><%= property.roof_leaks_ind %></td>
+        <td><%= property.plumb_type %></td>
+        <td><%= property.plumb_age %></td>
+        <td><%= property.plumb_leak_ind %></td>
+        <td><%= property.foundation %></td>
+        <td><%= property.heat_type %></td>
+        <td><%= property.heat_age %></td>
+        <td><%= property.heat_works %></td>
+        <td><%= property.cool_type %></td>
+        <td><%= property.cool_age %></td>
+        <td><%= property.cool_works %></td>
+        <td><%= property.window_type %></td>
+        <td><%= property.window_nbr %></td>
+        <td><%= property.resn_to_sell %></td>
+        <td><%= property.agnt_list_ind %></td>
+        <td><%= property.agnt_exp_date %></td>
+        <td><%= property.quick_close_amt %></td>
+        <td><%= property.amt_owed %></td>
+        <td><%= property.pymnt_crnt %></td>
+        <td><%= property.pymt_amt %></td>
+        <td><%= property.tax_inc_ind %></td>
+        <td><%= property.interest_rate %></td>
+        <td><%= property.pymnt_asum_ind %></td>
+        <td><%= property.sell_by_date %></td>
+        <td><%= property.bck_tx_ind %></td>
+        <td><%= property.bkd_tx_amt %></td>
+        <td><%= link_to 'Show', property %></td>
+        <td><%= link_to 'See Images', see_images_path(property.property_id) %></td>
+        <td><%= link_to 'See Investors', see_investors_path(property.property_id) %></td>
+        <td><%= link_to 'Edit', edit_property_path(property) %></td>
+        <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Property', new_property_path %>
