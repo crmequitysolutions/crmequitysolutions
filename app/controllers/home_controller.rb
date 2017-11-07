@@ -6,6 +6,14 @@ class HomeController < ApplicationController
         @contacts = @q.result(distinct: true)
         @q2 = Property.where(["user_email = ?", current_user.email]).ransack(params[:q])
         @properties = @q2.result(distinct: true)
+        puts Property.first.user_email
+        puts current_user.email
+        puts Property.first.property_id
+    end
+    
+    def search
+      index
+      render :index
     end
     
 end

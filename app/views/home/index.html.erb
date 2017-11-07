@@ -139,7 +139,7 @@
                     <div id="simpleSearch" class="panel-collapse collapse">
                       <div class="panel-body">
                         <div class="list-group">
-                          <%= search_form_for @q do |f| %>
+                          <%= search_form_for @q, url: search_home_index_path, html: { method: :post } do |f| %>
                           <%= f.search_field :first_name_or_middle_name_or_last_name_or_phone_or_email_or_contact_type_cont, :class => "list-group-item form-control", :placeholder => 'Filter...'%>
                           <%= f.submit :class => "list-group-item btn btn-outline-warning col align-self-center"%>
                           <% end %>
@@ -149,8 +149,7 @@
                     <div id="advancedSearch" class="panel-collapse collapse">
                       <div class="panel-body">
                         <div class="list-group">
-                          <%= search_form_for @q do |f| %>
-           
+                          <%= search_form_for @q, url: search_home_index_path, html: { method: :post } do |f| %>
                           <%= f.search_field :first_name_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name'%>    
                           <%= f.search_field :middle_name_cont, :class => 'list-group-item form-control no-border', :placeholder => 'Middle Name' %>
                           <%= f.search_field :last_name_cont, :class => 'list-group-item form-control', :placeholder => 'Last Name' %>
@@ -206,9 +205,6 @@
     
     <br>
       
-
-
-
     <%= javascript_tag do %>
       var contacts = <%= @contacts.to_json.html_safe %>;
       console.log(contacts);
@@ -278,7 +274,7 @@
 <!---
 <h1>Properties</h1>
 
-<%= search_form_for @q2 do |f| %>
+<%= search_form_for @q2, url: search_home_index_path, html: { method: :post } do |f| %>
   
   <h3>Search Database</h3>
   
@@ -287,7 +283,7 @@
   <%= f.submit %>
 <% end %>
 
-<%= search_form_for @q2 do |f| %>
+<%= search_form_for @q2, url: search_home_index_path, html: { method: :post } do |f| %>
 
   <h3>Search By Column</h3>
 
