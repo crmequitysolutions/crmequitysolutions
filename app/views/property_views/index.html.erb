@@ -1,6 +1,186 @@
-<%# app/views/property_views/index.html.erb %>
-<%= javascript_pack_tag 'main', 
-    id: "table_data",
-    data: @addresses.to_json do %> 
-<% end %>
+<html>   
+  
+  <head>
+    <title>CRM Contacts</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
+    <script type="text/javascript">
+        function view_text () {
+            // Find html elements.
+            var textArea = document.getElementById('my_text');
+            var div = document.getElementById('view_text');
+             
+            // Put the text in a variable so we can manipulate it.
+            var text = textArea.value;
+             
+            // Make sure html and php tags are unusable by disabling < and >.
+            text = text.replace(/\</gi, "<");
+            text = text.replace(/\>/gi, ">");
+             
+            // Exchange newlines for <br /
+            text = text.replace(/\n/gi, "<br />");
+             
+            // Basic BBCodes.
+            text = text.replace(/\[b\]/gi, "<b>");
+            text = text.replace(/\[\/b\]/gi, "</b>");
+             
+            text = text.replace(/\[i\]/gi, "<i>");
+            text = text.replace(/\[\/i\]/gi, "</i>");
+             
+            text = text.replace(/\[u\]/gi, "<u>");
+            text = text.replace(/\[\/u\]/gi, "</u>");
+            
+            text = text.replace(/\[12\]/gi, "<font size = '12'>");
+            text = text.replace(/\[\/12\]/gi, "</font>");
+            
+            text = text.replace(/\[24\]/gi, "<font size = '24'>");
+            text = text.replace(/\[\/24\]/gi, "</font>");
+            
+            text = text.replace(/\[36\]/gi, "<font size = '36'>");
+            text = text.replace(/\[\/36\]/gi, "</font>");
+            
+            text = text.replace(/\[48\]/gi, "<font size = '48'>");
+            text = text.replace(/\[\/48\]/gi, "</font>");
+             
+            // Print the text in the div made for it.
+            div.innerHTML = text;
+        }
+        
+        function font_size (val1){
+            var textArea = document.getElementById('my_text');
+            textArea.style.fontSize = val1;
+        }
+        
+        function add_attribute (val1){
+            var textArea = document.getElementById('my_text');
+            // IE specific code.
+            if( -1 != navigator.userAgent.indexOf ("MSIE") ) {
+                 
+                var range = document.selection.createRange();
+                var stored_range = range.duplicate();
+                 
+                if(stored_range.length > 0) {
+                    stored_range.moveToElementText(textArea);
+                    stored_range.setEndPoint('EndToEnd', range);
+                    textArea.selectionStart = stored_range.text.length - range.text.length;
+                    textArea.selectionEnd = textArea.selectionStart + range.text.length;
+                }
+            }
+            // Do we even have a selection?
+            if (typeof(textArea.selectionStart) != "undefined") {
+                // Split the text in three pieces - the selection, and what comes before and after.
+                var begin = textArea.value.substr(0, textArea.selectionStart);
+                var selection = textArea.value.substr(textArea.selectionStart, textArea.selectionEnd - textArea.selectionStart);
+                var end = textArea.value.substr(textArea.selectionEnd);
+                 
+                // Insert the tags between the three pieces of text.
+                
+            
+            textArea.value = begin + selection + end + val1;
+            }
+        }
+         
+        function mod_selection (val1,val2) {
+            // Get the text area
+            var textArea = document.getElementById('my_text');
+             
+            // IE specific code.
+            if( -1 != navigator.userAgent.indexOf ("MSIE") ) {
+                 
+                var range = document.selection.createRange();
+                var stored_range = range.duplicate();
+                 
+                if(stored_range.length > 0) {
+                    stored_range.moveToElementText(textArea);
+                    stored_range.setEndPoint('EndToEnd', range);
+                    textArea.selectionStart = stored_range.text.length - range.text.length;
+                    textArea.selectionEnd = textArea.selectionStart + range.text.length;
+                }
+            }
+            // Do we even have a selection?
+            if (typeof(textArea.selectionStart) != "undefined") {
+                // Split the text in three pieces - the selection, and what comes before and after.
+                var begin = textArea.value.substr(0, textArea.selectionStart);
+                var selection = textArea.value.substr(textArea.selectionStart, textArea.selectionEnd - textArea.selectionStart);
+                var end = textArea.value.substr(textArea.selectionEnd);
+                 
+                // Insert the tags between the three pieces of text.
+                textArea.value = begin + val1 + selection + val2 + end;
+            }
+        }
+    </script>
+
+</head>
+<body>
+    <div class="container">
+        <div class = "row">
+            <button type="button" class="btn btn-default btn-lg" onclick="mod_selection('[b]','[/b])" >B</button>
+            <button type="button" class="btn btn-default btn-lg" onclick="mod_selection('[i]','[/i]')" >I</button>
+            <button type="button" class="btn btn-default btn-lg" onclick="mod_selection('[u]','[/u]')" >U</button>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Attributes
+                 </button>
+             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button class="dropdown-item" type="button" onclick="add_attribute('[b][ADDRESS][/b]')" >Address</button>
+                <button class="dropdown-item" type="button" onclick="add_attribute('[b][NAME][/b]')" >Name</button>
+                <button class="dropdown-item" type="button"></button>
+              </div>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Font Size
+                </button>
+             <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+                <button class="dropdown-item" type="button" onclick="mod_selection('[12]','[/12]')" >12</button>
+                <button class="dropdown-item" type="button" onclick="mod_selection('[24]','[/24]')" >24</button>
+                <button class="dropdown-item" type="button" onclick="mod_selection('[36]','[/36]')" >36</button>
+                <button class="dropdown-item" type="button" onclick="mod_selection('[48]','[/48]')" >48</button>
+              </div>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Fonts
+                 </button>
+             <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
+                <button class="dropdown-item" type="button" onclick="mod_selection('<font face=cursive>','</font>')" >Cursive</button>
+                <button class="dropdown-item" type="button" onclick="mod_selection('<font face=arial>','</font>')" >Arial</button>
+                <button class="dropdown-item" type="button" onclick="mod_selection('<font face=times new roman>','</font>')" >Times New Roman</button>
+              </div>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Location
+                 </button>
+             <div class="dropdown-menu" aria-labelledby="dropdownMenu4">
+                <button class="dropdown-item" type="button" onclick="mod_selection('<left>','</left>')" >Left</button>
+                <button class="dropdown-item" type="button" onclick="mod_selection('<center>','</center>')" >Center</button>
+                <button class="dropdown-item" type="button" onclick="mod_selection('<right>','</right>')" >Right</button>
+              </div>
+            </div>
+        </div>
+    </div>
+    <br />
+     
+    <!-- Text area -->
+    <div class="form-group">
+      
+      <textarea class="form-control" rows="5" id="my_text"></textarea>
+    </div>
+    <br />
+     
+    <!-- Submit button -->
+    <input type="button" value="Preview" onclick="view_text()" />
+     
+    <!-- Empty div to put the text in -->
+    <div id="view_text">
+    </div>
+ 
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  </body>
+</html>

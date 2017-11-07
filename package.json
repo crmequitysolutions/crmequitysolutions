@@ -1,7 +1,9 @@
 {
-  "scripts": {
-    "heroku-postbuild": "./bin/rails webpacker:install \n ./bin/rails webpacker:install:react"
+  "engines": {
+    "node": "6.11.4",
+    "yarn": "1.2.1"
   },
+  "scripts": {},
   "dependencies": {
     "@rails/webpacker": "^3.0.2",
     "axios": "^0.16.2",
@@ -10,6 +12,7 @@
     "babel-preset-react": "^6.24.1",
     "bootstrap": "^3.3.7",
     "coffeescript": "1.12.7",
+    "jquery": "^3.2.1",
     "material-ui": "^0.19.4",
     "moment": "^2.19.1",
     "prop-types": "^15.6.0",
