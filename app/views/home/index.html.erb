@@ -12,12 +12,19 @@
     
     <!-- HREF Modal -->
     <!-- Takes a reference and loads it -->
-    <div id="hrefModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-    
+    <!-- IMPORTANT the referenced html page must have id='BODY_CONTENT'
+          because that's the only html element that will be loaded  -->
+    <div id="hrefModal" class="href-modal modal fade" role="dialog">
+      <div class="modal-dialog" >
         <!-- Modal content-->
-        <div class="modal-content">
-        
+        <div class="modal-content" >
+          <div class="modal-header">
+            <h4 class="modal-title">Modal Header</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body" id="hrefModalContent">
+            
+          </div>
         </div><!-- END Modal content-->
       </div>
     </div> <!-- END HREF Modal -->
@@ -100,12 +107,7 @@
             <div class="panel-heading main-color-bg ">
               <div class="panel-title pull-left">Contacts</div>
               <div class="panel-title pull-right">
-                <%= link_to "New", new_contact_path, :style => 'color:#ffffff' %>
-                <!--
-                <button type='button' class='btn' style='color:#ffffff' 
-                  data-toggle='modal' data-target='#hrefModal'>
-                    New </button>
-                -->
+                <a data-id="<%=new_contact_path%>" data-target="#hrefModal" data-toggle="modal" class='new_contact_button btn btn-outline-info'>New Contact</a>
               </div>
               <div class="clearfix"></div>
             </div>
@@ -114,13 +116,14 @@
               <div class='panel row'>
                 <div class="panel-group col-xs-12" id="accordion">
                   <div class="panel panel-default">
-                    <div class='panel panel-heading'>
-                      <div class="panel-title pull-left">
-                        <h4>Search</h4>
-                      </div>
+                    <div class='container'>
+                    <div class='panel panel-heading row'>
+              
+                      <div class="col-xs-4"><h3 class="panel-title">Search</h3></div>
+                      <div class="col-xs-5 text-center"><!--empty--></div>
                       <!-- Search Picker style="padding-bottom:12px"-->
-                      <div class="panel-title pull-right">
-                        <div class="btn-group btn-group-lg" data-toggle="buttons" >
+                      <div class="col-xs-3">
+                        <div class="btn-group pull-right" data-toggle="buttons" >
                           <label data-toggle="collapse" data-parent="#accordion" data-target="#simpleSearch" class="btn btn-outline-primary col align-self-center active">
                             <input type="radio" name="options" id="radio1" autocomplete="off" checked> Simple
                           </label>
@@ -129,6 +132,9 @@
                           </label>
                         </div>
                       </div>
+                      </div>
+                        
+                        
                     </div>
                     <div id="simpleSearch" class="panel-collapse collapse">
                       <div class="panel-body">
@@ -182,10 +188,8 @@
                     <td><%= contact.phone %></td>
                     <td><%= contact.email %></td>
                     <td><%= contact.contact_type %></td>
-                    <!---<td><%= link_to "<span class='btn btn-default'>Show</span>".html_safe, contact %></td> -->
-                    <td><%= link_to "<span class='btn btn-info'>Card</span>".html_safe, see_business_cards_path(contact.contact_id) %></td>
-                    <!---<td><%= link_to "<span class='btn btn-warning'>Edit</span>".html_safe, edit_contact_path(contact) %></td>-->
-                    <td><a href="<%= edit_contact_path(contact) %>" class='btn btn-warning' data-toggle="modal" data-target="#hrefModal">Edit</a></td>
+                    <td><a data-id="<%= see_business_cards_path(contact.contact_id) %>" class='btn btn-info' data-toggle="modal" data-target="#hrefModal">Card</a></td>
+                    <td><a data-id="<%= edit_contact_path(contact) %>" class='btn btn-warning' data-toggle="modal" data-target="#hrefModal">Edit</a></td>
                     <td><%= link_to "<span class='btn btn-danger'>Delete</span>".html_safe, contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                   </tr>
                 <% end %>
@@ -208,17 +212,18 @@
     <%= javascript_tag do %>
       var contacts = <%= @contacts.to_json.html_safe %>;
       console.log(contacts);
-      $(document).on("click", ".contact-entry", function () {
-        console.log('inside click call');
+      $(document).on("click", ".contact-entry", function (e) {
+        e.preventDefault();
+        console.log('contact entry clicked');
         var id = $(this).data('id');
         var table_body = $(".modal-body #tableBody");
         var target = undefined
+        
         for (var i = 0; i < contacts.length; i++){
           if (contacts[i].contact_id == id){
             target = contacts[i]
           }
         }
-        
         
         for (var k in target){
           if (target.hasOwnProperty(k)) {
@@ -228,20 +233,49 @@
         
       });
       
-      $("#contactsModal").on("hidden.bs.modal", function () {
-        console.log('contacts modal is hidden')
-        var node = $(".modal-body #tableBody");
-        while (node.hasChildNodes()) {
-          node.removeChild(node.lastChild);
-        }
+      $(document).ready(function(){
+        $("#contactsModal").on("hidden.bs.modal", function () {
+          console.log('contacts modal is hidden')
+          var node = $(".modal-body #tableBody")[0]; //TODO add check
+          while (node.hasChildNodes()) {
+            node.removeChild(node.lastChild);
+          }
+        });
       });
+      
     <% end %>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    
+    <!-- Script for loading html into hrefModal -->
+    <script>
+      
+      $(document).ready(function(){
+        
+        $('#hrefModal').on('show.bs.modal', function (e) {
+          e.stopPropagation();
+          var href = $(e.relatedTarget).data('id');
+          console.log('modal show:', 'href=', href);
+          $('#hrefModalContent').load(href + ' #BODY_CONTENT', function(){
+            console.log('href successfully loaded')
+          });
+        });
+        
+        $('#hrefModal').on('hidden.bs.modal', function (e) {
+          console.log('hrefModal hidden');
+        });
+        
+      });
+    </script>
+    
+    <script>
+      //TODO : Change HTML header when table selection is changed
+    </script>  
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
   </body>
 </html>
 
+<!---
 <h1>Properties</h1>
 
 <%= search_form_for @q2 do |f| %>
@@ -451,3 +485,5 @@
 <br>
 
 <%= link_to 'New Property', new_property_path %>
+
+-->
