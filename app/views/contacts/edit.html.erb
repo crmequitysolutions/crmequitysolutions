@@ -1,6 +1,13 @@
-<h1>Editing Contact</h1>
 
-<%= render 'form', contact: @contact %>
+<div class="modal-header">
+    <h4 class="modal-title">Edit Contact</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+<div class="modal-body">
+    <%= render 'form', contact: @contact %>
 
-<%= link_to 'Show', @contact %> |
-<%= link_to 'Back', contacts_path %>
+    <%= link_to 'Show', @contact %> |
+    <%= link_to 'Back', contacts_path %>
+</div>
+
+
