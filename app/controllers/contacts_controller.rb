@@ -44,7 +44,7 @@ class ContactsController < ApplicationController
         format.html { redirect_to home_path, notice: 'Contact was successfully created.' }
         format.json { render :show, status: :created, location: @contact }
       else
-        format.html { render :new }
+        format.html { redirect_to home_path, alert: 'Contact could not be created.' }
         format.json { render json: @contact.errors, status: :unprocessable_entity }
       end
     end
@@ -58,7 +58,7 @@ class ContactsController < ApplicationController
         format.html { redirect_to home_path, notice: 'Contact was successfully updated.' }
         format.json { render :show, status: :ok, location: @contact }
       else
-        format.html { render :edit }
+        format.html { redirect_to home_path, alert: 'Contact could not be updated.' }
         format.json { render json: @contact.errors, status: :unprocessable_entity }
       end
     end

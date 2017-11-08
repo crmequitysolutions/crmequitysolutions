@@ -53,7 +53,7 @@ class PropertiesController < ApplicationController
         format.html { redirect_to home_path, notice: 'Property was successfully created.' }
         format.json { render :show, status: :created, location: @property }
       else
-        format.html { render :new }
+        format.html { redirect_to home_path, alert: 'Property could not be created.' }
         format.json { render json: @property.errors, status: :unprocessable_entity }
       end
     end
@@ -67,7 +67,7 @@ class PropertiesController < ApplicationController
         format.html { redirect_to home_path, notice: 'Property was successfully updated.' }
         format.json { render :show, status: :ok, location: @property }
       else
-        format.html { render :edit }
+        format.html { redirect_to home_path, alert: 'Property could not be updated.' }
         format.json { render json: @property.errors, status: :unprocessable_entity }
       end
     end
