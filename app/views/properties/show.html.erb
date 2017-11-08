@@ -1,7 +1,8 @@
 
 <div id='BODY_CONTENT'>
 <p id="notice"><%= notice %></p>
-
+<h1>Property</h1>
+<br>
 <p>
   <strong>Address:</strong>
   <%= link_to Address.where(["address_id = ?", @property.address_id]).first.line_1, Address.where(["address_id = ?", @property.address_id]).first %>
