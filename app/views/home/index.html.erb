@@ -96,6 +96,18 @@
               Contacts <span class="badge"><%= @contacts.length %></span>
             </a>   
           </div> <!-- End Table Picker  -->
+          <br><br>
+          <!-- Links Selection -->
+          <div class="list-group"> 
+            <div class="list-group-item main-color-bg">
+              Links
+            </div>
+            
+            <a class="list-group-item" href='#'>
+              Template Editor
+            </a>
+            
+          </div> <!-- End Table Picker  -->
           
         </div> <!-- End Left Column  -->
       
@@ -107,7 +119,7 @@
             <div class="panel-heading main-color-bg ">
               <div class="panel-title pull-left">Contacts</div>
               <div class="panel-title pull-right">
-                <a data-id="<%=new_contact_path%>" data-target="#hrefModal" data-toggle="modal" class='new_contact_button btn btn-outline-info'>New Contact</a>
+                <a data-id="<%=new_contact_path%>" class='new_contact_button btn btn-outline-info href-button'>New Contact</a>
               </div>
               <div class="clearfix"></div>
             </div>
@@ -187,8 +199,8 @@
                     <td><%= contact.phone %></td>
                     <td><%= contact.email %></td>
                     <td><%= contact.contact_type %></td>
-                    <td><a data-id="<%= see_business_cards_path(contact.contact_id) %>" class='btn btn-info' data-toggle="modal" data-target="#hrefModal">Card</a></td>
-                    <td><a data-id="<%= edit_contact_path(contact) %>" class='btn btn-warning' data-toggle="modal" data-target="#hrefModal">Edit</a></td>
+                    <td><a data-id="<%= see_business_cards_path(contact.contact_id) %>" class='btn btn-info href-button'>Card</a></td>
+                    <td><a data-id="<%= edit_contact_path(contact) %>" class='btn btn-warning href-button'>Edit</a></td>
                     <td><%= link_to "<span class='btn btn-danger'>Delete</span>".html_safe, contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                   </tr>
                 <% end %>
@@ -204,32 +216,17 @@
     </div><!-- End Container -->
     
     <br>
-      
+    <!-- save these variables for all scripts to use -->
     <%= javascript_tag do %>
       var contacts = <%= @contacts.to_json.html_safe %>;
-      console.log(contacts);
-      $(document).on("click", ".contact-entry", function (e) {
-        e.preventDefault();
-        console.log('contact entry clicked');
-        var id = $(this).data('id');
-        var table_body = $(".modal-body #tableBody");
-        var target = undefined
-        
-        for (var i = 0; i < contacts.length; i++){
-          if (contacts[i].contact_id == id){
-            target = contacts[i]
-          }
-        }
-        
-        for (var k in target){
-          if (target.hasOwnProperty(k)) {
-           table_body.append('<tr align="center"><td>' + k + '</td>' +'<td>'+ target[k] +'</td>'+'</tr>')
-          }
-        }
-        
-      });
+      var properties = <%= @properties.to_json.html_safe %>
+    <% end %>
+    
+    <!-- Modal view of contact -->
+    <script>
       
       $(document).ready(function(){
+        
         $("#contactsModal").on("hidden.bs.modal", function () {
           console.log('contacts modal is hidden')
           var node = $(".modal-body #tableBody")[0]; //TODO add check
@@ -237,22 +234,54 @@
             node.removeChild(node.lastChild);
           }
         });
+        
+        $('#contactsModal').on('show.bs.modal', function(e) {
+          console.log('contact entry clicked');
+          console.log(e)
+          console.log(e.isPropagationStopped());
+          e.stopPropagation()
+          var id = $(e.relatedTarget).data('id');
+          var table_body = $(".modal-body #tableBody");
+          var target = undefined
+          
+          for (var i = 0; i < contacts.length; i++){
+            if (contacts[i].contact_id == id){
+              target = contacts[i]
+            }
+          }
+          
+          for (var k in target){
+            if (target.hasOwnProperty(k)) {
+             table_body.append('<tr align="center"><td>' + k + '</td>' +'<td>'+ target[k] +'</td>'+'</tr>')
+            }
+          }
+        });
+        
       });
       
-    <% end %>
+    </script>
+    
     
     <!-- Script for loading html into hrefModal -->
     <script>
       
       $(document).ready(function(){
         
-        $('#hrefModal').on('show.bs.modal', function (e) {
+        $('.href-button').on('click', function(e){
+          console.log('stopPropagation');
           e.stopPropagation();
-          var href = $(e.relatedTarget).data('id');
-          console.log('modal show:', 'href=', href);
+          var t = e.target;
+          console.log(t)
+          var href = $(e.target).data('id');
+          console.log(href)
           $('#hrefModalContent').load(href + ' #BODY_CONTENT', function(){
             console.log('href successfully loaded')
           });
+          $('#hrefModal').modal('show');
+        });
+        
+        $('#hrefModal').on('show.bs.modal', function (e) {
+          console.log('hrefModal show')
         });
         
         $('#hrefModal').on('hidden.bs.modal', function (e) {
@@ -262,6 +291,7 @@
       });
     </script>
     
+    <!-- Table Selector Scripts -->
     <script>
       //TODO : Change HTML header when table selection is changed
     </script>  
