@@ -35,7 +35,7 @@ class CommunitiesController < ApplicationController
     @community.user_email = current_user.email
     respond_to do |format|
       if @community.save
-        format.html { redirect_to @community, notice: 'Community was successfully created.' }
+        format.html { redirect_to home_path, notice: 'Community was successfully created.' }
         format.json { render :show, status: :created, location: @community }
       else
         format.html { render :new }

@@ -31,7 +31,7 @@ class BusinessCardsController < ApplicationController
 
     respond_to do |format|
       if @business_card.save
-        format.html { redirect_to @business_card, notice: 'Business card was successfully created.' }
+        format.html { redirect_to home_path, notice: 'Business card was successfully created.' }
         format.json { render :show, status: :created, location: @business_card }
       else
         format.html { render :new }
