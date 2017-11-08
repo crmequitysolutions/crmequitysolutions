@@ -31,9 +31,16 @@
     
     
     <div class="container">
-      <div class="page-header">
-        <h1>Investors<small> Manage Investors</small></h1>
+      <div class="page-header" >
+        <h1 class='collapse' id='properties-page-header'>
+          Properties<small> Manage Properties</small>
+        </h1>
+        <h1 class='collapse' id='contacts-page-header'>
+          Contacts<small> Manage Contacts</small>
+        </h1>
+        
       </div>
+   
       
       <div class="row">
         
@@ -348,14 +355,21 @@
           $('#propertiesPanel').collapse('hide');
           $('#contactsPanel').collapse('show');
         }
-        switchToProperties();
         $('#table-option-properties').on('click', function(e){
           switchToProperties();
         });
         $('#table-option-contacts').on('click', function(e){
           switchToContacts();
         });
-        
+        $('#propertiesPanel').on('shown.bs.collapse', function(){
+          $('#properties-page-header').collapse('show');
+          $('#contacts-page-header').collapse('hide');
+        });
+        $('#contactsPanel').on('shown.bs.collapse', function(){
+          $('#properties-page-header').collapse('hide');
+          $('#contacts-page-header').collapse('show');         
+        });
+        switchToProperties();
       });
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
