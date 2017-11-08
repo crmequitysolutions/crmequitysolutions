@@ -8,7 +8,7 @@ import Footer from './footer';
 import MatchView from './matchView';
 import ListAllDataView from './listAllData';
 import ToolsTable from './toolsTable';
-
+import TextEditor from './textEditor';
 
 
 const property_table_headers = ["Owner", "Contact", "Address", "Prop. Type", "Time on Mkt.", "Bed", "Bath", " ", " "]
@@ -132,6 +132,7 @@ class Main extends Component{
                     <Header />
                     <TableSelector investorButtonAction={this.switchTableToInvestors} propertyButtonAction={this.switchTableToProperties}/>
                     <ToolsTable />
+                    <TextEditor />
                     <Table  data={this.state.table} 
                             entryClicked={this.onEntryClick} 
                     />
