@@ -14,6 +14,11 @@ class PropertiesController < ApplicationController
   # GET /properties/1
   # GET /properties/1.json
   def show
+    address = Address.where(["address_id = ? and user_email = ?", @property.address_id, current_user.email]).first
+    citystate = address.city << ", " << address.state
+    @data = Rubillow::PropertyDetails.deep_search_results({ :address => address.line_1, :citystatezip => citystate })
+    puts @property.latitude
+    puts @property.longitude
   end
 
   # GET /properties/new
@@ -48,6 +53,13 @@ class PropertiesController < ApplicationController
     end
     @property.property_id = @num
     @property.user_email = current_user.email
+    address = Address.where(["address_id = ? and user_email = ?", @property.address_id, current_user.email]).first
+    citystate = address.city << ", " << address.state
+    data = Rubillow::PropertyDetails.deep_search_results({ :address => address.line_1, :citystatezip => citystate })
+    if data.success?
+      @property.latitude = data.address[:latitude]
+      @property.longitude = data.address[:longitude]
+    end
     respond_to do |format|
       if @property.save
         format.html { redirect_to home_path, notice: 'Property was successfully created.' }
@@ -62,6 +74,13 @@ class PropertiesController < ApplicationController
   # PATCH/PUT /properties/1
   # PATCH/PUT /properties/1.json
   def update
+    @address = Address.where(["address_id = ? and user_email = ?", @property.address_id, current_user.email]).first
+    @citystate = @address.city << ", " << @address.state
+    @data = Rubillow::PropertyDetails.deep_search_results({ :address => @address.line_1, :citystatezip => @citystate })
+    if @data.success?
+      @property.latitude = @data.address[:latitude]
+      @property.longitude = @data.address[:longitude]
+    end
     respond_to do |format|
       if @property.update(property_params)
         format.html { redirect_to home_path, notice: 'Property was successfully updated.' }
