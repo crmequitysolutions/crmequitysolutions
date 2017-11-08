@@ -1,4 +1,13 @@
-<html>   
+<html>
+  <style>
+    .container {
+    padding-left :0px;
+    padding-right :0px;
+    margin-left: 0px;
+    width: 100%; 
+    height: 100%;
+  }
+</style>
   <head>
     <title>CRM Contacts</title>
     <meta charset="utf-8">
@@ -8,6 +17,34 @@
   </head>
   
   <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="container">
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <div class="navbar-header">
+        <p class="navbar-text">CRM Equity Solutions</p> 
+      </div>
+    <div class="nav navbar-nav">
+          <li><a href="properties">Home</a></li>
+          <li><a href="guides">Guide</a></li>
+          <li><a href="contact_page">Contact Me</a></li>
+        </div>
+      </div>
+    <div class="nav pull-right">
+          <% if user_signed_in? %>
+            <li><%= link_to (current_user.email), edit_user_registration_path, :class => 'navbar-link' %></li> 
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+          <% else %>
+            <li><%= link_to 'Log In', new_user_session_path %></li>
+            <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+          <% end %>
+        </div>
+        </div>
+  </div>
+</nav>
+
     <p id="notice"><%= notice %></p>
     
     <!-- HREF Modal -->
