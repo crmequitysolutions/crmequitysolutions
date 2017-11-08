@@ -160,7 +160,7 @@
               <tbody>
                 <% @contacts.each do |contact| %>
                   <tr align="center" class='href-button' data-id="<%= contact_path(contact) %>" >
-                    <td><%= contact.last_name << ', ' << contact.first_name << ' ' << contact.middle_name[0] %></td>
+                    <td><%= contact.last_name << ', ' << contact.first_name %></td>
                     <td role="button" class='href-button' data-id='<%= address_path(Address.where(["address_id = ?", contact.address_id]).first) %>'>
                       <%= Address.where(["address_id = ?", contact.address_id]).first.line_1 %> 
                     </td>
