@@ -227,4 +227,24 @@
   <%= @property.bkd_tx_amt %>
 </p>
 
+<% if @data.success? %>
+  <strong>Additional Information from Zillow</strong>
+  <% @data.links.each do |name, url| %>
+    <p><a href=<%= url %>><%= name %></a></p>
+  <% end %>
+  <p>Last Sold Date: <%= @data.last_sold_date %></p>
+  <p>Last Sold Price: <%= @data.last_sold_price %></p>
+  <p>Tax Assessment: <%= @data.tax_assessment %></p>
+  <p>Tax Assessment Year: <%= @data.tax_assessment_year %></p>
+  <p>Lot Size Square Feet: <%= @data.lot_size_square_feet %></p>
+  <p>Property Use Code: <%= @data.use_code %></p>
+  <p>Zestimate Price: <%= @data.price %></p>
+  <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@property.latitude},#{@property.longitude}&markers=#{@property.latitude},#{@property.longitude}&zoom=15&size=640x400&key=AIzaSyAoBbj6wzXMhjzYiA-vq4c7tetfzY6OTT4",
+              class: 'img-fluid img-rounded', alt: "#{@property.property_type} on the map"%>
+<% end %>
+
+<%= link_to 'See Images', see_images_path(@property.property_id) %> |
+<%= link_to 'See Investors', see_investors_path(@property.property_id) %> |
+<%= link_to 'Edit', edit_property_path(@property) %> |
+<%= link_to 'Back', home_path %>
 </div>
