@@ -41,7 +41,7 @@ class ContactsController < ApplicationController
     @contact.user_email = current_user.email
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to @contact, notice: 'Contact was successfully created.' }
+        format.html { redirect_to home_path, notice: 'Contact was successfully created.' }
         format.json { render :show, status: :created, location: @contact }
       else
         format.html { render :new }
@@ -55,7 +55,7 @@ class ContactsController < ApplicationController
   def update
     respond_to do |format|
       if @contact.update(contact_params)
-        format.html { redirect_to @contact, notice: 'Contact was successfully updated.' }
+        format.html { redirect_to home_path, notice: 'Contact was successfully updated.' }
         format.json { render :show, status: :ok, location: @contact }
       else
         format.html { render :edit }

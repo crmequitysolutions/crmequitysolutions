@@ -17,14 +17,10 @@ class AddressesController < ApplicationController
     @state = @address.state
     @citystate = @city << ", " << @state
     property = Rubillow::PropertyDetails.deep_search_results({ :address => @line1, :citystatezip => @citystate })
-    @school_district = "Failed"
     if property.success?
-      data = Rubillow::PropertyDetails.updated_property_details({ :zpid => property.zpid })
-      if data.success?
-        puts "HI"
-        @school_district = data.school_district
-      end
+      @zpid = property.zpid
     end
+    puts Rubillow::PropertyDetails.updated_property_details({ :zpid => '65068086' }).school_district
   end
 
   # GET /addresses/new
@@ -48,7 +44,7 @@ class AddressesController < ApplicationController
     @address.user_email = current_user.email
     respond_to do |format|
       if @address.save
-        format.html { redirect_to @address, notice: 'Address was successfully created.' }
+        format.html { redirect_to addresses_path, notice: 'Address was successfully created.' }
         format.json { render :show, status: :created, location: @address }
       else
         format.html { render :new }
@@ -62,7 +58,7 @@ class AddressesController < ApplicationController
   def update
     respond_to do |format|
       if @address.update(address_params)
-        format.html { redirect_to @address, notice: 'Address was successfully updated.' }
+        format.html { redirect_to addresses_path, notice: 'Address was successfully updated.' }
         format.json { render :show, status: :ok, location: @address }
       else
         format.html { render :edit }

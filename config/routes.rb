@@ -33,6 +33,14 @@ Rails.application.routes.draw do
   get 'properties/:id/investors' => 'properties#investors', as: :see_investors
   get 'investor_prefs/:id/properties' => 'investor_prefs#properties', as: :see_properties
   get 'contacts/:id/business_cards' => 'contacts#business_cards', as: :see_business_cards
+  get 'home' => 'home#index', as: :home
+  post 'properties' => 'properties#create', as: :create_property
+  
+  resources :home do
+    collection do
+      match 'search' => 'home#search', via: [:get, :post], as: :search
+    end
+  end
   
   scope :auth do
     get 'is_signed_in', to: 'auth#is_signed_in?'
