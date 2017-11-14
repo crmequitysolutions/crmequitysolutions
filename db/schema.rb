@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171108041709) do
+ActiveRecord::Schema.define(version: 20171114020327) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "address_id"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20171108041709) do
     t.integer "phone_ext"
     t.string "alt_phone"
     t.integer "alt_ext"
-    t.integer "fax"
+    t.string "fax"
     t.string "email"
     t.string "contact_type"
     t.datetime "created_at", null: false

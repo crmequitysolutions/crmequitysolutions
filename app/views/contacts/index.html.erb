@@ -159,7 +159,11 @@
                 <% @contacts.each do |contact| %>
                   <tr align="center" class='contact-entry' data-toggle="modal" data-id="<%= contact.contact_id %>" data-target="#contactsModal"> <!--contactsModal-->
                     <td><%= contact.last_name << ', ' << contact.first_name << ' ' << contact.middle_name[0] %></td>
-                    <td><%= link_to Address.where(["address_id = ?", contact.address_id]).first.line_1, Address.where(["address_id = ?", contact.address_id]).first %></td>
+                    <% if (contact.address_id != -1) %>
+                      <td><%= link_to Address.where(["address_id = ?", contact.address_id]).first.line_1, Address.where(["address_id = ?", contact.address_id]).first %></td>
+                    <% else %>
+                      <td>No Address</td>
+                    <% end %>
                     <td><%= contact.phone %></td>
                     <td><%= contact.email %></td>
                     <td><%= contact.contact_type %></td>
