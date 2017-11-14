@@ -8,7 +8,7 @@
     height: 100%;
   }
   .modal-body {
-    max-height: calc(100vh - 210px);
+    max-height: calc(100vh - 180px);
     overflow-y: auto;
   }
 </style>
@@ -21,33 +21,34 @@
   </head>
   
   <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-    <div class="container">
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <div class="navbar-header">
-        <p class="navbar-text">CRM Equity Solutions</p> 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="container">
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <div class="navbar-header">
+            <p class="navbar-text">CRM Equity Solutions</p> 
+          </div>
+        <div class="nav navbar-nav">
+              <li><a href="properties">Home</a></li>
+              <li><a href="guides">Guide</a></li>
+              <li><a href="contact_page">Contact Me</a></li>
+            </div>
+          </div>
+        <div class="nav pull-right">
+              <% if user_signed_in? %>
+                <li><%= link_to (current_user.email), edit_user_registration_path, :class => 'navbar-link' %></li> 
+                <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+              <% else %>
+                <li><%= link_to 'Log In', new_user_session_path %></li>
+                <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+              <% end %>
+            </div>
+            </div>
       </div>
-    <div class="nav navbar-nav">
-          <li><a href="properties">Home</a></li>
-          <li><a href="guides">Guide</a></li>
-          <li><a href="contact_page">Contact Me</a></li>
-        </div>
-      </div>
-    <div class="nav pull-right">
-          <% if user_signed_in? %>
-            <li><%= link_to (current_user.email), edit_user_registration_path, :class => 'navbar-link' %></li> 
-            <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
-          <% else %>
-            <li><%= link_to 'Log In', new_user_session_path %></li>
-            <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <% end %>
-        </div>
-        </div>
-  </div>
-</nav>
+    </nav>
+
 
     <p id="notice"><%= notice %></p>
     
@@ -60,11 +61,14 @@
         <!-- Modal content-->
         <div class="modal-content" >
           <div class="modal-header">
-            <h4 class="modal-title">Modal Header</h4>
+            <h4 class="modal-title"></h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body" id="hrefModalContent">
             
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div><!-- END Modal content-->
       </div>
@@ -99,7 +103,10 @@
             </a>
             <a class="list-group-item" id='table-option-contacts'>
               Contacts <span class="badge"><%= @contacts.length %></span>
-            </a>   
+            </a>
+            <a class="list-group-item" id='table-option-investors' href='/investor_prefs'>
+              Investor Preferences <span class="badge">0</span>
+            </a> 
           </div> <!-- End Table Picker  -->
           <br><br>
           <!-- Links Selection -->
@@ -120,6 +127,13 @@
             <a data-id="<%= new_property_path%>" class="list-group-item href-button" >
               New Property
             </a>
+            <a data-id="<%= new_business_card_path %>" class="list-group-item href-button" >
+              New Business Card
+            </a>
+            <a data-id="<%= new_community_path %>" class="list-group-item href-button" >
+              New Community
+            </a>
+            
             
           </div> <!-- End Links Picker  -->
           <br><br>
@@ -210,7 +224,7 @@
                     <td><%= contact.contact_type %></td>
                     <td><a data-id="<%= see_business_cards_path(contact.contact_id) %>" class='btn btn-info href-button'>Card</a></td>
                     <td><a data-id="<%= edit_contact_path(contact) %>" class='btn btn-warning href-button'>Edit</a></td>
-                    <td><%= link_to "<span class='btn btn-danger'>Delete</span>".html_safe, contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <td class='delete-button'><%= link_to "<span class='btn btn-danger'>Delete</span>".html_safe, contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                   </tr>
                 <% end %>
               </tbody>
@@ -260,32 +274,18 @@
                       <div class="panel-body">
                         <div class="list-group">
                           <%= search_form_for @q2, url: search_home_index_path, html: { method: :post } do |f| %>
-                          <%= f.search_field :property_type_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :time_on_mrkt_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :construction_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :sqft_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :yr_built_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :bd_rms_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :ba_rms_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :rooms_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :roof_type_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :roof_age_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :plumb_type_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :plumb_age_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :foundation_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :heat_type_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :heat_age_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :cool_type_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :cool_age_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :window_type_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :window_nbr_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :resn_to_sell_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :quick_close_amt_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :amt_owed_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :pymnt_crnt_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :pymt_amt_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :interest_rate_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
-                          <%= f.search_field :bkd_tx_amt_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name' %>
+                          <%= f.search_field :property_type_cont, :class => 'list-group-item form-control no-border', :placeholder => 'Property Type' %>
+                          <%= f.search_field :time_on_mrkt_cont, :class => 'list-group-item form-control no-border', :placeholder => 'Time on Market' %>
+                          <%= f.search_field :construction_cont, :class => 'list-group-item form-control no-border', :placeholder => 'Construction' %>
+                          <%= f.search_field :sqft_cont, :class => 'list-group-item form-control no-border', :placeholder => 'Square Feet' %>
+                          <%= f.search_field :yr_built_cont, :class => 'list-group-item form-control no-border', :placeholder => 'Year Built' %>
+                          <%= f.search_field :bd_rms_cont, :class => 'list-group-item form-control no-border', :placeholder => 'Bedrooms' %>
+                          <%= f.search_field :ba_rms_cont, :class => 'list-group-item form-control no-border', :placeholder => 'Bathrooms' %>
+                          <%= f.search_field :rooms_cont, :class => 'list-group-item form-control no-border', :placeholder => 'Rooms' %>
+                          <%= f.search_field :quick_close_amt_cont, :class => 'list-group-item form-control no-border', :placeholder => 'Quick Close Amount' %>
+                          <%= f.search_field :pymt_amt_cont, :class => 'list-group-item form-control no-border', :placeholder => 'Payment Amount' %>
+                          <%= f.search_field :interest_rate_cont, :class => 'list-group-item form-control no-border', :placeholder => 'Interest Rate' %>
+                          <%= f.search_field :bkd_tx_amt_cont, :class => 'list-group-item form-control no-border', :placeholder => 'Bkd Tax Amount' %>
                           <%= f.submit :class => 'list-group-item btn btn-outline-warning col align-self-center'%>
                           <% end %>
                         </div>
@@ -302,12 +302,12 @@
                     <tr>
                       <th><%= sort_link(@q2, :owner) %></th>
                       <th><%= sort_link(@q2, :address_id) %></th>
-                      <th><%= sort_link(@q2, :yr_built) %></th>
-                      <th><%= sort_link(@q2, :bd_rms) %></th>
-                      <th><%= sort_link(@q2, :ba_rms) %></th>
-                      <th><%= sort_link(@q2, :rooms) %></th>
-                      <th><%= sort_link(@q2, :quick_close_amt) %></th>
-                      <th><%= sort_link(@q2, :sell_by_date) %></th>
+                      <th><%= sort_link(@q2, 'Year Built',:yr_built) %></th>
+                      <th><%= sort_link(@q2, 'Bedrooms',:bd_rms) %></th>
+                      <th><%= sort_link(@q2, 'Bathrooms',:ba_rms) %></th>
+                      <th><%= sort_link(@q2, 'Rooms',:rooms) %></th>
+                      <th><%= sort_link(@q2, 'Quick Close Amt',:quick_close_amt) %></th>
+                      <th><%= sort_link(@q2, 'Sell by Date',:sell_by_date) %></th>
                       <th colspan="4"></th>
                     </tr>
                   </thead>
@@ -330,7 +330,7 @@
                         <td><a data-id="<%= see_images_path(property.property_id) %>" class='btn btn-info href-button'>Images</a></td>
                         <td><a data-id="<%= see_investors_path(property.property_id) %>" class='btn btn-info href-button'>Matches</a></td>
                         <td><a data-id="<%= edit_property_path(property) %>" class='btn btn-warning href-button'>Edit</a></td>
-                        <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger'%></td>
+                        <td class='delete-button'><%= link_to 'Delete', property, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
                       </tr>
                     <% end %>
                   </tbody>
@@ -340,10 +340,13 @@
           </div> <!-- End Properties Panel -->
         </div> <!-- End Right Side Main -->
       </div><!-- End Row -->
-    
     </div><!-- End Main Container -->
     
     <br>
+    
+    <footer id="footer">
+      <p>CRM Equity Solutions, &copy; 2017</p>
+    </footer>
     <!-- save these variables for all scripts to use -->
     <%= javascript_tag do %>
       var contacts = <%= @contacts.to_json.html_safe %>;
@@ -380,7 +383,14 @@
           }
         });
         
+        $('.delete-button').on('click', function(e){
+          console.log('delete clicked');
+          throw true;
+          e.stopPropagation();
+        })
+        
       });
+    
     </script>
     
     <!-- Table Selector Scripts -->
@@ -410,7 +420,7 @@
           $('#properties-page-header').collapse('hide');
           $('#contacts-page-header').collapse('show');         
         });
-        switchToProperties();
+        switchToContacts();
       });
     </script>
     
