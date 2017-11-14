@@ -240,8 +240,8 @@
   <p>Lot Size Square Feet: <%= @data.lot_size_square_feet %></p>
   <p>Property Use Code: <%= @data.use_code %></p>
   <p>Zestimate Price: <%= @data.price %></p>
-  <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@property.latitude},#{@property.longitude}&markers=#{@property.latitude},#{@property.longitude}&zoom=15&size=640x400&key=AIzaSyAoBbj6wzXMhjzYiA-vq4c7tetfzY6OTT4",
-              class: 'img-fluid img-rounded', alt: "#{@property.property_type} on the map"%>
+  <a href=<%= "http://maps.google.com/?ll=#{@property.latitude},#{@property.longitude}" %>><%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@property.latitude},#{@property.longitude}&markers=#{@property.latitude},#{@property.longitude}&zoom=15&size=640x400&key=AIzaSyAoBbj6wzXMhjzYiA-vq4c7tetfzY6OTT4",
+              class: 'img-fluid img-rounded', alt: "#{@property.property_type} on the map"%></a>
 <% end %>
 
 
