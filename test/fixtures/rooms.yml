@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  room_id: 1
+  property_id: 1
+  room_type: MyString
+  sqft: 1.5
+  windows: 1
+  closets: 1
+  notes: MyText
+
+two:
+  room_id: 1
+  property_id: 1
+  room_type: MyString
+  sqft: 1.5
+  windows: 1
+  closets: 1
+  notes: MyText

@@ -95,6 +95,9 @@ class ContactsController < ApplicationController
       RentalUnit.where(["property_id = ?", property.property_id]).each do |rental_unit|
         rental_unit.destroy
       end
+      Room.where(["property_id = ?", property.property_id]).each do |room|
+        room.destroy
+      end
       Transaction.where(["property_id = ?", property.property_id]).each do |transaction|
         transaction.destroy
       end

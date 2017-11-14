@@ -42,6 +42,10 @@ class PropertiesController < ApplicationController
     ]).ransack(params[:q])
     @investor_prefs = @q.result(distinct: true)
   end
+  
+  def rooms
+    @rooms = Room.where(["property_id = ? and user_email = ?", params[:id], current_user.email])
+  end
 
   # POST /properties
   # POST /properties.json
@@ -106,6 +110,9 @@ class PropertiesController < ApplicationController
     end
     RentalUnit.where(["property_id = ?", @property.property_id]).each do |rental_unit|
       rental_unit.destroy
+    end
+    Room.where(["property_id = ?", @property.property_id]).each do |room|
+      room.destroy
     end
     Transaction.where(["property_id = ?", @property.property_id]).each do |transaction|
       transaction.destroy
