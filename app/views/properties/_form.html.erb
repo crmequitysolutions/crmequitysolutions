@@ -15,7 +15,7 @@
     <%= form.label :address_id %>
     <%= form.select(:address_id) do %>
       <% Address.where(["user_email = ?", current_user.email]).each do |c| -%>
-        <%= content_tag(:option, c.line_1, value: c.address_id) %>
+        <%= content_tag(:option, c.line_1 << ', ' << c.city << ', ' << c.state << ' ' << c.zip_code.to_s, value: c.address_id) %>
       <% end %>
     <% end %>
   </div>
@@ -24,7 +24,7 @@
     <%= form.label :owner %>
     <%= form.select(:owner) do %>
       <% Contact.where(["user_email = ?", current_user.email]).each do |c| -%>
-        <%= content_tag(:option, c.last_name, value: c.contact_id) %>
+        <%= content_tag(:option, c.last_name << ', ' << c.first_name, value: c.contact_id) %>
       <% end %>
     <% end %>
   </div>

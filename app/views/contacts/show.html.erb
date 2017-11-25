@@ -5,7 +5,11 @@
 <br>
 <p>
   <strong>Address:</strong>
-  <%= link_to Address.where(["address_id = ?", @contact.address_id]).first.line_1, Address.where(["address_id = ?", @contact.address_id]).first %>
+  <% if (@contact.address_id != -1) %>
+    <%= link_to Address.where(["address_id = ?", @contact.address_id]).first.line_1, Address.where(["address_id = ?", @contact.address_id]).first %>
+  <% else %>
+    <%= "No Address" %>
+  <% end %>
 </p>
 
 <p>

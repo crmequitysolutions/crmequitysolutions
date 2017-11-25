@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rooms
   resources :business_cards
   devise_for :users
   resources :images
@@ -35,6 +36,10 @@ Rails.application.routes.draw do
   get 'contacts/:id/business_cards' => 'contacts#business_cards', as: :see_business_cards
   get 'home' => 'home#index', as: :home
   post 'properties' => 'properties#create', as: :create_property
+  get 'contacts/delete/:id' => 'contacts#destroy', as: :delete_contact
+  get 'properties/delete/:id' => 'properties#destroy', as: :delete_property
+  get 'properties/:id/rooms' => 'properties#rooms', as: :see_rooms
+  
   
   resources :home do
     collection do

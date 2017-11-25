@@ -1,10 +1,10 @@
-<%= form_with(model: prop_doc, local: true) do |form| %>
-  <% if prop_doc.errors.any? %>
+<%= form_with(model: room, local: true) do |form| %>
+  <% if room.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(prop_doc.errors.count, "error") %> prohibited this prop_doc from being saved:</h2>
+      <h2><%= pluralize(room.errors.count, "error") %> prohibited this room from being saved:</h2>
 
       <ul>
-      <% prop_doc.errors.full_messages.each do |message| %>
+      <% room.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -21,28 +21,28 @@
   </div>
 
   <div class="field">
-    <%= form.label :content %>
-    <%= form.text_field :content, id: :prop_doc_content %>
+    <%= form.label :room_type %>
+    <%= form.text_field :room_type, id: :room_room_type %>
   </div>
 
   <div class="field">
-    <%= form.label :mime_type %>
-    <%= form.text_field :mime_type, id: :prop_doc_mime_type %>
+    <%= form.label :sqft %>
+    <%= form.text_field :sqft, id: :room_sqft %>
   </div>
 
   <div class="field">
-    <%= form.label :file_name %>
-    <%= form.text_field :file_name, id: :prop_doc_file_name %>
+    <%= form.label :windows %>
+    <%= form.number_field :windows, id: :room_windows %>
   </div>
 
   <div class="field">
-    <%= form.label :file_type %>
-    <%= form.text_field :file_type, id: :prop_doc_file_type %>
+    <%= form.label :closets %>
+    <%= form.number_field :closets, id: :room_closets %>
   </div>
 
   <div class="field">
-    <%= form.label :upload_date %>
-    <%= form.datetime_select :upload_date, id: :prop_doc_upload_date %>
+    <%= form.label :notes %>
+    <%= form.text_area :notes, id: :room_notes %>
   </div>
 
   <div class="actions">

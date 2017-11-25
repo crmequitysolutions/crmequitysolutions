@@ -95,6 +95,9 @@ class ContactsController < ApplicationController
       RentalUnit.where(["property_id = ?", property.property_id]).each do |rental_unit|
         rental_unit.destroy
       end
+      Room.where(["property_id = ?", property.property_id]).each do |room|
+        room.destroy
+      end
       Transaction.where(["property_id = ?", property.property_id]).each do |transaction|
         transaction.destroy
       end
@@ -108,7 +111,7 @@ class ContactsController < ApplicationController
     end
     @contact.destroy
     respond_to do |format|
-      format.html { redirect_to contacts_url, notice: 'Contact was successfully destroyed.' }
+      format.html { redirect_to home_path, notice: 'Contact was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

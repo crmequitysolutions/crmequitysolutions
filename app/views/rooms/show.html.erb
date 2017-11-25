@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Room:</strong>
+  <%= @room.room_id %>
+</p>
+
+<p>
+  <strong>Property:</strong>
+  <%= link_to Address.where(["address_id = ?", Property.where(["property_id = ?", @room.property_id]).first.address_id]).first.line_1, Property.where(["property_id = ?", @room.property_id]).first %>
+</p>
+
+<p>
+  <strong>Room type:</strong>
+  <%= @room.room_type %>
+</p>
+
+<p>
+  <strong>Sqft:</strong>
+  <%= @room.sqft %>
+</p>
+
+<p>
+  <strong>Windows:</strong>
+  <%= @room.windows %>
+</p>
+
+<p>
+  <strong>Closets:</strong>
+  <%= @room.closets %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @room.notes %>
+</p>
+
+<%= link_to 'Edit', edit_room_path(@room) %> |
+<%= link_to 'Back', rooms_path %>

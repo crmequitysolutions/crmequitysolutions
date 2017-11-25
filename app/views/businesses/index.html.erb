@@ -48,7 +48,11 @@
         <td><%= business.url %></td>
         <td><%= business.email %></td>
         <td><%= link_to Contact.where(["contact_id = ?", business.prim_contact_id]).first.last_name, Contact.where(["contact_id = ?", business.prim_contact_id]).first %></td>
-        <td><%= link_to Contact.where(["contact_id = ?", business.sec_contact_id]).first.last_name, Contact.where(["contact_id = ?", business.sec_contact_id]).first %></td>
+        <% if (business.sec_contact_id != -1) %>
+          <td><%= link_to Contact.where(["contact_id = ?", business.sec_contact_id]).first.last_name, Contact.where(["contact_id = ?", business.sec_contact_id]).first %></td>
+        <% else %>
+          <td>No Secondary Contact</td>
+        <% end %>
         <td><%= link_to 'Show', business %></td>
         <td><%= link_to 'Edit', edit_business_path(business) %></td>
         <td><%= link_to 'Destroy', business, method: :delete, data: { confirm: 'Are you sure?' } %></td>
