@@ -165,7 +165,7 @@
                       <!-- Search Picker style="padding-bottom:12px"-->
                       <div class="col-xs-3">
                         <div class="btn-group pull-right" data-toggle="buttons" >
-                          <label data-toggle="collapse" data-parent="#accordion" data-target="#simpleSearch" class="btn btn-outline-primary col align-self-center active">
+                          <label data-toggle="collapse" data-parent="#accordion" data-target="#simpleSearch" id='#simpleSearch' class="btn btn-outline-primary col align-self-center active">
                             <input type="radio" name="options" id="radio1" autocomplete="off" checked> Simple
                           </label>
                           <label data-toggle="collapse" data-parent="#accordion" data-target="#advancedSearch"  class="btn  btn-outline-primary col align-self-center">
@@ -265,6 +265,7 @@
                       </div>
                       </div>
                     </div>
+                    <!-- Simple Search Panel-->
                     <div id="simplePropertySearch" class="panel-collapse collapse" >
                       <div class="panel-body">
                         <div class="list-group">
@@ -427,6 +428,14 @@
           $('#contacts-page-header').collapse('show');         
         });
         switchToContacts();
+        $('#simpleSearch').on('show.bs.collapse', function(){
+          $('#advancedSearch').collapse('hide');
+        });
+         $('#advancedSearch').on('show.bs.collapse', function(){
+          $('#simpleSearch').collapse('hide');
+        });
+        $('#simpleSearch').collapse('show');
+        
       });
     </script>
     
