@@ -74,7 +74,7 @@ class InvestorPrefsController < ApplicationController
   def destroy
     @investor_pref.destroy
     respond_to do |format|
-      format.html { redirect_to investor_prefs_url, notice: 'Investor pref was successfully destroyed.' }
+      format.html { redirect_to home_path, notice: 'Investor pref was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128020752) do
+ActiveRecord::Schema.define(version: 20171128212915) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "address_id"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20171128020752) do
     t.string "line_2"
     t.string "city"
     t.string "state"
-    t.integer "zip_code"
+    t.string "zip_code"
     t.string "county"
     t.string "country"
     t.integer "community_id"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20171128020752) do
   create_table "communities", force: :cascade do |t|
     t.integer "community_id"
     t.string "community_name"
-    t.integer "zip_code"
+    t.string "zip_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "user_email"
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20171128020752) do
   create_table "investor_prefs", force: :cascade do |t|
     t.integer "investor_pref_id"
     t.integer "contact_id"
-    t.integer "zip_code"
+    t.string "zip_code"
     t.integer "community_id"
     t.string "property_type"
     t.integer "bd_rms"
