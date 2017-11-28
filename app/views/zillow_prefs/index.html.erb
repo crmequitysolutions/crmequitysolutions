@@ -1,0 +1,71 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Zillow Prefs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User email</th>
+      <th>Links</th>
+      <th>Last sold date</th>
+      <th>Last sold price</th>
+      <th>Tax assessment</th>
+      <th>Tax assessment year</th>
+      <th>Year built</th>
+      <th>Bathrooms</th>
+      <th>Bedrooms</th>
+      <th>Finished square feet</th>
+      <th>Lot size square feet</th>
+      <th>Total rooms</th>
+      <th>Use code</th>
+      <th>Change</th>
+      <th>Change duration</th>
+      <th>Last updated</th>
+      <th>Local real estate</th>
+      <th>Percentile</th>
+      <th>Price</th>
+      <th>Region</th>
+      <th>Region type</th>
+      <th>Rent zestimate</th>
+      <th>Valuation range</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @zillow_prefs.each do |zillow_pref| %>
+      <tr>
+        <td><%= zillow_pref.user_email %></td>
+        <td><%= zillow_pref.links %></td>
+        <td><%= zillow_pref.last_sold_date %></td>
+        <td><%= zillow_pref.last_sold_price %></td>
+        <td><%= zillow_pref.tax_assessment %></td>
+        <td><%= zillow_pref.tax_assessment_year %></td>
+        <td><%= zillow_pref.year_built %></td>
+        <td><%= zillow_pref.bathrooms %></td>
+        <td><%= zillow_pref.bedrooms %></td>
+        <td><%= zillow_pref.finished_square_feet %></td>
+        <td><%= zillow_pref.lot_size_square_feet %></td>
+        <td><%= zillow_pref.total_rooms %></td>
+        <td><%= zillow_pref.use_code %></td>
+        <td><%= zillow_pref.change %></td>
+        <td><%= zillow_pref.change_duration %></td>
+        <td><%= zillow_pref.last_updated %></td>
+        <td><%= zillow_pref.local_real_estate %></td>
+        <td><%= zillow_pref.percentile %></td>
+        <td><%= zillow_pref.price %></td>
+        <td><%= zillow_pref.region %></td>
+        <td><%= zillow_pref.region_type %></td>
+        <td><%= zillow_pref.rent_zestimate %></td>
+        <td><%= zillow_pref.valuation_range %></td>
+        <td><%= link_to 'Show', zillow_pref %></td>
+        <td><%= link_to 'Edit', edit_zillow_pref_path(zillow_pref) %></td>
+        <td><%= link_to 'Destroy', zillow_pref, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Zillow Pref', new_zillow_pref_path %>

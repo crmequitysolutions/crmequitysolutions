@@ -17,8 +17,10 @@ class PropertiesController < ApplicationController
     address = Address.where(["address_id = ? and user_email = ?", @property.address_id, current_user.email]).first
     citystate = address.city << ", " << address.state
     @data = Rubillow::PropertyDetails.deep_search_results({ :address => address.line_1, :citystatezip => citystate })
-    puts @property.latitude
-    puts @property.longitude
+    @zillow_pref = -1
+    if ZillowPref.where(["user_email = ?", current_user.email]).size > 0
+      @zillow_pref = ZillowPref.where(["user_email = ?", current_user.email]).first
+    end
   end
 
   # GET /properties/new

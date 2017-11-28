@@ -34,6 +34,7 @@
               <li><a href="properties">Home</a></li>
               <li><a href="guides">Guide</a></li>
               <li><a href="contact_page">Contact Me</a></li>
+              <li><%= link_to "Edit Zillow Preferences", new_zillow_pref_path %></li>
             </div>
           </div>
         <div class="nav pull-right">
@@ -249,19 +250,31 @@
                 </style>
                 <script>
                   function initMap() {
-                    var uluru = {lat: <%= @properties.first.latitude %>, lng: <%= @properties.first.longitude %>};
-                    var map = new google.maps.Map(document.getElementById('map'), {
-                      zoom: 4,
-                      center: uluru
-                    });
-                    <% @properties.each do |property| %>
-                      <% if property.latitude != -1 and property.longitude != -1 %>
-                        var uluru = {lat: <%= property.latitude %>, lng: <%= property.longitude %>};
-                        var marker = new google.maps.Marker({
-                          position: uluru,
-                          map: map
-                        });
+                    <% if @properties.size > 0 %>
+                      var uluru = {lat: <%= @properties.first.latitude %>, lng: <%= @properties.first.longitude %>};
+                      var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 4,
+                        center: uluru
+                      });
+                      <% @properties.each do |property| %>
+                        <% if property.latitude != -1 and property.longitude != -1 %>
+                          var uluru = {lat: <%= property.latitude %>, lng: <%= property.longitude %>};
+                          var marker = new google.maps.Marker({
+                            position: uluru,
+                            map: map
+                          });
+                        <% end %>
                       <% end %>
+                    <% else %>
+                      var uluru = {lat: -25.363, lng: 131.044};
+                      var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 4,
+                        center: uluru
+                      });
+                      var marker = new google.maps.Marker({
+                        position: uluru,
+                        map: map
+                      });
                     <% end %>
                   }
                 </script>
