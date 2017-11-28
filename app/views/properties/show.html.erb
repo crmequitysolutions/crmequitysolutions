@@ -230,16 +230,88 @@
 
 <% if @data.success? %>
   <strong>Additional Information from Zillow</strong>
-  <% @data.links.each do |name, url| %>
-    <p><a href=<%= url %>><%= name %></a></p>
+  <p><%= link_to "Customize Zillow Info", new_zillow_pref_path %></p>
+  <% if @zillow_pref == -1 %>
+    <% @data.links.each do |name, url| %>
+      <p><a href=<%= url %>><% name %></a></p>
+    <% end %>
+    <p>Last Sold Date: <%= @data.last_sold_date %></p>
+    <p>Last Sold Price: <%= @data.last_sold_price %></p>
+    <p>Tax Assessment: <%= @data.tax_assessment %></p>
+    <p>Tax Assessment Year: <%= @data.tax_assessment_year %></p>
+    <p>Lot Size Square Feet: <%= @data.lot_size_square_feet %></p>
+    <p>Property Use Code: <%= @data.use_code %></p>
+    <p>Zestimate Price: <%= @data.price %></p>
+  <% else %>
+    <% if @zillow_pref.links %>
+      <% @data.links.each do |name, url| %>
+        <p><a href=<%= url %>><% name %></a></p>
+      <% end %>
+    <% end %>
+    <% if @zillow_pref.last_sold_date %>
+      <p>Last Sold Date: <%= @data.last_sold_date %></p>
+    <% end %>
+    <% if @zillow_pref.last_sold_price %>
+      <p>Last Sold Price: <%= @data.last_sold_price %></p>
+    <% end %>
+    <% if @zillow_pref.tax_assessment %>
+      <p>Tax Assessment: <%= @data.tax_assessment %></p>
+    <% end %>
+    <% if @zillow_pref.tax_assessment_year %>
+      <p>Tax Assessment Year: <%= @data.tax_assessment_year %></p>
+    <% end %>
+    <% if @zillow_pref.year_built %>
+      <p>Year Built: <%= @data.year_built %></p>
+    <% end %>
+    <% if @zillow_pref.bathrooms %>
+      <p>Bathrooms: <%= @data.bathrooms %></p>
+    <% end %>
+    <% if @zillow_pref.bedrooms %>
+      <p>Bedrooms: <%= @data.bedrooms %></p>
+    <% end %>
+    <% if @zillow_pref.finished_square_feet %>
+      <p>Finished Square Feet: <%= @data.finished_square_feet %></p>
+    <% end %>
+    <% if @zillow_pref.lot_size_square_feet %>
+      <p>Lot Size Square Feet: <%= @data.lot_size_square_feet %></p>
+    <% end %>
+    <% if @zillow_pref.total_rooms %>
+      <p>Total Rooms: <%= @data.total_rooms %></p>
+    <% end %>
+    <% if @zillow_pref.use_code %>
+      <p>Use Code: <%= @data.use_code %></p>
+    <% end %>
+    <% if @zillow_pref.change %>
+      <p>Change: <%= @data.change %></p>
+    <% end %>
+    <% if @zillow_pref.change_duration %>
+      <p>Change Duration: <%= @data.change_duration %></p>
+    <% end %>
+    <% if @zillow_pref.last_updated %>
+      <p>Last Updated: <%= @data.last_updated %></p>
+    <% end %>
+    <% if @zillow_pref.local_real_estate %>
+      <p>Local Real Estate: <%= @data.local_real_estate %></p>
+    <% end %>
+    <% if @zillow_pref.percentile %>
+      <p>Percentile: <%= @data.percentile %></p>
+    <% end %>
+    <% if @zillow_pref.price %>
+      <p>Price: <%= @data.price %></p>
+    <% end %>
+    <% if @zillow_pref.region %>
+      <p>Region: <%= @data.region %></p>
+    <% end %>
+    <% if @zillow_pref.region_type %>
+      <p>Region Type: <%= @data.region_type %></p>
+    <% end %>
+    <% if @zillow_pref.rent_zestimate %>
+      <p>Rent Zestimate: <%= @data.rent_zestimate %></p>
+    <% end %>
+    <% if @zillow_pref.valuation_range %>
+      <p>Valuation Range: <%= @data.valuation_range %></p>
+    <% end %>
   <% end %>
-  <p>Last Sold Date: <%= @data.last_sold_date %></p>
-  <p>Last Sold Price: <%= @data.last_sold_price %></p>
-  <p>Tax Assessment: <%= @data.tax_assessment %></p>
-  <p>Tax Assessment Year: <%= @data.tax_assessment_year %></p>
-  <p>Lot Size Square Feet: <%= @data.lot_size_square_feet %></p>
-  <p>Property Use Code: <%= @data.use_code %></p>
-  <p>Zestimate Price: <%= @data.price %></p>
   <a href=<%= "http://maps.google.com/?ll=#{@property.latitude},#{@property.longitude}" %>><%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@property.latitude},#{@property.longitude}&markers=#{@property.latitude},#{@property.longitude}&zoom=15&size=640x400&key=AIzaSyAoBbj6wzXMhjzYiA-vq4c7tetfzY6OTT4",
               class: 'img-fluid img-rounded', alt: "#{@property.property_type} on the map"%></a>
 <% end %>

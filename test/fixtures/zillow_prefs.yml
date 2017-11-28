@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_email: MyString
+  links: false
+  last_sold_date: false
+  last_sold_price: false
+  tax_assessment: false
+  tax_assessment_year: false
+  year_built: false
+  bathrooms: false
+  bedrooms: false
+  finished_square_feet: false
+  lot_size_square_feet: false
+  total_rooms: false
+  use_code: false
+  change: false
+  change_duration: false
+  last_updated: false
+  local_real_estate: false
+  percentile: false
+  price: false
+  region: false
+  region_type: false
+  rent_zestimate: false
+  valuation_range: false
+
+two:
+  user_email: MyString
+  links: false
+  last_sold_date: false
+  last_sold_price: false
+  tax_assessment: false
+  tax_assessment_year: false
+  year_built: false
+  bathrooms: false
+  bedrooms: false
+  finished_square_feet: false
+  lot_size_square_feet: false
+  total_rooms: false
+  use_code: false
+  change: false
+  change_duration: false
+  last_updated: false
+  local_real_estate: false
+  percentile: false
+  price: false
+  region: false
+  region_type: false
+  rent_zestimate: false
+  valuation_range: false

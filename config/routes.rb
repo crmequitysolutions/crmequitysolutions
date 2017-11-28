@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :zillow_prefs
   resources :rooms
   resources :business_cards
   devise_for :users

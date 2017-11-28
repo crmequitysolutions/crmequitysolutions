@@ -1,0 +1,127 @@
+<%= form_with(model: zillow_pref, local: true) do |form| %>
+  <% if zillow_pref.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(zillow_pref.errors.count, "error") %> prohibited this zillow_pref from being saved:</h2>
+
+      <ul>
+      <% zillow_pref.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :links %>
+    <%= form.check_box :links, id: :zillow_pref_links %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_sold_date %>
+    <%= form.check_box :last_sold_date, id: :zillow_pref_last_sold_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_sold_price %>
+    <%= form.check_box :last_sold_price, id: :zillow_pref_last_sold_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tax_assessment %>
+    <%= form.check_box :tax_assessment, id: :zillow_pref_tax_assessment %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tax_assessment_year %>
+    <%= form.check_box :tax_assessment_year, id: :zillow_pref_tax_assessment_year %>
+  </div>
+
+  <div class="field">
+    <%= form.label :year_built %>
+    <%= form.check_box :year_built, id: :zillow_pref_year_built %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bathrooms %>
+    <%= form.check_box :bathrooms, id: :zillow_pref_bathrooms %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bedrooms %>
+    <%= form.check_box :bedrooms, id: :zillow_pref_bedrooms %>
+  </div>
+
+  <div class="field">
+    <%= form.label :finished_square_feet %>
+    <%= form.check_box :finished_square_feet, id: :zillow_pref_finished_square_feet %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lot_size_square_feet %>
+    <%= form.check_box :lot_size_square_feet, id: :zillow_pref_lot_size_square_feet %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_rooms %>
+    <%= form.check_box :total_rooms, id: :zillow_pref_total_rooms %>
+  </div>
+
+  <div class="field">
+    <%= form.label :use_code %>
+    <%= form.check_box :use_code, id: :zillow_pref_use_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :change %>
+    <%= form.check_box :change, id: :zillow_pref_change %>
+  </div>
+
+  <div class="field">
+    <%= form.label :change_duration %>
+    <%= form.check_box :change_duration, id: :zillow_pref_change_duration %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_updated %>
+    <%= form.check_box :last_updated, id: :zillow_pref_last_updated %>
+  </div>
+
+  <div class="field">
+    <%= form.label :local_real_estate %>
+    <%= form.check_box :local_real_estate, id: :zillow_pref_local_real_estate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :percentile %>
+    <%= form.check_box :percentile, id: :zillow_pref_percentile %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.check_box :price, id: :zillow_pref_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :region %>
+    <%= form.check_box :region, id: :zillow_pref_region %>
+  </div>
+
+  <div class="field">
+    <%= form.label :region_type %>
+    <%= form.check_box :region_type, id: :zillow_pref_region_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rent_zestimate %>
+    <%= form.check_box :rent_zestimate, id: :zillow_pref_rent_zestimate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :valuation_range %>
+    <%= form.check_box :valuation_range, id: :zillow_pref_valuation_range %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

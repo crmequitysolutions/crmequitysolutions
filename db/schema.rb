@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114025754) do
+ActiveRecord::Schema.define(version: 20171128020752) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "address_id"
@@ -253,6 +253,34 @@ ActiveRecord::Schema.define(version: 20171114025754) do
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "zillow_prefs", force: :cascade do |t|
+    t.string "user_email"
+    t.boolean "links"
+    t.boolean "last_sold_date"
+    t.boolean "last_sold_price"
+    t.boolean "tax_assessment"
+    t.boolean "tax_assessment_year"
+    t.boolean "year_built"
+    t.boolean "bathrooms"
+    t.boolean "bedrooms"
+    t.boolean "finished_square_feet"
+    t.boolean "lot_size_square_feet"
+    t.boolean "total_rooms"
+    t.boolean "use_code"
+    t.boolean "change"
+    t.boolean "change_duration"
+    t.boolean "last_updated"
+    t.boolean "local_real_estate"
+    t.boolean "percentile"
+    t.boolean "price"
+    t.boolean "region"
+    t.boolean "region_type"
+    t.boolean "rent_zestimate"
+    t.boolean "valuation_range"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

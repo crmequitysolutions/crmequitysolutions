@@ -1,0 +1,2 @@
+json.extract! zillow_pref, :id, :user_email, :links, :last_sold_date, :last_sold_price, :tax_assessment, :tax_assessment_year, :year_built, :bathrooms, :bedrooms, :finished_square_feet, :lot_size_square_feet, :total_rooms, :use_code, :change, :change_duration, :last_updated, :local_real_estate, :percentile, :price, :region, :region_type, :rent_zestimate, :valuation_range, :created_at, :updated_at
+json.url zillow_pref_url(zillow_pref, format: :json)
