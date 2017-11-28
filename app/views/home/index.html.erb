@@ -237,6 +237,39 @@
             <div class="panel-heading main-color-bg ">
               <div class="panel-title">Properties</div>
             </div>
+            <div class="card">
+              <div class="card-block">
+                <div id="map"></div>
+                <style>
+                  #map {
+                    width: 100%;
+                    height: 400px;
+                    background-color: grey;
+                  }
+                </style>
+                <script>
+                  function initMap() {
+                    var uluru = {lat: <%= @properties.first.latitude %>, lng: <%= @properties.first.longitude %>};
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                      zoom: 4,
+                      center: uluru
+                    });
+                    <% @properties.each do |property| %>
+                      <% if property.latitude != -1 and property.longitude != -1 %>
+                        var uluru = {lat: <%= property.latitude %>, lng: <%= property.longitude %>};
+                        var marker = new google.maps.Marker({
+                          position: uluru,
+                          map: map
+                        });
+                      <% end %>
+                    <% end %>
+                  }
+                </script>
+                <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoBbj6wzXMhjzYiA-vq4c7tetfzY6OTT4&callback=initMap">
+                </script>
+              </div>
+            </div>
             <div class="panel-body" id='search'>
               <!-- Search -->
               <div class='panel row'>

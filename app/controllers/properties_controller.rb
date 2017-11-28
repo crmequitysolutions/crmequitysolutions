@@ -63,6 +63,9 @@ class PropertiesController < ApplicationController
     if data.success?
       @property.latitude = data.address[:latitude]
       @property.longitude = data.address[:longitude]
+    else
+      @property.latitude = -1
+      @property.longitude = -1
     end
     respond_to do |format|
       if @property.save
@@ -84,6 +87,9 @@ class PropertiesController < ApplicationController
     if @data.success?
       @property.latitude = @data.address[:latitude]
       @property.longitude = @data.address[:longitude]
+    else
+      @property.latitude = -1
+      @property.longitude = -1
     end
     respond_to do |format|
       if @property.update(property_params)
