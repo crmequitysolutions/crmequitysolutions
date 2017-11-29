@@ -1,0 +1,15 @@
+<h1>Select Property and Template</h1>
+
+<%= form_for(@select) do |f| %>
+    <div class='field'>
+        <label for='title'>Template</label>
+        <%= f.select :title, @titles %>
+    </div>
+    <div class='field'>
+        <label for='property_id'>Property</label>
+        <%= f.select :property_id, @property_ids %>
+    </div>
+    <div class="actions">
+        <%= f.submit 'Next Step' %>
+    </div>
+<% end %>

@@ -41,6 +41,9 @@ Rails.application.routes.draw do
   get 'contacts/delete/:id' => 'contacts#destroy', as: :delete_contact
   get 'properties/delete/:id' => 'properties#destroy', as: :delete_property
   get 'properties/:id/rooms' => 'properties#rooms', as: :see_rooms
+  post 'template_send' => 'templates#send_temp', format: 'docx', as: :send_temp
+  get 'template_send' => 'templates#prep', as: :send_temp_prep
+  # get 'download' => 'foos#download', format: 'docx' #added format
   
   
   resources :home do
