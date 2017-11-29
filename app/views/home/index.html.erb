@@ -33,7 +33,7 @@
               <a class="nav-link" href="guides">Guide</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="zillow_prefs">Edit Zillow Preferences</a>
+              <%= link_to 'Edit Zillow Preferences', new_zillow_pref_path %>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="contact_page">Contact Me</a>
@@ -287,7 +287,12 @@
                 <script>
                   function initMap() {
                     <% if @properties.size > 0 %>
-                      var uluru = {lat: <%= @properties.first.latitude %>, lng: <%= @properties.first.longitude %>};
+                      var uluru = 0
+                      <%= if @properties.first.latitude != -1 and @properties.first.longitude != -1 %>
+                        uluru = {lat: <%= @properties.first.latitude %>, lng: <%= @properties.first.longitude %>};
+                      <%= else %>
+                        var uluru = {lat: -25.363, lng: 131.044};
+                      <%= end %>
                       var map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 4,
                         center: uluru
