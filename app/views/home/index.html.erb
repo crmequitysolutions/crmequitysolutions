@@ -1,11 +1,9 @@
 <html>
   <style>
-<<<<<<< HEAD
   .modal-body {
     max-height: calc(100vh - 180px);
     overflow-y: auto;
   }
-=======
     .container {
       padding-left :0px;
       padding-right :0px;
@@ -20,7 +18,6 @@
     .page-header {
       margin: 20px 0px 20px;
     }
->>>>>>> aedf1485c05939065e3cf705541ee66b17559340
   </style>
   <head>
     <title>CRM Contacts</title>
@@ -32,7 +29,6 @@
   </div>
   
   <body>
-<<<<<<< HEAD
     <div class="wrapper">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="navbar-header">
@@ -50,7 +46,7 @@
               <a class="nav-link" href="guides">Guide</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="zillow_prefs">Edit Zillow Preferences</a>
+              <%= link_to 'Edit Zillow Preferences', new_zillow_pref_path %>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="contact_page">Contact Me</a>
@@ -68,44 +64,9 @@
         </div>
       </nav>
     </div>
-=======
-    
-    <nav class="navbar navbar-expand-lg navbar-light bg-light main-color-bg">
-      
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      
-      <div class="container">
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <div class="navbar-header">
-            <p class="navbar-text">CRM Equity Solutions</p> 
-          </div>
-        <div class="nav navbar-nav">
-              <li><a href="home">Home</a></li>
-              <li><a href="guides">Guide</a></li>
-              <li><a href="contact_page">Contact Me</a></li>
-              <li><%= link_to "Edit Zillow Preferences", new_zillow_pref_path %></li>
-            </div>
-          </div>
-        <div class="nav pull-right">
-              <% if user_signed_in? %>
-                <li><%= link_to (current_user.email), edit_user_registration_path, :class => 'navbar-link' %></li> 
-                <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
-              <% else %>
-                <li><%= link_to 'Log In', new_user_session_path %></li>
-                <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-              <% end %>
-            </div>
-            </div>
-            
-    </nav>
-
->>>>>>> aedf1485c05939065e3cf705541ee66b17559340
-
         
-    <p id="n
-otice"><%= notice %></p>
+
+    <p id="notice"><%= notice %></p>
     
     <!-- HREF Modal -->
     <!-- Takes a reference and loads it -->
