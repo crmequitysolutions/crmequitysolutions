@@ -1,17 +1,24 @@
 <html>
   <style>
-    .container {
-    padding-left :0px;
-    padding-right :0px;
-    margin-left: 0px;
-    width: 100%; 
-    height: 100%;
-  }
   .modal-body {
     max-height: calc(100vh - 180px);
     overflow-y: auto;
   }
-</style>
+    .container {
+      padding-left :0px;
+      padding-right :0px;
+      margin-left: 0px;
+      width: 100%; 
+      height: 100%;
+    }
+    .modal-body {
+      max-height: calc(100vh - 180px);
+      overflow-y: auto;
+    }
+    .page-header {
+      margin: 20px 0px 20px;
+    }
+  </style>
   <head>
     <title>CRM Contacts</title>
     <meta charset="utf-8">
@@ -19,37 +26,45 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   </head>
+  </div>
   
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-        <div class="container">
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <div class="wrapper">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="navbar-header">
-            <p class="navbar-text">CRM Equity Solutions</p> 
-          </div>
-        <div class="nav navbar-nav">
-              <li><a href="home">Home</a></li>
-              <li><a href="guides">Guide</a></li>
-              <li><a href="contact_page">Contact Me</a></li>
-              <li><%= link_to "Edit Zillow Preferences", new_zillow_pref_path %></li>
-            </div>
-          </div>
-        <div class="nav pull-right">
-              <% if user_signed_in? %>
-                <li><%= link_to (current_user.email), edit_user_registration_path, :class => 'navbar-link' %></li> 
-                <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
-              <% else %>
-                <li><%= link_to 'Log In', new_user_session_path %></li>
-                <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-              <% end %>
-            </div>
-            </div>
-      </div>
-    </nav>
-
+          <p class="navbar-text">CRM Equity Solutions</p> 
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="guides">Guide</a>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Edit Zillow Preferences', new_zillow_pref_path %>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact_page">Contact Me</a>
+            </li>
+          </ul>
+          <ul class = "navbar-nav">
+            <% if user_signed_in? %>
+              <li><%= link_to (current_user.email), edit_user_registration_path, :class => 'navbar-link' %></li> 
+              <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+            <% else %>
+              <li><%= link_to 'Log In', new_user_session_path %></li>
+              <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </div>
+        
 
     <p id="notice"><%= notice %></p>
     
@@ -75,7 +90,7 @@
       </div>
     </div> <!-- END HREF Modal -->
     
-    
+    <!-- Main Container -->
     <div class="container">
       <div class="page-header" >
         <h1 class='collapse' id='properties-page-header'>
@@ -105,41 +120,75 @@
             <a class="list-group-item" id='table-option-contacts'>
               Contacts <span class="badge"><%= @contacts.length %></span>
             </a>
-            <a class="list-group-item" id='table-option-investors' href='/investor_prefs'>
-              Investor Preferences <span class="badge">0</span>
-            </a> 
+            
           </div> <!-- End Table Picker  -->
           <br><br>
+          
           <!-- Links Selection -->
-          <div class="list-group"> 
-            <div class="list-group-item main-color-bg">
+          <div class="list-group" id='links'> 
+            <div class="list-group-item main-color-bg " 
+            data-parent="#links" data-toggle="collapse" href="#body-panel">
               Links
             </div>
-            
+            <div id='body-panel' class='panel-collapse'>
+          
+            <a data-toggle="collapse" data-parent="#links" href="#new-links-panel" 
+            class="list-group-item collapse">
+              Quick Add
+            </a>
+            <div id='new-links-panel' class='panel-collapse collapse'>
+              <div class ='panel-body'>
+                <a data-id="<%=new_contact_path%>" class="list-group-item href-button"  >
+                  New Contact
+                </a>
+                <a data-id="<%=new_interaction_path%>" class="list-group-item href-button"  >
+                  New Interaction
+                </a>
+                <a data-id="<%= new_address_path %>" class="list-group-item href-button" >
+                  New Address
+                </a>
+                <a data-id="<%= new_investor_pref_path %>" class="list-group-item href-button" >
+                  New Investor Pref.
+                </a>
+                <a data-id="<%= new_property_path%>" class="list-group-item href-button" >
+                  New Property
+                </a>
+                <a data-id="<%= new_business_card_path %>" class="list-group-item href-button" >
+                  New Business Card
+                </a>
+                <a data-id="<%= new_business_path %>" class="list-group-item href-button" >
+                  New Business
+                </a>
+                <a data-id="<%= new_community_path %>" class="list-group-item href-button" >
+                  New Community
+                </a>
+              </div>
+            </div>
+                
             <a data-id='/property_views' class="list-group-item href-button">
               Template Editor
             </a>
-            <a data-id="<%=new_contact_path%>" class="list-group-item href-button" >
-              New Contact
+            <a href="<%=investor_prefs_path%>" class="list-group-item" >
+              Investor Preferences
             </a>
-            <a data-id="<%= new_address_path %>" class="list-group-item href-button" >
-              New Address
+            <a href="<%=businesses_path%>" class="list-group-item" >
+              Businesses
             </a>
-            <a data-id="<%= new_property_path%>" class="list-group-item href-button" >
-              New Property
+            <a href="<%=communities_path%>" class="list-group-item" >
+              Communities
             </a>
-            <a data-id="<%= new_business_card_path %>" class="list-group-item href-button" >
-              New Business Card
+            <a href="<%=interactions_path%>" class="list-group-item" >
+              Interactions
             </a>
-            <a data-id="<%= new_community_path %>" class="list-group-item href-button" >
-              New Community
+            <a href="<%=business_cards_path%>" class="list-group-item" >
+              Business Cards
             </a>
-            
+            </div>
             
           </div> <!-- End Links Picker  -->
           <br><br>
         </div> <!-- End Left Column  -->
-      
+        
         <!-- Right Main Column -->
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-xs-12">
           
@@ -160,7 +209,7 @@
                       <!-- Search Picker style="padding-bottom:12px"-->
                       <div class="col-xs-3">
                         <div class="btn-group pull-right" data-toggle="buttons" >
-                          <label data-toggle="collapse" data-parent="#accordion" data-target="#simpleSearch" class="btn btn-outline-primary col align-self-center active">
+                          <label data-toggle="collapse" data-parent="#accordion" data-target="#simpleSearch" id='#simpleSearch' class="btn btn-outline-primary col align-self-center active">
                             <input type="radio" name="options" id="radio1" autocomplete="off" checked> Simple
                           </label>
                           <label data-toggle="collapse" data-parent="#accordion" data-target="#advancedSearch"  class="btn  btn-outline-primary col align-self-center">
@@ -310,6 +359,7 @@
                       </div>
                       </div>
                     </div>
+                    <!-- Simple Search Panel-->
                     <div id="simplePropertySearch" class="panel-collapse collapse" >
                       <div class="panel-body">
                         <div class="list-group">
@@ -472,6 +522,15 @@
           $('#contacts-page-header').collapse('show');         
         });
         switchToContacts();
+        $('#simpleSearch').on('show.bs.collapse', function(){
+          $('#advancedSearch').collapse('hide');
+        });
+         $('#advancedSearch').on('show.bs.collapse', function(){
+          $('#simpleSearch').collapse('hide');
+        });
+        $('#simpleSearch').collapse('show');
+        $('#simplePropertySearch').collapse('show');
+        
       });
     </script>
     

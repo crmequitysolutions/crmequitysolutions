@@ -59,7 +59,7 @@
             </div>
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Location
+                    Text Align
                  </button>
              <div class="dropdown-menu" aria-labelledby="dropdownMenu4">
                 <button class="dropdown-item" type="button" onclick="mod_selection('<left>','</left>')" >Left</button>
@@ -88,7 +88,111 @@
     <br>
     <br>
     <br>
- 
+ <script type="text/javascript">
+        function view_text () {
+            // Find html elements.
+            var textArea = document.getElementById('my_text');
+            var div = document.getElementById('view_text');
+             
+            // Put the text in a variable so we can manipulate it.
+            var text = textArea.value;
+             
+            // Make sure html and php tags are unusable by disabling < and >.
+            text = text.replace(/\</gi, "<");
+            text = text.replace(/\>/gi, ">");
+             
+            // Exchange newlines for <br /
+            text = text.replace(/\n/gi, "<br />");
+             
+            // Basic BBCodes.
+            text = text.replace(/\[b\]/gi, "<b>");
+            text = text.replace(/\[\/b\]/gi, "</b>");
+             
+            text = text.replace(/\[i\]/gi, "<i>");
+            text = text.replace(/\[\/i\]/gi, "</i>");
+             
+            text = text.replace(/\[u\]/gi, "<u>");
+            text = text.replace(/\[\/u\]/gi, "</u>");
+            
+            text = text.replace(/\[12\]/gi, "<font size = '12'>");
+            text = text.replace(/\[\/12\]/gi, "</font>");
+            
+            text = text.replace(/\[24\]/gi, "<font size = '24'>");
+            text = text.replace(/\[\/24\]/gi, "</font>");
+            
+            text = text.replace(/\[36\]/gi, "<font size = '36'>");
+            text = text.replace(/\[\/36\]/gi, "</font>");
+            
+            text = text.replace(/\[48\]/gi, "<font size = '48'>");
+            text = text.replace(/\[\/48\]/gi, "</font>");
+             
+            // Print the text in the div made for it.
+            div.innerHTML = text;
+        }
+        
+        function font_size (val1){
+            var textArea = document.getElementById('my_text');
+            textArea.style.fontSize = val1;
+        }
+        
+        function add_attribute (val1){
+            var textArea = document.getElementById('my_text');
+            // IE specific code.
+            if( -1 != navigator.userAgent.indexOf ("MSIE") ) {
+                 
+                var range = document.selection.createRange();
+                var stored_range = range.duplicate();
+                 
+                if(stored_range.length > 0) {
+                    stored_range.moveToElementText(textArea);
+                    stored_range.setEndPoint('EndToEnd', range);
+                    textArea.selectionStart = stored_range.text.length - range.text.length;
+                    textArea.selectionEnd = textArea.selectionStart + range.text.length;
+                }
+            }
+            // Do we even have a selection?
+            if (typeof(textArea.selectionStart) != "undefined") {
+                // Split the text in three pieces - the selection, and what comes before and after.
+                var begin = textArea.value.substr(0, textArea.selectionStart);
+                var selection = textArea.value.substr(textArea.selectionStart, textArea.selectionEnd - textArea.selectionStart);
+                var end = textArea.value.substr(textArea.selectionEnd);
+                 
+                // Insert the tags between the three pieces of text.
+                
+            
+            textArea.value = begin + selection + end + val1;
+            }
+        }
+         
+        function mod_selection (val1,val2) {
+            // Get the text area
+            var textArea = document.getElementById('my_text');
+             
+            // IE specific code.
+            if( -1 != navigator.userAgent.indexOf ("MSIE") ) {
+                 
+                var range = document.selection.createRange();
+                var stored_range = range.duplicate();
+                 
+                if(stored_range.length > 0) {
+                    stored_range.moveToElementText(textArea);
+                    stored_range.setEndPoint('EndToEnd', range);
+                    textArea.selectionStart = stored_range.text.length - range.text.length;
+                    textArea.selectionEnd = textArea.selectionStart + range.text.length;
+                }
+            }
+            // Do we even have a selection?
+            if (typeof(textArea.selectionStart) != "undefined") {
+                // Split the text in three pieces - the selection, and what comes before and after.
+                var begin = textArea.value.substr(0, textArea.selectionStart);
+                var selection = textArea.value.substr(textArea.selectionStart, textArea.selectionEnd - textArea.selectionStart);
+                var end = textArea.value.substr(textArea.selectionEnd);
+                 
+                // Insert the tags between the three pieces of text.
+                textArea.value = begin + val1 + selection + val2 + end;
+            }
+        }
+    </script>
      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
