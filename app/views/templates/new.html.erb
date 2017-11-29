@@ -8,6 +8,9 @@
     width: 100%; 
     height: 100%;
     }
+        .textarea#template_text{
+        width :100px;
+    }
     </style>
   <head>
     <title>CRM Contacts</title>
@@ -22,6 +25,9 @@
 <body>
 <div class='container' id='BODY_CONTENT'>
     <div class="container">
+        Welcome to the template editor. To choose a formatting tool, highlight the desired text and press the proper button. 
+        The attributes allow you to fill the requested data based on the specific property. Hitting the preview button will show 
+        you what the text will look like and hitting the submit button will save your template.
         <div class = "row">
             <button type="button" class="btn btn-default btn-lg" onclick="mod_selection('[b]','[/b]')" >B</button>
             <button type="button" class="btn btn-default btn-lg" onclick="mod_selection('[i]','[/i]')" >I</button>
@@ -62,9 +68,9 @@
                     Text Align
                  </button>
              <div class="dropdown-menu" aria-labelledby="dropdownMenu4">
-                <button class="dropdown-item" type="button" onclick="mod_selection('<left>','</left>')" >Left</button>
-                <button class="dropdown-item" type="button" onclick="mod_selection('<center>','</center>')" >Center</button>
-                <button class="dropdown-item" type="button" onclick="mod_selection('<right>','</right>')" >Right</button>
+                <button class="dropdown-item" type="button" onclick="mod_selection('[left]','[/left]')" >Left</button>
+                <button class="dropdown-item" type="button" onclick="mod_selection('[center]','[/center]')" >Center</button>
+                <button class="dropdown-item" type="button" onclick="mod_selection('[right]','[/right]')" >Right</button>
               </div>
             </div>
         </div>
