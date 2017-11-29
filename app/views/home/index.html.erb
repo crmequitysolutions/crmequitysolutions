@@ -112,39 +112,68 @@
             </a>
             <a class="list-group-item" id='table-option-investors' href='/investor_prefs'>
               Investor Preferences <span class="badge">0</span>
-            </a> 
+            </a>
+            
           </div> <!-- End Table Picker  -->
           <br><br>
+          
           <!-- Links Selection -->
-          <div class="list-group"> 
+          <div class="list-group" id='links'> 
             <div class="list-group-item main-color-bg">
               Links
             </div>
-            
+            <a data-toggle="collapse" data-parent="#links" href="#new-links-panel" 
+            class="list-group-item collapse">
+              Quick Add
+            </a>
+            <div id='new-links-panel' class='panel-collapse collapse'>
+              <div class ='panel-body'>
+                <a data-id="<%=new_contact_path%>" class="list-group-item href-button"  >
+                  New Contact
+                </a>
+                <a data-id="<%=new_interaction_path%>" class="list-group-item href-button"  >
+                  New Interaction
+                </a>
+                <a data-id="<%= new_address_path %>" class="list-group-item href-button" >
+                  New Address
+                </a>
+                <a data-id="<%= new_investor_pref_path %>" class="list-group-item href-button" >
+                  New Investor Pref.
+                </a>
+                <a data-id="<%= new_property_path%>" class="list-group-item href-button" >
+                  New Property
+                </a>
+                <a data-id="<%= new_business_card_path %>" class="list-group-item href-button" >
+                  New Business Card
+                </a>
+                <a data-id="<%= new_community_path %>" class="list-group-item href-button" >
+                  New Community
+                </a>
+              </div>
+            </div>
+                
             <a data-id='/property_views' class="list-group-item href-button">
               Template Editor
             </a>
-            <a data-id="<%=new_contact_path%>" class="list-group-item href-button" >
-              New Contact
+            <a href="<%=investor_prefs_path%>" class="list-group-item" >
+              Investor Preferences
             </a>
-            <a data-id="<%= new_address_path %>" class="list-group-item href-button" >
-              New Address
+            <a href="<%=businesses_path%>" class="list-group-item" >
+              Businesses
             </a>
-            <a data-id="<%= new_property_path%>" class="list-group-item href-button" >
-              New Property
+            <a href="<%=communities_path%>" class="list-group-item" >
+              Communities
             </a>
-            <a data-id="<%= new_business_card_path %>" class="list-group-item href-button" >
-              New Business Card
+            <a href="<%=interactions_path%>" class="list-group-item" >
+              Interactions
             </a>
-            <a data-id="<%= new_community_path %>" class="list-group-item href-button" >
-              New Community
-            </a>
+      
             
             
           </div> <!-- End Links Picker  -->
           <br><br>
         </div> <!-- End Left Column  -->
-      
+        
         <!-- Right Main Column -->
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-xs-12">
           

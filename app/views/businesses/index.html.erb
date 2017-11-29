@@ -1,3 +1,4 @@
+<div id='BODY_CONTENT'>
 <p id="notice"><%= notice %></p>
 
 <h1>Businesses</h1>
@@ -26,41 +27,54 @@
 
   <%= f.submit %>
 <% end %>
-
+<br>
+<br>
+<div class="panel panel-default">
+  <div class="panel-body" id='table-panel-body'>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+              <th><%= sort_link(@q, :business_name) %></th>
+              <th><%= sort_link(@q, :address_id) %></th>
+              <th><%= sort_link(@q, :url) %></th>
+              <th><%= sort_link(@q, :email) %></th>
+              <th><%= sort_link(@q, :prim_contact_id) %></th>
+              <th><%= sort_link(@q, :sec_contact_id) %></th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+        
+          <tbody>
+            <% @businesses.each do |business| %>
+              <tr>
+                <td><%= business.business_name %></td>
+                <td><%= link_to Address.where(["address_id = ?", business.address_id]).first.line_1, Address.where(["address_id = ?", business.address_id]).first %></td>
+                <td><%= business.url %></td>
+                <td><%= business.email %></td>
+                <td><%= link_to Contact.where(["contact_id = ?", business.prim_contact_id]).first.last_name, Contact.where(["contact_id = ?", business.prim_contact_id]).first %></td>
+                <% if (business.sec_contact_id != -1) %>
+                  <td><%= link_to Contact.where(["contact_id = ?", business.sec_contact_id]).first.last_name, Contact.where(["contact_id = ?", business.sec_contact_id]).first %></td>
+                <% else %>
+                  <td>No Secondary Contact</td>
+                <% end %>
+                <td><%= link_to 'Show', business %></td>
+                <td><%= link_to 'Edit', edit_business_path(business) %></td>
+                <td><%= link_to 'Destroy', business, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 <table>
-  <thead>
-    <tr>
-      <th><%= sort_link(@q, :business_name) %></th>
-      <th><%= sort_link(@q, :address_id) %></th>
-      <th><%= sort_link(@q, :url) %></th>
-      <th><%= sort_link(@q, :email) %></th>
-      <th><%= sort_link(@q, :prim_contact_id) %></th>
-      <th><%= sort_link(@q, :sec_contact_id) %></th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @businesses.each do |business| %>
-      <tr>
-        <td><%= business.business_name %></td>
-        <td><%= link_to Address.where(["address_id = ?", business.address_id]).first.line_1, Address.where(["address_id = ?", business.address_id]).first %></td>
-        <td><%= business.url %></td>
-        <td><%= business.email %></td>
-        <td><%= link_to Contact.where(["contact_id = ?", business.prim_contact_id]).first.last_name, Contact.where(["contact_id = ?", business.prim_contact_id]).first %></td>
-        <% if (business.sec_contact_id != -1) %>
-          <td><%= link_to Contact.where(["contact_id = ?", business.sec_contact_id]).first.last_name, Contact.where(["contact_id = ?", business.sec_contact_id]).first %></td>
-        <% else %>
-          <td>No Secondary Contact</td>
-        <% end %>
-        <td><%= link_to 'Show', business %></td>
-        <td><%= link_to 'Edit', edit_business_path(business) %></td>
-        <td><%= link_to 'Destroy', business, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Business', new_business_path %>
+<%= link_to 'New Business', new_business_path, :class => 'btn btn-primary' %>
+<br>
+<%= link_to 'Back', home_path, :class => 'btn btn-secondary' %>
+</div>
