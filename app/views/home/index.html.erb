@@ -1,17 +1,10 @@
 <html>
   <style>
-    .container {
-    padding-left :0px;
-    padding-right :0px;
-    margin-left: 0px;
-    width: 100%; 
-    height: 100%;
-  }
   .modal-body {
     max-height: calc(100vh - 180px);
     overflow-y: auto;
   }
-</style>
+  </style>
   <head>
     <title>CRM Contacts</title>
     <meta charset="utf-8">
@@ -19,39 +12,48 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   </head>
+  </div>
   
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-        <div class="container">
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <div class="wrapper">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="navbar-header">
-            <p class="navbar-text">CRM Equity Solutions</p> 
-          </div>
-        <div class="nav navbar-nav">
-              <li><a href="home">Home</a></li>gi
-              <li><a href="guides">Guide</a></li>
-              <li><a href="contact_page">Contact Me</a></li>
-              <li><%= link_to "Edit Zillow Preferences", new_zillow_pref_path %></li>
-            </div>
-          </div>
-        <div class="nav pull-right">
-              <% if user_signed_in? %>
-                <li><%= link_to (current_user.email), edit_user_registration_path, :class => 'navbar-link' %></li> 
-                <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
-              <% else %>
-                <li><%= link_to 'Log In', new_user_session_path %></li>
-                <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-              <% end %>
-            </div>
-            </div>
-      </div>
-    </nav>
+          <p class="navbar-text">CRM Equity Solutions</p> 
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="guides">Guide</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="zillow_prefs">Edit Zillow Preferences</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact_page">Contact Me</a>
+            </li>
+          </ul>
+          <ul class = "navbar-nav">
+            <% if user_signed_in? %>
+              <li><%= link_to (current_user.email), edit_user_registration_path, :class => 'navbar-link' %></li> 
+              <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+            <% else %>
+              <li><%= link_to 'Log In', new_user_session_path %></li>
+              <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </div>
 
-
-    <p id="notice"><%= notice %></p>
+        
+    <p id="n
+otice"><%= notice %></p>
     
     <!-- HREF Modal -->
     <!-- Takes a reference and loads it -->
@@ -75,7 +77,7 @@
       </div>
     </div> <!-- END HREF Modal -->
     
-    
+    <!-- Main Container -->
     <div class="container">
       <div class="page-header" >
         <h1 class='collapse' id='properties-page-header'>
