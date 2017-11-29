@@ -28,223 +28,274 @@
       <% end %>
     <% end %>
   </div>
-
-  <div class="field">
-    <%= form.label :property_type %>
-    <%= form.text_field :property_type, id: :property_property_type %>
+  <div class='panel' data-toggle="collapse" href="#basics-panel">
+    <a class='btn'>Basics <span class="caret"></span></a>
+  </div>
+  <div class='panel-collapse collapse' id='basics-panel'>
+    <div class="field">
+      <%= form.label :property_type %>
+      <%= form.text_field :property_type, id: :property_property_type %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :time_on_mrkt %>
+      <%= form.text_field :time_on_mrkt, id: :property_time_on_mrkt %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :construction %>
+      <%= form.text_field :construction, id: :property_construction %>
+    </div>
+    
+    
+    <div class="field">
+      <%= form.label :yr_built %>
+      <%= form.number_field :yr_built, id: :property_yr_built %>
+    </div>
+    
+    <div class="field">
+      <%= form.label :foundation %>
+      <%= form.text_field :foundation, id: :property_foundation %>
+    </div>
+  </div>
+    
+  
+  <div class='panel' data-toggle="collapse" href="#external-panel">
+    <a class='btn'>External <span class="caret"></span></a>
+  </div>
+  <div class='panel-collapse collapse' id='external-panel'>
+  
+    <div class="field">
+      <%= form.label :public_water_ind %>
+      <%= form.check_box :public_water_ind, id: :property_public_water_ind %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :offstreet_parking_ind %>
+      <%= form.check_box :offstreet_parking_ind, id: :property_offstreet_parking_ind %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :main_st_ind %>
+      <%= form.check_box :main_st_ind, id: :property_main_st_ind %>
+    </div>
+  
+  </div>
+  
+  <div class='panel' data-toggle="collapse" href="#internal-panel">
+    <a class='btn'>Internal <span class="caret"></span></a>
+  </div>
+  <div class='panel-collapse collapse' id='internal-panel'>
+    
+    <div class="field">
+      <%= form.label :sqft %>
+      <%= form.text_field :sqft, id: :property_sqft %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :bd_rms %>
+      <%= form.number_field :bd_rms, id: :property_bd_rms %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :ba_rms %>
+      <%= form.number_field :ba_rms, id: :property_ba_rms %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :rooms %>
+      <%= form.number_field :rooms, id: :property_rooms %>
+    </div>
+    
+    <div class="field">
+      <%= form.label :garage_ind %>
+      <%= form.check_box :garage_ind, id: :property_garage_ind %>
+    </div>
+    
+    <div class="field">
+      <%= form.label :basement_ind %>
+      <%= form.check_box :basement_ind, id: :property_basement_ind %>
+    </div>
+    
+    <div class="field">
+      <%= form.label :kitch_reno_date %>
+      <%= form.datetime_select :kitch_reno_date, id: :property_kitch_reno_date %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :bath_reno_date %>
+      <%= form.datetime_select :bath_reno_date, id: :property_bath_reno_date %>
+    </div>
+  </div>
+    
+  
+  
+  
+  <div class='panel' data-toggle="collapse" href="#roof-panel">
+    <a class='btn'>Roof <span class="caret"></span></a>
+  </div>
+  <div class='panel-collapse collapse' id='roof-panel'>
+    <div class="field">
+      <%= form.label :roof_type %>
+      <%= form.text_field :roof_type, id: :property_roof_type %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :roof_age %>
+      <%= form.text_field :roof_age, id: :property_roof_age %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :roof_leaks_ind %>
+      <%= form.check_box :roof_leaks_ind, id: :property_roof_leaks_ind %>
+    </div>
+  </div>
+    
+  <div class='panel' data-toggle="collapse" href="#plumb-panel">
+    <a class='btn'>Plumbing <span class="caret"></span></a>
+  </div>
+  <div class='panel-collapse collapse' id='plumb-panel'>
+    <div class="field">
+      <%= form.label :plumb_type %>
+      <%= form.text_field :plumb_type, id: :property_plumb_type %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :plumb_age %>
+      <%= form.text_field :plumb_age, id: :property_plumb_age %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :plumb_leak_ind %>
+      <%= form.check_box :plumb_leak_ind, id: :property_plumb_leak_ind %>
+    </div>
+  </div>
+    
+  
+  <div class='panel' data-toggle="collapse" href="#heatcool-panel">
+    <a class='btn'>Heating and Cooling <span class="caret"></span></a>
+  </div>
+  <div class='panel-collapse collapse' id='heatcool-panel'>
+    <div class="field">
+      <%= form.label :heat_type %>
+      <%= form.text_field :heat_type, id: :property_heat_type %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :heat_age %>
+      <%= form.text_field :heat_age, id: :property_heat_age %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :heat_works %>
+      <%= form.check_box :heat_works, id: :property_heat_works %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :cool_type %>
+      <%= form.text_field :cool_type, id: :property_cool_type %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :cool_age %>
+      <%= form.text_field :cool_age, id: :property_cool_age %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :cool_works %>
+      <%= form.check_box :cool_works, id: :property_cool_works %>
+    </div>
+  </div>
+    
+  <div class='panel' data-toggle="collapse" href="#windows-panel">
+    <a class='btn'>Windows <span class="caret"></span></a>
+  </div>
+  <div class='panel-collapse collapse' id='windows-panel'>
+    <div class="field">
+      <%= form.label :window_type %>
+      <%= form.text_field :window_type, id: :property_window_type %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :window_nbr %>
+      <%= form.number_field :window_nbr, id: :property_window_nbr %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :time_on_mrkt %>
-    <%= form.text_field :time_on_mrkt, id: :property_time_on_mrkt %>
+    
+  
+  <div class='panel' data-toggle="collapse" href="#sale-panel">
+    <a class='btn'>Sale <span class="caret"></span></a>
   </div>
-
-  <div class="field">
-    <%= form.label :construction %>
-    <%= form.text_field :construction, id: :property_construction %>
+  <div class='panel-collapse collapse' id='sale-panel'>
+    <div class="field">
+      <%= form.label :resn_to_sell %>
+      <%= form.text_field :resn_to_sell, id: :property_resn_to_sell %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :agnt_list_ind %>
+      <%= form.check_box :agnt_list_ind, id: :property_agnt_list_ind %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :agnt_exp_date %>
+      <%= form.datetime_select :agnt_exp_date, id: :property_agnt_exp_date %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :quick_close_amt %>
+      <%= form.text_field :quick_close_amt, id: :property_quick_close_amt %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :amt_owed %>
+      <%= form.text_field :amt_owed, id: :property_amt_owed %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :pymnt_crnt %>
+      <%= form.check_box :pymnt_crnt, id: :property_pymnt_crnt %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :pymt_amt %>
+      <%= form.text_field :pymt_amt, id: :property_pymt_amt %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :tax_inc_ind %>
+      <%= form.check_box :tax_inc_ind, id: :property_tax_inc_ind %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :interest_rate %>
+      <%= form.text_field :interest_rate, id: :property_interest_rate %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :pymnt_asum_ind %>
+      <%= form.check_box :pymnt_asum_ind, id: :property_pymnt_asum_ind %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :sell_by_date %>
+      <%= form.datetime_select :sell_by_date, id: :property_sell_by_date %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :bck_tx_ind %>
+      <%= form.check_box :bck_tx_ind, id: :property_bck_tx_ind %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :bkd_tx_amt %>
+      <%= form.text_field :bkd_tx_amt, id: :property_bkd_tx_amt %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :basement_ind %>
-    <%= form.check_box :basement_ind, id: :property_basement_ind %>
-  </div>
-
-  <div class="field">
-    <%= form.label :public_water_ind %>
-    <%= form.check_box :public_water_ind, id: :property_public_water_ind %>
-  </div>
-
-  <div class="field">
-    <%= form.label :offstreet_parking_ind %>
-    <%= form.check_box :offstreet_parking_ind, id: :property_offstreet_parking_ind %>
-  </div>
-
-  <div class="field">
-    <%= form.label :main_st_ind %>
-    <%= form.check_box :main_st_ind, id: :property_main_st_ind %>
-  </div>
-
-  <div class="field">
-    <%= form.label :garage_ind %>
-    <%= form.check_box :garage_ind, id: :property_garage_ind %>
-  </div>
-
-  <div class="field">
-    <%= form.label :sqft %>
-    <%= form.text_field :sqft, id: :property_sqft %>
-  </div>
-
-  <div class="field">
-    <%= form.label :yr_built %>
-    <%= form.number_field :yr_built, id: :property_yr_built %>
-  </div>
-
-  <div class="field">
-    <%= form.label :bd_rms %>
-    <%= form.number_field :bd_rms, id: :property_bd_rms %>
-  </div>
-
-  <div class="field">
-    <%= form.label :ba_rms %>
-    <%= form.number_field :ba_rms, id: :property_ba_rms %>
-  </div>
-
-  <div class="field">
-    <%= form.label :rooms %>
-    <%= form.number_field :rooms, id: :property_rooms %>
-  </div>
-
-  <div class="field">
-    <%= form.label :kitch_reno_date %>
-    <%= form.datetime_select :kitch_reno_date, id: :property_kitch_reno_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :bath_reno_date %>
-    <%= form.datetime_select :bath_reno_date, id: :property_bath_reno_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :roof_type %>
-    <%= form.text_field :roof_type, id: :property_roof_type %>
-  </div>
-
-  <div class="field">
-    <%= form.label :roof_age %>
-    <%= form.text_field :roof_age, id: :property_roof_age %>
-  </div>
-
-  <div class="field">
-    <%= form.label :roof_leaks_ind %>
-    <%= form.check_box :roof_leaks_ind, id: :property_roof_leaks_ind %>
-  </div>
-
-  <div class="field">
-    <%= form.label :plumb_type %>
-    <%= form.text_field :plumb_type, id: :property_plumb_type %>
-  </div>
-
-  <div class="field">
-    <%= form.label :plumb_age %>
-    <%= form.text_field :plumb_age, id: :property_plumb_age %>
-  </div>
-
-  <div class="field">
-    <%= form.label :plumb_leak_ind %>
-    <%= form.check_box :plumb_leak_ind, id: :property_plumb_leak_ind %>
-  </div>
-
-  <div class="field">
-    <%= form.label :foundation %>
-    <%= form.text_field :foundation, id: :property_foundation %>
-  </div>
-
-  <div class="field">
-    <%= form.label :heat_type %>
-    <%= form.text_field :heat_type, id: :property_heat_type %>
-  </div>
-
-  <div class="field">
-    <%= form.label :heat_age %>
-    <%= form.text_field :heat_age, id: :property_heat_age %>
-  </div>
-
-  <div class="field">
-    <%= form.label :heat_works %>
-    <%= form.check_box :heat_works, id: :property_heat_works %>
-  </div>
-
-  <div class="field">
-    <%= form.label :cool_type %>
-    <%= form.text_field :cool_type, id: :property_cool_type %>
-  </div>
-
-  <div class="field">
-    <%= form.label :cool_age %>
-    <%= form.text_field :cool_age, id: :property_cool_age %>
-  </div>
-
-  <div class="field">
-    <%= form.label :cool_works %>
-    <%= form.check_box :cool_works, id: :property_cool_works %>
-  </div>
-
-  <div class="field">
-    <%= form.label :window_type %>
-    <%= form.text_field :window_type, id: :property_window_type %>
-  </div>
-
-  <div class="field">
-    <%= form.label :window_nbr %>
-    <%= form.number_field :window_nbr, id: :property_window_nbr %>
-  </div>
-
-  <div class="field">
-    <%= form.label :resn_to_sell %>
-    <%= form.text_field :resn_to_sell, id: :property_resn_to_sell %>
-  </div>
-
-  <div class="field">
-    <%= form.label :agnt_list_ind %>
-    <%= form.check_box :agnt_list_ind, id: :property_agnt_list_ind %>
-  </div>
-
-  <div class="field">
-    <%= form.label :agnt_exp_date %>
-    <%= form.datetime_select :agnt_exp_date, id: :property_agnt_exp_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :quick_close_amt %>
-    <%= form.text_field :quick_close_amt, id: :property_quick_close_amt %>
-  </div>
-
-  <div class="field">
-    <%= form.label :amt_owed %>
-    <%= form.text_field :amt_owed, id: :property_amt_owed %>
-  </div>
-
-  <div class="field">
-    <%= form.label :pymnt_crnt %>
-    <%= form.check_box :pymnt_crnt, id: :property_pymnt_crnt %>
-  </div>
-
-  <div class="field">
-    <%= form.label :pymt_amt %>
-    <%= form.text_field :pymt_amt, id: :property_pymt_amt %>
-  </div>
-
-  <div class="field">
-    <%= form.label :tax_inc_ind %>
-    <%= form.check_box :tax_inc_ind, id: :property_tax_inc_ind %>
-  </div>
-
-  <div class="field">
-    <%= form.label :interest_rate %>
-    <%= form.text_field :interest_rate, id: :property_interest_rate %>
-  </div>
-
-  <div class="field">
-    <%= form.label :pymnt_asum_ind %>
-    <%= form.check_box :pymnt_asum_ind, id: :property_pymnt_asum_ind %>
-  </div>
-
-  <div class="field">
-    <%= form.label :sell_by_date %>
-    <%= form.datetime_select :sell_by_date, id: :property_sell_by_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :bck_tx_ind %>
-    <%= form.check_box :bck_tx_ind, id: :property_bck_tx_ind %>
-  </div>
-
-  <div class="field">
-    <%= form.label :bkd_tx_amt %>
-    <%= form.text_field :bkd_tx_amt, id: :property_bkd_tx_amt %>
-  </div>
+    
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :class => 'btn' %>
   </div>
 <% end %>
