@@ -59,6 +59,7 @@ class PropertiesController < ApplicationController
     end
     @property.property_id = @num
     @property.user_email = current_user.email
+    @property.last_template_sent = "None Sent Yet"
     address = Address.where(["address_id = ? and user_email = ?", @property.address_id, current_user.email]).first
     citystate = address.city << ", " << address.state
     data = Rubillow::PropertyDetails.deep_search_results({ :address => address.line_1, :citystatezip => citystate })

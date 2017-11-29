@@ -228,6 +228,11 @@
   <%= @property.bkd_tx_amt %>
 </p>
 
+<p>
+  <strong>Last Template Sent:</strong>
+  <%= @property.last_template_sent
+</p>
+
 <% if @data.success? %>
   <strong>Additional Information from Zillow</strong>
   <p><%= link_to "Customize Zillow Info", new_zillow_pref_path %></p>
