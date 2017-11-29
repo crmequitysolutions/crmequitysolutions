@@ -123,8 +123,8 @@
             class="list-group-item collapse">
               Quick Add
             </a>
-            <div id='new-links-panel' class='panel-collapse collapse'>
-              <div class ='panel-body'>
+            <div id='new-links-panel' class='panel-collapse collapse' style='background:gray'>
+              <div class ='panel-body' style='padding:8px'>
                 <a data-id="<%=new_contact_path%>" class="list-group-item href-button"  >
                   New Contact
                 </a>
@@ -152,7 +152,7 @@
               </div>
             </div>
                 
-            <a data-id='/property_views' class="list-group-item href-button">
+            <a data-id='/templates/new' class="list-group-item href-button">
               Template Editor
             </a>
             <a href="<%=investor_prefs_path%>" class="list-group-item" >
@@ -288,11 +288,11 @@
                   function initMap() {
                     <% if @properties.size > 0 %>
                       var uluru = 0
-                      <%= if @properties.first.latitude != -1 and @properties.first.longitude != -1 %>
+                      <% if @properties.first.latitude != -1 and @properties.first.longitude != -1 %>
                         uluru = {lat: <%= @properties.first.latitude %>, lng: <%= @properties.first.longitude %>};
-                      <%= else %>
+                      <% else %>
                         var uluru = {lat: -25.363, lng: 131.044};
-                      <%= end %>
+                      <% end %>
                       var map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 4,
                         center: uluru
@@ -509,6 +509,7 @@
           $('#contacts-page-header').collapse('show');         
         });
         switchToContacts();
+
         $('#simpleSearch').on('show.bs.collapse', function(){
           $('#advancedSearch').collapse('hide');
         });
@@ -516,8 +517,13 @@
           $('#simpleSearch').collapse('hide');
         });
         $('#simpleSearch').collapse('show');
-        $('#simplePropertySearch').collapse('show');
-        
+        $('#simplePropertySearch').on('show.bs.collapse', function(){
+          $('#advancedPropertySearch').collapse('hide');
+        });
+         $('#advancedPropertySearch').on('show.bs.collapse', function(){
+          $('#simplePropertySearch').collapse('hide');
+        });
+
       });
     </script>
     
@@ -525,7 +531,7 @@
     <script type="text/javascript">
         function view_text () {
             // Find html elements.
-            var textArea = document.getElementById('my_text');
+            var textArea = document.getElementById('template_text');
             var div = document.getElementById('view_text');
              
             // Put the text in a variable so we can manipulate it.
@@ -565,12 +571,12 @@
         }
         
         function font_size (val1){
-            var textArea = document.getElementById('my_text');
+            var textArea = document.getElementById('template_text');
             textArea.style.fontSize = val1;
         }
         
         function add_attribute (val1){
-            var textArea = document.getElementById('my_text');
+            var textArea = document.getElementById('template_text');
             // IE specific code.
             if( -1 != navigator.userAgent.indexOf ("MSIE") ) {
                  
@@ -600,7 +606,7 @@
          
         function mod_selection (val1,val2) {
             // Get the text area
-            var textArea = document.getElementById('my_text');
+            var textArea = document.getElementById('template_text');
              
             // IE specific code.
             if( -1 != navigator.userAgent.indexOf ("MSIE") ) {

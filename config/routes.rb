@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :templates
   resources :zillow_prefs
   resources :rooms
   resources :business_cards
