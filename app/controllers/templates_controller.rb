@@ -1,10 +1,11 @@
 class TemplatesController < ApplicationController
   before_action :set_template, only: [:show, :edit, :update, :destroy]
+  require 'mail'
 
   # GET /templates
   # GET /templates.json
   def index
-    @templates = Template.all
+    @templates = Template.where(["user_email = ?", current_user.email])
   end
 
   # GET /templates/1
@@ -20,12 +21,59 @@ class TemplatesController < ApplicationController
   # GET /templates/1/edit
   def edit
   end
+  
+  def prep
+    @select = ""
+    @properties = Property.where(["user_email = ?", current_user.email])
+    @templates = Template.where(["user_email = ?", current_user.email])
+    @property_ids = []
+    @properties.each do |property|
+      @property_ids.push(property.property_id)
+    end
+    @titles = []
+    @templates.each do |template|
+      @titles.push(template.title)
+    end
+  end
+  
+  def send_temp
+    @property = Property.where(["user_email = ? and property_id = ?", current_user.email, params[:property_id]]).first
+    @address = Address.where(["user_email = ? and address_id = ?", current_user.email, @property.address_id]).first
+    @contact = Contact.where(["user_email = ? and contact_id = ?", current_user.email, @property.owner]).first
+    person = @contact
+    @template = Template.where(["user_email = ? and title = ?", current_user.email, params[:title]]).first
+    content = @template.text
+    @merged_content = MailMerge.merge(content,{:address => @address, :contact => @contact})
+    merge = @merged_content
+
+    options = { :address              => "smtp.gmail.com",
+                :port                 => 587,
+                :user_name            => 'crmequitysolutions@gmail.com',
+                :password             => 'compsci408',
+                :authentication       => 'plain',
+                :enable_starttls_auto => true  }
+    
+    Mail.defaults do
+      delivery_method :smtp, options
+    end
+    
+    Mail.deliver do
+           to person.email
+         from 'crmequitysolutions@gmail.com'
+      subject 'Test2'
+          html_part do
+            content_type 'text/html; charset=UTF-8'
+            body '<p>' << merge << '</p>'
+          end
+    end
+    redirect_to home_path, notice: 'Email successfully sent.'
+  end
 
   # POST /templates
   # POST /templates.json
   def create
     @template = Template.new(template_params)
-
+    @template.user_email = current_user.email
     respond_to do |format|
       if @template.save
         format.html { redirect_to home_path, notice: 'Template was successfully created.' }
