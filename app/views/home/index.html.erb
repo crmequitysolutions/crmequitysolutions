@@ -111,18 +111,18 @@
             <a class="list-group-item" id='table-option-contacts'>
               Contacts <span class="badge"><%= @contacts.length %></span>
             </a>
-            <a class="list-group-item" id='table-option-investors' href='/investor_prefs'>
-              Investor Preferences <span class="badge">0</span>
-            </a>
             
           </div> <!-- End Table Picker  -->
           <br><br>
           
           <!-- Links Selection -->
           <div class="list-group" id='links'> 
-            <div class="list-group-item main-color-bg">
+            <div class="list-group-item main-color-bg " 
+            data-parent="#links" data-toggle="collapse" href="#body-panel">
               Links
             </div>
+            <div id='body-panel' class='panel-collapse'>
+          
             <a data-toggle="collapse" data-parent="#links" href="#new-links-panel" 
             class="list-group-item collapse">
               Quick Add
@@ -147,6 +147,9 @@
                 <a data-id="<%= new_business_card_path %>" class="list-group-item href-button" >
                   New Business Card
                 </a>
+                <a data-id="<%= new_business_path %>" class="list-group-item href-button" >
+                  New Business
+                </a>
                 <a data-id="<%= new_community_path %>" class="list-group-item href-button" >
                   New Community
                 </a>
@@ -168,8 +171,10 @@
             <a href="<%=interactions_path%>" class="list-group-item" >
               Interactions
             </a>
-      
-            
+            <a href="<%=business_cards_path%>" class="list-group-item" >
+              Business Cards
+            </a>
+            </div>
             
           </div> <!-- End Links Picker  -->
           <br><br>

@@ -3,7 +3,9 @@
 <div id='BODY_CONTENT'>
   <p id="notice"><%= notice %></p>
   <h1>Investor Prefs</h1>
-  <%= search_form_for @q do |f| %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <%= search_form_for @q do |f| %>
   
   <h3>Search Database</h3>
   
@@ -36,8 +38,9 @@
 
   <%= f.submit %>
 <% end %>
-<br>
-<br>
+    </div>
+  </div>
+  
 <div class="panel panel-default">
   <div class="panel-body" id='table-panel-body'>
     <div class="table-responsive">
@@ -88,7 +91,9 @@
 </div>
 
 
+<%= link_to 'New Community', new_investor_pref_path, :class => 'btn btn-primary' %>
 <br>
+<%= link_to 'Back', home_path, :class => 'btn btn-secondary' %>
 
 
 </div>
