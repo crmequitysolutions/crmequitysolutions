@@ -165,7 +165,7 @@
               </div>
             </div>
                 
-            <a data-id='/property_views' class="list-group-item href-button">
+            <a data-id='/templates/new' class="list-group-item href-button">
               Template Editor
             </a>
             <a href="<%=investor_prefs_path%>" class="list-group-item" >
@@ -538,7 +538,7 @@
     <script type="text/javascript">
         function view_text () {
             // Find html elements.
-            var textArea = document.getElementById('my_text');
+            var textArea = document.getElementById('template_text');
             var div = document.getElementById('view_text');
              
             // Put the text in a variable so we can manipulate it.
@@ -578,12 +578,12 @@
         }
         
         function font_size (val1){
-            var textArea = document.getElementById('my_text');
+            var textArea = document.getElementById('template_text');
             textArea.style.fontSize = val1;
         }
         
         function add_attribute (val1){
-            var textArea = document.getElementById('my_text');
+            var textArea = document.getElementById('template_text');
             // IE specific code.
             if( -1 != navigator.userAgent.indexOf ("MSIE") ) {
                  
@@ -613,7 +613,7 @@
          
         function mod_selection (val1,val2) {
             // Get the text area
-            var textArea = document.getElementById('my_text');
+            var textArea = document.getElementById('template_text');
              
             // IE specific code.
             if( -1 != navigator.userAgent.indexOf ("MSIE") ) {
