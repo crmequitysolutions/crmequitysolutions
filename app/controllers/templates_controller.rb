@@ -60,12 +60,13 @@ class TemplatesController < ApplicationController
     Mail.deliver do
            to person.email
          from 'crmequitysolutions@gmail.com'
-      subject 'Test2'
+      subject 'Property Inquiry from CRM Equity Solutions'
           html_part do
             content_type 'text/html; charset=UTF-8'
             body '<p>' << merge << '</p>'
           end
     end
+    @property.last_template_sent = @template.title
     redirect_to home_path, notice: 'Email successfully sent.'
   end
 
