@@ -4,6 +4,7 @@
     max-height: calc(100vh - 180px);
     overflow-y: auto;
   }
+<<<<<<< HEAD
     .container {
       padding-left :0px;
       padding-right :0px;
@@ -14,6 +15,9 @@
     .page-header {
       margin: 20px 0px 20px;
     }
+=======
+
+>>>>>>> 9ababbffc1514d80aaed8f39518f36ae9dfeea41
   </style>
   <head>
     <title>CRM Contacts</title>
@@ -60,8 +64,8 @@
         </div>
       </nav>
     </div>
-        
 
+        
     <p id="notice"><%= notice %></p>
     
     <!-- HREF Modal -->
@@ -132,8 +136,8 @@
             class="list-group-item collapse">
               Quick Add
             </a>
-            <div id='new-links-panel' class='panel-collapse collapse'>
-              <div class ='panel-body'>
+            <div id='new-links-panel' class='panel-collapse collapse' style='background:gray'>
+              <div class ='panel-body' style='padding:8px'>
                 <a data-id="<%=new_contact_path%>" class="list-group-item href-button"  >
                   New Contact
                 </a>
@@ -518,6 +522,7 @@
           $('#contacts-page-header').collapse('show');         
         });
         switchToContacts();
+
         $('#simpleSearch').on('show.bs.collapse', function(){
           $('#advancedSearch').collapse('hide');
         });
@@ -525,8 +530,13 @@
           $('#simpleSearch').collapse('hide');
         });
         $('#simpleSearch').collapse('show');
-        $('#simplePropertySearch').collapse('show');
-        
+        $('#simplePropertySearch').on('show.bs.collapse', function(){
+          $('#advancedPropertySearch').collapse('hide');
+        });
+         $('#advancedPropertySearch').on('show.bs.collapse', function(){
+          $('#simplePropertySearch').collapse('hide');
+        });
+
       });
     </script>
     

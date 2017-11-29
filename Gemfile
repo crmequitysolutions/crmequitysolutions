@@ -37,6 +37,7 @@ gem 'rubillow'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'rubillow'
+gem 'mail_merge'
 
 
 # Use ActiveModel has_secure_password
