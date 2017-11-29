@@ -1,18 +1,19 @@
-<!-- Contacts Panel -->
 <div class="panel panel-default panel-collapse collapse" id='contactsPanel'>
-    <div class="panel-heading main-color-bg ">
-      <div class="panel-title" id='table-title'></div>
-    </div>
-    <div class="panel-body" id='table-panel-body'>
-      <!-- Search -->
-      <div class='panel row' id='table-search'>
-        <div class="panel-group col-xs-12" id="accordion">
-          <div class="panel panel-default">
-            <div class='container'>
-            <div class='panel panel-heading row'>
-              <div class="col-xs-4 panel-title">Search</div>
+
+  <div class="panel-heading main-color-bg ">
+    <div id='panelTitle' class="panel-title">Loading...</div>
+  </div>
+  <!-- TODO: add card div here for map or anything extra -->
+  <div class="panel-body" id='search'>
+    <!-- Search -->
+    <div class='panel row'>
+      <div class="panel-group col-xs-12" id="accordion">
+        <div class="panel panel-default">
+          <div class='container'>
+          <div class='panel panel-heading row'>
+            <div class="col-xs-4 panel-title">Search</div>
               <div class="col-xs-5 text-center"><!--empty--></div>
-              <!-- Search Picker style="padding-bottom:12px"-->
+              <!-- Search Picker -->
               <div class="col-xs-3">
                 <div class="btn-group pull-right" data-toggle="buttons" >
                   <label data-toggle="collapse" data-parent="#accordion" data-target="#simpleSearch" id='#simpleSearch' class="btn btn-outline-primary col align-self-center active">
@@ -23,79 +24,71 @@
                   </label>
                 </div>
               </div>
+            </div>
+          </div>
+          <div id="simpleSearch" class="panel-collapse collapse" >
+            <div class="panel-body">
+              <div class="list-group" id='simpleSearchListGroup'>
+    
+
+
+
+
               </div>
             </div>
-            <div id="simpleSearch" class="panel-collapse collapse" >
-              <div class="panel-body">
-                <div class="list-group" id='simple-search-form'>
-                  <%= search_form_for @q, url: search_home_index_path, html: { method: :post } do |f| %>
-                  <%= f.search_field :first_name_or_middle_name_or_last_name_or_phone_or_email_or_contact_type_cont, :class => "list-group-item form-control", :placeholder => 'Filter...'%>
-                  <%= f.submit :class => "list-group-item btn btn-outline-warning col align-self-center"%>
-                  <% end %>
-                </div>
+          </div>  <!-- END panel-collapse -->
+          <div id="advancedSearch" class="panel-collapse collapse">
+            <div class="panel-body">
+              <div class="list-group" id='advancedSearchListGroup'>
+
+
+
+
+
               </div>
-            </div>  <!-- END panel-collapse -->
-            <div id="advancedSearch" class="panel-collapse collapse">
-              <div class="panel-body">
-                <div class="list-group" id='advanced-search-form'>
-                  <%= search_form_for @q, url: search_home_index_path, html: { method: :post } do |f| %>
-                  <%= f.search_field :first_name_cont, :class => 'list-group-item form-control no-border', :placeholder => 'First Name'%>    
-                  <%= f.search_field :middle_name_cont, :class => 'list-group-item form-control no-border', :placeholder => 'Middle Name' %>
-                  <%= f.search_field :last_name_cont, :class => 'list-group-item form-control', :placeholder => 'Last Name' %>
-                  <%= f.search_field :phone_cont, :class => 'list-group-item form-control', :placeholder => 'Phone' %>
-                  <%= f.search_field :email_cont, :class => 'list-group-item form-control', :placeholder => 'Email' %>
-                  <%= f.search_field :contact_type_cont, :class => 'list-group-item form-control', :placeholder => 'Contact Type' %>
-                  <%= f.submit :class => 'list-group-item btn btn-outline-warning col align-self-center'%>
-                  <% end %>
-                </div>
-              </div>
-            </div>  <!-- END panel-collapse -->
-          </div>  <!-- END panel -->
-        </div> <!-- END panel-group -->
-      </div> <!--END Search-->
-      <br>
-      <div class="table-responsive">
-      <!-- Actual Table -->
+            </div>
+          </div>  <!-- END panel-collapse -->
+        </div>  <!-- END panel -->
+      </div> <!-- END panel-group -->
+    </div> <!--END Search-->
+    <br>
+    <div class="table-responsive">
+        <!-- Actual Table -->
       <table class="table table-striped table-hover">
-      <thead id='table-head'>
-        <tr>
-          <th><%= sort_link(@q, :last_name, "Name") %></th>
-          <th><%= sort_link(@q, :address_id) %></th>
-          <th><%= sort_link(@q, :phone) %></th>
-          <th><%= sort_link(@q, :email) %></th>
-          <th><%= sort_link(@q, :contact_type) %></th>
-          <th></th><th></th><th></th>
-        </tr>
-      </thead>
-    
-      <tbody id='table-body'>
-        <% @contacts.each do |contact| %>
-          <tr align="center" class='href-button' data-id="<%= contact_path(contact) %>" >
-            <td><%= contact.last_name << ', ' << contact.first_name %></td>
-            <td role="button" class='href-button' data-id='<%= address_path(Address.where(["address_id = ?", contact.address_id]).first) %>'>
-              <%= Address.where(["address_id = ?", contact.address_id]).first.line_1 %> 
-            </td>
-            <td><%= contact.phone %></td>
-            <td><%= contact.email %></td>
-            <td><%= contact.contact_type %></td>
-            <td><a data-id="<%= see_business_cards_path(contact.contact_id) %>" class='btn btn-info href-button'>Card</a></td>
-            <td><a data-id="<%= edit_contact_path(contact) %>" class='btn btn-warning href-button'>Edit</a></td>
-            <td class='delete-button'><%= link_to "<span class='btn btn-danger'>Delete</span>".html_safe, delete_contact_path(contact), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-      </div><!--End table-responsive -->
-      </div> <!-- End Panel Body -->
+        <thead id='tableHead'>
+
+
+
+
+
+        </thead>
+      
+        <tbody id='tableBody'>
+
+
+
+
+
+        </tbody>
+      </table>
+    </div>
+  </div> <!-- End Panel Body -->
 </div> <!-- End Contacts Panel -->
 
 <script>
+  
+  function setContactsTable(){
+    //TODO create table class
+  }
+  
+  function setPropertiesTable(){
+    //TODO: create table class
+  }
   
   //holds the values for table header cells for setTableRows to use
   var tableData;
   
   //table data class
-  
   function table(title, headerCells, rowsCells, allHeaders){
     this.title = title;
     this.rows = headerCells;
@@ -114,16 +107,16 @@
   
   //set table title
   function setTableTitle(title){
-    document.getElementById('table-title').innerHTML = title;
+    document.getElementById('tableTitle').innerHTML = title;
   }
   
   //set table header col cells
-  function setTableHeaderCells(title){
-    //TODO:
+  function setTableHeaderCells(tableHeaderRow){
+   document.getElementById('tableBody').innerHTML
   }
   
   //set table row cells
-  function setTableRows(rows){
+  function setTableRows(tableBodyRows){
     //TODO: for each item in header cell, get the corresponding col from the row
   }
   
