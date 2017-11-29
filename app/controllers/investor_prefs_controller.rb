@@ -46,10 +46,10 @@ class InvestorPrefsController < ApplicationController
     @investor_pref.user_email = current_user.email
     respond_to do |format|
       if @investor_pref.save
-        format.html { redirect_to @investor_pref, notice: 'Investor pref was successfully created.' }
+        format.html { redirect_to home_path, notice: 'Investor preference was successfully created.' }
         format.json { render :show, status: :created, location: @investor_pref }
       else
-        format.html { render :new }
+        format.html { redirect_to home_path, alert: 'Investor preference failed to be created.' }
         format.json { render json: @investor_pref.errors, status: :unprocessable_entity }
       end
     end
@@ -60,10 +60,10 @@ class InvestorPrefsController < ApplicationController
   def update
     respond_to do |format|
       if @investor_pref.update(investor_pref_params)
-        format.html { redirect_to @investor_pref, notice: 'Investor pref was successfully updated.' }
+        format.html { redirect_to home_path, notice: 'Investor preference was successfully updated.' }
         format.json { render :show, status: :ok, location: @investor_pref }
       else
-        format.html { render :edit }
+        format.html { redirect_to home_path, alert: 'Investor preference failed to update.' }
         format.json { render json: @investor_pref.errors, status: :unprocessable_entity }
       end
     end
@@ -74,7 +74,7 @@ class InvestorPrefsController < ApplicationController
   def destroy
     @investor_pref.destroy
     respond_to do |format|
-      format.html { redirect_to investor_prefs_url, notice: 'Investor pref was successfully destroyed.' }
+      format.html { redirect_to home_path, notice: 'Investor pref was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

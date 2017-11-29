@@ -1,29 +1,40 @@
+<div id='BODY_CONTENT'>
+
 <p id="notice"><%= notice %></p>
 
 <h1>Business Cards</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Contact</th>
-      <th>Image</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @business_cards.each do |business_card| %>
-      <tr>
-        <td><%= link_to Contact.where(["contact_id = ?", business_card.contact_id]).first.last_name, Contact.where(["contact_id = ?", business_card.contact_id]).first %></td>
-        <td><%= image_tag business_card.image.thumb.url %></td>
-        <td><%= link_to 'Show', business_card %></td>
-        <td><%= link_to 'Edit', edit_business_card_path(business_card) %></td>
-        <td><%= link_to 'Destroy', business_card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="panel panel-default">
+  <div class="panel-body" id='table-panel-body'>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Contact</th>
+            <th>Image</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+      
+        <tbody>
+          <% @business_cards.each do |business_card| %>
+            <tr>
+              <td><%= link_to Contact.where(["contact_id = ?", business_card.contact_id]).first.last_name, Contact.where(["contact_id = ?", business_card.contact_id]).first %></td>
+              <td><%= image_tag business_card.image.thumb.url %></td>
+              <td><%= link_to 'Show', business_card %></td>
+              <td><%= link_to 'Edit', edit_business_card_path(business_card) %></td>
+              <td><%= link_to 'Destroy', business_card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
 <br>
+<%= link_to 'New Business Card', new_business_card_path, :class => 'btn' %>
+<br>
+<%= link_to 'Back', home_path, :class => 'btn btn-secondary' %>
 
-<%= link_to 'New Business Card', new_business_card_path %>
+</div>

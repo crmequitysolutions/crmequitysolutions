@@ -1,8 +1,11 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Investor Prefs</h1>
 
-<%= search_form_for @q do |f| %>
+<div id='BODY_CONTENT'>
+  <p id="notice"><%= notice %></p>
+  <h1>Investor Prefs</h1>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <%= search_form_for @q do |f| %>
   
   <h3>Search Database</h3>
   
@@ -35,50 +38,62 @@
 
   <%= f.submit %>
 <% end %>
+    </div>
+  </div>
+  
+<div class="panel panel-default">
+  <div class="panel-body" id='table-panel-body'>
+    <div class="table-responsive">
+      <table class='table table-striped table-hover'>
+        <thead>
+          <tr>
+            <th><%= sort_link(@q, :contact_id) %></th>
+            <th><%= sort_link(@q, :zip_code) %></th>
+            <th><%= sort_link(@q, :community_id) %></th>
+            <th><%= sort_link(@q, :property_type) %></th>
+            <th><%= sort_link(@q, :bd_rms) %></th>
+            <th><%= sort_link(@q, :ba_rms) %></th>
+            <th><%= sort_link(@q, :max) %></th>
+            <th><%= sort_link(@q, :min) %></th>
+            <th><%= sort_link(@q, :rehab_ind) %></th>
+            <th><%= sort_link(@q, :main_st_ind) %></th>
+            <th colspan="4"></th>
+          </tr>
+        </thead>
+      
+        <tbody>
+          <% @investor_prefs.each do |investor_pref| %>
+            <tr>
+              <td><%= link_to Contact.where(["contact_id = ?", investor_pref.contact_id]).first.last_name, Contact.where(["contact_id = ?", investor_pref.contact_id]).first %></td>
+              <td><%= investor_pref.zip_code %></td>
+              <% if (investor_pref.community_id != -1) %>
+                <td><%= link_to Community.where(["community_id = ?", investor_pref.community_id]).first.community_name, Community.where(["community_id = ?", investor_pref.community_id]).first %></td>
+              <% else %>
+                <td>No Community</td>
+              <% end %>
+              <td><%= investor_pref.property_type %></td>
+              <td><%= investor_pref.bd_rms %></td>
+              <td><%= investor_pref.ba_rms %></td>
+              <td><%= investor_pref.max %></td>
+              <td><%= investor_pref.min %></td>
+              <td><%= investor_pref.rehab_ind %></td>
+              <td><%= investor_pref.main_st_ind %></td>
+              <td><%= link_to 'Show', investor_pref %></td>
+              <td><%= link_to 'See Properties', see_properties_path(investor_pref.investor_pref_id) %></td>
+              <td><%= link_to 'Edit', edit_investor_pref_path(investor_pref) %></td>
+              <td><%= link_to 'Destroy', investor_pref, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
-<table class='table table-striped'>
-  <thead>
-    <tr>
-      <th><%= sort_link(@q, :contact_id) %></th>
-      <th><%= sort_link(@q, :zip_code) %></th>
-      <th><%= sort_link(@q, :community_id) %></th>
-      <th><%= sort_link(@q, :property_type) %></th>
-      <th><%= sort_link(@q, :bd_rms) %></th>
-      <th><%= sort_link(@q, :ba_rms) %></th>
-      <th><%= sort_link(@q, :max) %></th>
-      <th><%= sort_link(@q, :min) %></th>
-      <th><%= sort_link(@q, :rehab_ind) %></th>
-      <th><%= sort_link(@q, :main_st_ind) %></th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @investor_prefs.each do |investor_pref| %>
-      <tr>
-        <td><%= link_to Contact.where(["contact_id = ?", investor_pref.contact_id]).first.last_name, Contact.where(["contact_id = ?", investor_pref.contact_id]).first %></td>
-        <td><%= investor_pref.zip_code %></td>
-        <% if (investor_pref.community_id != -1) %>
-          <td><%= link_to Community.where(["community_id = ?", investor_pref.community_id]).first.community_name, Community.where(["community_id = ?", investor_pref.community_id]).first %></td>
-        <% else %>
-          <td>No Community</td>
-        <% end %>
-        <td><%= investor_pref.property_type %></td>
-        <td><%= investor_pref.bd_rms %></td>
-        <td><%= investor_pref.ba_rms %></td>
-        <td><%= investor_pref.max %></td>
-        <td><%= investor_pref.min %></td>
-        <td><%= investor_pref.rehab_ind %></td>
-        <td><%= investor_pref.main_st_ind %></td>
-        <td><%= link_to 'Show', investor_pref %></td>
-        <td><%= link_to 'See Properties', see_properties_path(investor_pref.investor_pref_id) %></td>
-        <td><%= link_to 'Edit', edit_investor_pref_path(investor_pref) %></td>
-        <td><%= link_to 'Destroy', investor_pref, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<%= link_to 'New Investor Pref', new_investor_pref_path, :class => 'btn btn-primary' %>
 <br>
+<%= link_to 'Back', home_path, :class => 'btn btn-secondary' %>
 
-<%= link_to 'New Investor Pref', new_investor_pref_path %>
+
+</div>

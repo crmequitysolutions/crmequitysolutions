@@ -1,62 +1,78 @@
+<div id='BODY_CONTENT'>
+
 <p id="notice"><%= notice %></p>
 
 <h1>Interactions</h1>
-
-<%= search_form_for @q do |f| %>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= search_form_for @q do |f| %>
   
-  <h3>Search Database</h3>
-  
-  <%= f.search_field :interaction_type_or_result_or_note_cont %>
-
-  <%= f.submit %>
-<% end %>
-
-<%= search_form_for @q do |f| %>
-
-  <h3>Search By Column</h3>
-
-  <%= f.label :interaction_type_cont %>
-  <%= f.search_field :interaction_type_cont %>
-  
-  <%= f.label :result_cont %>
-  <%= f.search_field :result_cont %>
-  
-  <%= f.label :note_cont %>
-  <%= f.search_field :note_cont %>
-
-  <%= f.submit %>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th><%= sort_link(@q, :contact_id) %></th>
-      <th><%= sort_link(@q, :date_time) %></th>
-      <th><%= sort_link(@q, :interaction_type) %></th>
-      <th><%= sort_link(@q, :result) %></th>
-      <th><%= sort_link(@q, :note) %></th>
-      <th><%= sort_link(@q, :property_id) %></th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @interactions.each do |interaction| %>
-      <tr>
-        <td><%= link_to Contact.where(["contact_id = ?", interaction.contact_id]).first.last_name, Contact.where(["contact_id = ?", interaction.contact_id]).first %></td>
-        <td><%= interaction.date_time %></td>
-        <td><%= interaction.interaction_type %></td>
-        <td><%= interaction.result %></td>
-        <td><%= interaction.note %></td>
-        <td><%= link_to Address.where(["address_id = ?", Property.where(["property_id = ?", interaction.property_id]).first.address_id]).first.line_1, Property.where(["property_id = ?", interaction.property_id]).first %></td>
-        <td><%= link_to 'Show', interaction %></td>
-        <td><%= link_to 'Edit', edit_interaction_path(interaction) %></td>
-        <td><%= link_to 'Destroy', interaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <h3>Search Database</h3>
+      
+      <%= f.search_field :interaction_type_or_result_or_note_cont %>
+      <br>
+      <br>
+      <%= f.submit %>
     <% end %>
-  </tbody>
-</table>
+    
+    <%= search_form_for @q do |f| %>
+    
+      <h3>Search By Column</h3>
+    
+      <%= f.label :interaction_type_cont %>
+      <%= f.search_field :interaction_type_cont %>
+      <br>
+      <%= f.label :result_cont %>
+      <%= f.search_field :result_cont %>
+      <br>
+      <%= f.label :note_cont %>
+      <%= f.search_field :note_cont %>
+      <br>
+      <br>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>
 
+<div class="panel panel-default">
+  <div class="panel-body" id='table-panel-body'>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th><%= sort_link(@q, :contact_id) %></th>
+            <th><%= sort_link(@q, :date_time) %></th>
+            <th><%= sort_link(@q, :interaction_type) %></th>
+            <th><%= sort_link(@q, :result) %></th>
+            <th><%= sort_link(@q, :note) %></th>
+            <th><%= sort_link(@q, :property_id) %></th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+      
+        <tbody>
+          <% @interactions.each do |interaction| %>
+            <tr>
+              <td><%= link_to Contact.where(["contact_id = ?", interaction.contact_id]).first.last_name, Contact.where(["contact_id = ?", interaction.contact_id]).first %></td>
+              <td><%= interaction.date_time %></td>
+              <td><%= interaction.interaction_type %></td>
+              <td><%= interaction.result %></td>
+              <td><%= interaction.note %></td>
+              <td><%= link_to Address.where(["address_id = ?", Property.where(["property_id = ?", interaction.property_id]).first.address_id]).first.line_1, Property.where(["property_id = ?", interaction.property_id]).first %></td>
+              <td><%= link_to 'Show', interaction %></td>
+              <td><%= link_to 'Edit', edit_interaction_path(interaction) %></td>
+              <td><%= link_to 'Destroy', interaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+      
+</div>
+  
+<%= link_to 'New Interaction', new_interaction_path, :class => 'btn btn-primary' %>
 <br>
+<%= link_to 'Back', home_path, :class => 'btn btn-secondary' %>
 
-<%= link_to 'New Interaction', new_interaction_path %>
+</div>
