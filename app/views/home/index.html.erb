@@ -301,11 +301,11 @@
                   function initMap() {
                     <% if @properties.size > 0 %>
                       var uluru = 0
-                      <%= if @properties.first.latitude != -1 and @properties.first.longitude != -1 %>
+                      <% if @properties.first.latitude != -1 and @properties.first.longitude != -1 %>
                         uluru = {lat: <%= @properties.first.latitude %>, lng: <%= @properties.first.longitude %>};
-                      <%= else %>
+                      <% else %>
                         var uluru = {lat: -25.363, lng: 131.044};
-                      <%= end %>
+                      <% end %>
                       var map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 4,
                         center: uluru
