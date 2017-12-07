@@ -234,7 +234,7 @@
 </p>
 
 <% if @data.success? %>
-  <strong>Additional Information from Zillow</strong>
+  <h2>Additional Information from Zillow</h2>
   <p><%= link_to "Customize Zillow Info", new_zillow_pref_path %></p>
   <% if @zillow_pref == -1 %>
     <% @data.links.each do |name, url| %>
