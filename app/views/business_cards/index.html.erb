@@ -20,7 +20,7 @@
           <% @business_cards.each do |business_card| %>
             <tr>
               <% if business_card.contact_id != -1 %>
-                <td><%= link_to Contact.where(["contact_id = ?", business_card.contact_id]).first.last_name, Contact.where(["contact_id = ?", business_card.contact_id]).first %></td>
+                <td><%= link_to Contact.where(["contact_id = ?", business_card.contact_id]).first.last_name << ", " << Contact.where(["contact_id = ?", business_card.contact_id]).first.first_name, Contact.where(["contact_id = ?", business_card.contact_id]).first %></td>
               <% else %>
                 <td><%= "No Contact" %></td>
               <% end %>

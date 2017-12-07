@@ -3,7 +3,7 @@
 <p>
   <strong>Contact:</strong>
   <% if @business_card.contact_id != -1 %>
-    <%= link_to Contact.where(["contact_id = ?", @business_card.contact_id]).first.last_name, Contact.where(["contact_id = ?", @business_card.contact_id]).first %>
+    <%= link_to Contact.where(["contact_id = ?", @business_card.contact_id]).first.last_name << ", " << Contact.where(["contact_id = ?", @business_card.contact_id]).first.first_name, Contact.where(["contact_id = ?", @business_card.contact_id]).first %>
   <% else %>
     <%= "No Contact" %>
   <% end %>
