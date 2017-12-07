@@ -17,6 +17,7 @@
       <% Contact.where(["user_email = ?", current_user.email]).each do |c| -%>
         <%= content_tag(:option, c.last_name << ', ' << c.first_name, value: c.contact_id) %>
       <% end %>
+      <option value=-1>No Contact</option>
     <% end %>
   </div>
 
