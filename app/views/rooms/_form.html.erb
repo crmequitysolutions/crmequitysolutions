@@ -39,6 +39,21 @@
     <%= form.label :closets %>
     <%= form.number_field :closets, id: :room_closets %>
   </div>
+  
+  <div class="field">
+    <%= form.label :outlets %>
+    <%= form.number_field :outlets, id: :room_outlets %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :wall_type %>
+    <%= form.text_field :wall_type, id: :room_wall_type %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :flooring_type %>
+    <%= form.text_field :flooring_type, id: :room_flooring_type %>
+  </div>
 
   <div class="field">
     <%= form.label :notes %>

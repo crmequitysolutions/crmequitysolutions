@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171129210149) do
+ActiveRecord::Schema.define(version: 20171207190412) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "address_id"
@@ -221,6 +221,9 @@ ActiveRecord::Schema.define(version: 20171129210149) do
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "wall_type"
+    t.string "flooring_type"
+    t.integer "outlets"
   end
 
   create_table "templates", force: :cascade do |t|
