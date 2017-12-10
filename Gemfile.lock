@@ -237,6 +237,7 @@ DEPENDENCIES
   gmaps4rails
   jbuilder
   jquery-rails
+  mail
   mail_merge
   mini_magick (~> 4.3)
   pg

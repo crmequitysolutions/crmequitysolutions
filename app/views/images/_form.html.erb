@@ -12,7 +12,7 @@
   <% end %>
  
   <div class="field">
-    <%= f.label :property_id %><br>
+    <%= f.label :property_id %><font color='#ff0000'>*</font><br>
     <%= f.select(:property_id) do %>
       <% Property.where(["user_email = ?", current_user.email]).each do |c| -%>
         <%= content_tag(:option, Address.where(["address_id = ?", c.address_id]).first.line_1 << ', ' << Address.where(["address_id = ?", c.address_id]).first.city << ', ' << Address.where(["address_id = ?", c.address_id]).first.state << ' ' << Address.where(["address_id = ?", c.address_id]).first.zip_code.to_s, value: c.property_id) %>
@@ -24,7 +24,7 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= f.label :image %><br>
+    <%= f.label :image %><font color='#ff0000'>*</font><br>
     <%= f.file_field :image %>
   </div>
   <div class="actions">

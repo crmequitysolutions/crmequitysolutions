@@ -17,7 +17,7 @@
   <tbody>
     <% @business_cards.each do |business_card| %>
       <tr>
-        <td><%= link_to Contact.where(["contact_id = ?", business_card.contact_id]).first.last_name, Contact.where(["contact_id = ?", business_card.contact_id]).first %></td>
+        <td><%= link_to Contact.where(["contact_id = ?", business_card.contact_id]).first.last_name << ", " << Contact.where(["contact_id = ?", business_card.contact_id]).first.first_name, Contact.where(["contact_id = ?", business_card.contact_id]).first %></td>
         <td><%= image_tag business_card.image.thumb.url %></td>
         <td><%= link_to 'Show', business_card %></td>
         <td><%= link_to 'Edit', edit_business_card_path(business_card) %></td>

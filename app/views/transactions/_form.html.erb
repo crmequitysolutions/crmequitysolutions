@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :purchased_by %>
+    <%= form.label :purchased_by %><font color='#ff0000'>*</font>
     <%= form.select(:purchased_by) do %>
       <% Contact.where(["user_email = ?", current_user.email]).each do |c| -%>
         <%= content_tag(:option, c.last_name << ', ' << c.first_name, value: c.contact_id) %>
@@ -26,7 +26,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :property_id %>
+    <%= form.label :property_id %><font color='#ff0000'>*</font>
     <%= form.select(:property_id) do %>
       <% Property.where(["user_email = ?", current_user.email]).each do |c| -%>
         <%= content_tag(:option, Address.where(["address_id = ?", c.address_id]).first.line_1 << ', ' << Address.where(["address_id = ?", c.address_id]).first.city << ', ' << Address.where(["address_id = ?", c.address_id]).first.state << ' ' << Address.where(["address_id = ?", c.address_id]).first.zip_code.to_s, value: c.property_id) %>
@@ -35,7 +35,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :price %>
+    <%= form.label :price %><font color='#ff0000'>*</font>
     <%= form.text_field :price, id: :transaction_price %>
   </div>
 

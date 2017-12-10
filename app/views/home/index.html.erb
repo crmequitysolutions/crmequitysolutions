@@ -46,7 +46,10 @@
               <a class="nav-link" href="guides">Guide</a>
             </li>
             <li class="nav-item">
-              <%= link_to 'Edit Zillow Preferences', new_zillow_pref_path %>
+              <a class="nav-link" href="zillow_prefs/new">Edit Zillow Preferences</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="template_send">Send a Template</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="contact_page">Contact Me</a>
@@ -64,9 +67,6 @@
         </div>
       </nav>
     </div>
-
-        
-    <p id="notice"><%= notice %></p>
     
     <!-- HREF Modal -->
     <!-- Takes a reference and loads it -->
@@ -134,7 +134,7 @@
           
             <a data-toggle="collapse" data-parent="#links" href="#new-links-panel" 
             class="list-group-item collapse">
-              Quick Add
+              <font size=3>Quick Add</font>
             </a>
             <div id='new-links-panel' class='panel-collapse collapse' style='background:gray'>
               <div class ='panel-body' style='padding:8px'>
@@ -280,6 +280,7 @@
               </tbody>
             </table>
             </div>
+            <a data-id="<%= new_contact_path %>" class='btn btn-primary href-button'>New Contact</a>
             </div> <!-- End Panel Body -->
           </div> <!-- End Contacts Panel -->
           <!-- Properties Panel -->
@@ -437,6 +438,7 @@
                   </tbody>
                 </table>
               </div>
+              <a data-id="<%= new_property_path %>" class='btn btn-primary href-button'>New Property</a>
             </div> <!-- End Panel Body -->
           </div> <!-- End Properties Panel -->
         </div> <!-- End Right Side Main -->

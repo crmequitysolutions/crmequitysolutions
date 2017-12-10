@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :contact_id %>
+    <%= form.label :contact_id %><font color='#ff0000'>*</font>
     <%= form.select(:contact_id) do %>
       <% Contact.where(["user_email = ?", current_user.email]).each do |c| -%>
         <%= content_tag(:option, c.last_name << ', ' << c.first_name, value: c.contact_id) %>

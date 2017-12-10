@@ -36,6 +36,10 @@ class CardUploader < CarrierWave::Uploader::Base
     process :resize_to_fit => [50, 50]
   end
   
+  version :bcard do
+    process :resize_to_fit => [300,300]
+  end
+  
   version :normal do
   end
 
