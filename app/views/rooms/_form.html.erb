@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :property_id %>
+    <%= form.label :property_id %><font color='#ff0000'>*</font>
     <%= form.select(:property_id) do %>
       <% Property.where(["user_email = ?", current_user.email]).each do |c| -%>
         <%= content_tag(:option, Address.where(["address_id = ?", c.address_id]).first.line_1 << ', ' << Address.where(["address_id = ?", c.address_id]).first.city << ', ' << Address.where(["address_id = ?", c.address_id]).first.state << ' ' << Address.where(["address_id = ?", c.address_id]).first.zip_code.to_s, value: c.property_id) %>
@@ -38,6 +38,21 @@
   <div class="field">
     <%= form.label :closets %>
     <%= form.number_field :closets, id: :room_closets %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :outlets %>
+    <%= form.number_field :outlets, id: :room_outlets %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :wall_type %>
+    <%= form.text_field :wall_type, id: :room_wall_type %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :flooring_type %>
+    <%= form.text_field :flooring_type, id: :room_flooring_type %>
   </div>
 
   <div class="field">

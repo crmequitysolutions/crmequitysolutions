@@ -2,13 +2,21 @@
 
 <p>
   <strong>Contact:</strong>
-  <%= link_to Contact.where(["contact_id = ?", @business_card.contact_id]).first.last_name, Contact.where(["contact_id = ?", @business_card.contact_id]).first %>
+  <% if @business_card.contact_id != -1 %>
+    <%= link_to Contact.where(["contact_id = ?", @business_card.contact_id]).first.last_name << ", " << Contact.where(["contact_id = ?", @business_card.contact_id]).first.first_name, Contact.where(["contact_id = ?", @business_card.contact_id]).first %>
+  <% else %>
+    <%= "No Contact" %>
+  <% end %>
 </p>
 
 <p>
   <strong>Image:</strong>
-  <%= image_tag @business_card.image.normal.url %>
+  <%= image_tag @business_card.image.bcard.url %>
 </p>
 
 <%= link_to 'Edit', edit_business_card_path(@business_card) %> |
-<%= link_to 'Back', see_business_cards_path(@business_card.contact_id) %>
+<% if @business_card.contact_id != -1 %>
+  <%= link_to 'Back', see_business_cards_path(@business_card.contact_id) %>
+<% else %>
+  <%= link_to 'Back', home_path %>
+<% end %>

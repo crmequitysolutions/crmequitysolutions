@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :address_id %>
+    <%= form.label :address_id %><font color='#ff0000'>*</font>
     <%= form.select(:address_id) do %>
       <% Address.where(["user_email = ?", current_user.email]).each do |c| -%>
         <%= content_tag(:option, c.line_1 << ', ' << c.city << ', ' << c.state << ' ' << c.zip_code.to_s, value: c.address_id) %>
@@ -21,7 +21,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :owner %>
+    <%= form.label :owner %><font color='#ff0000'>*</font>
     <%= form.select(:owner) do %>
       <% Contact.where(["user_email = ?", current_user.email]).each do |c| -%>
         <%= content_tag(:option, c.last_name << ', ' << c.first_name, value: c.contact_id) %>

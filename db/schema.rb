@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171129210149) do
+ActiveRecord::Schema.define(version: 20171207192645) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "address_id"
@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(version: 20171129210149) do
     t.integer "address_id"
     t.integer "owner"
     t.string "property_type"
-    t.string "time_on_mrkt"
+    t.float "time_on_mrkt"
     t.string "construction"
     t.boolean "basement_ind"
     t.boolean "public_water_ind"
@@ -149,17 +149,17 @@ ActiveRecord::Schema.define(version: 20171129210149) do
     t.datetime "kitch_reno_date"
     t.datetime "bath_reno_date"
     t.string "roof_type"
-    t.string "roof_age"
+    t.float "roof_age"
     t.boolean "roof_leaks_ind"
     t.string "plumb_type"
-    t.string "plumb_age"
+    t.float "plumb_age"
     t.boolean "plumb_leak_ind"
     t.string "foundation"
     t.string "heat_type"
-    t.string "heat_age"
+    t.float "heat_age"
     t.boolean "heat_works"
     t.string "cool_type"
-    t.string "cool_age"
+    t.float "cool_age"
     t.boolean "cool_works"
     t.string "window_type"
     t.integer "window_nbr"
@@ -221,6 +221,9 @@ ActiveRecord::Schema.define(version: 20171129210149) do
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "wall_type"
+    t.string "flooring_type"
+    t.integer "outlets"
   end
 
   create_table "templates", force: :cascade do |t|

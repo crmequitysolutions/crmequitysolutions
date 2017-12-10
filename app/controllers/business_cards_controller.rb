@@ -1,7 +1,6 @@
 class BusinessCardsController < ApplicationController
   before_action :set_business_card, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :check_contact, only: [:new]
 
   # GET /business_cards
   # GET /business_cards.json
