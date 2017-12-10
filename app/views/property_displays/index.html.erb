@@ -163,22 +163,14 @@ span.psw {
       <img src="logo.jpg" alt="Avatar" class="avatar">
     </div>
 
-    <div class="form-group">
-      <label><b>Username</b></label>
-      <input type="text" class="form-control" placeholder="Enter Username" name="uname" required>
-
-      <label><b>Password</b></label>
-      <input type="password" class="form-control" placeholder="Enter Password" name="psw" required>
-        
-      <button type="submit">Login</button>
-      <input type="checkbox" checked="checked"> Remember me
-    </div>
-
-    <div class="container-fluid" style="background-color:#f1f1f1">
-        <button type="button" class = "button btn-default">Sign Up</button>
-      <button type="button" class = "button btn-default">Forgot Password?</button>
-
-    </div>
+    <%= form_for("user", :url => user_session_path) do |f| %>
+  <%= f.text_field :email %>
+  <%= f.password_field :password %>
+  <%= f.check_box :remember_me %>
+  <%= f.label :remember_me %>
+  <%= f.submit 'Sign in' %>
+  <%= link_to "Forgot your password?", new_password_path('user') %>
+<% end %> 
   </form>
 </div>
 
