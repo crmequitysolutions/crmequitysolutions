@@ -1,3 +1,5 @@
+# Authored by: Mitchell Berger, Talha Koc, and Noah Over for COMPSCI 408 at Duke University for Tori Patterson
+
 class RentalUnitsController < ApplicationController
   before_action :set_rental_unit, only: [:show, :edit, :update, :destroy]
   before_action :check_address, only: [:new]
