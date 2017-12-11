@@ -1,3 +1,5 @@
+# Authored by: Mitchell Berger, Talha Koc, and Noah Over for COMPSCI 408 at Duke University for Tori Patterson
+
 class InteractionsController < ApplicationController
   before_action :set_interaction, only: [:show, :edit, :update, :destroy]
   before_action :check_contact, only: [:new]

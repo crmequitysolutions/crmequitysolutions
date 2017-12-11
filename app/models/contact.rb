@@ -1,3 +1,5 @@
+# Authored by: Mitchell Berger, Talha Koc, and Noah Over for COMPSCI 408 at Duke University for Tori Patterson
+
 class Contact < ApplicationRecord
     validates_presence_of :contact_id, :address_id, :first_name, :last_name, :phone, :email, :contact_type
     validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, allow_blank: true

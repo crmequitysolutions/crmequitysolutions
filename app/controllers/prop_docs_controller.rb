@@ -1,3 +1,5 @@
+# Authored by: Mitchell Berger, Talha Koc, and Noah Over for COMPSCI 408 at Duke University for Tori Patterson
+
 class PropDocsController < ApplicationController
   before_action :set_prop_doc, only: [:show, :edit, :update, :destroy]
   before_action :check_property, only: [:new]

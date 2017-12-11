@@ -1,3 +1,5 @@
+<!-- Authored by: Mitchell Berger, Talha Koc, and Noah Over for COMPSCI 408 at Duke University for Tori Patterson -->
+
 <html>
   <style>
   .modal-body {
@@ -440,17 +442,31 @@
     <footer id="footer">
       <p>CRM Equity Solutions, &copy; 2017</p>
     </footer>
+    
     <!-- save these variables for all scripts to use -->
+  
     <%= javascript_tag do %>
       var contacts = <%= @contacts.to_json.html_safe %>;
       var properties = <%= @properties.to_json.html_safe %>
     <% end %>
     
-    <!-- Script for loading html into hrefModal -->
+    <!-- Script for loading html into hrefModal @author Talha Koc -->
     <script>
       
+      /** functions to run on documentIsReady */
       $(document).ready(function(){
-        
+        /** 
+         * Adds event listener to all elements of class=href-button 
+         * 
+         * Purpose is to allow any element to load an html file into a modal view.
+         * Dependecies:
+         *    This can only load one element from an HTML file
+         *     and it does this by looking for an element with 
+         *     id = "BODY-CONTENT". Without this tag in the outer 
+         *     most element, nothing will be loaded into the modal
+         *    The element with class=href-button must have a data-id 
+         *     set to the html reference
+         */
         $('.href-button').on('click', function(e){
           e.stopPropagation();
           var t = e.target;
@@ -463,11 +479,7 @@
           });
           $('#hrefModal').modal('show');
         });
-        
-        $('#hrefModal').on('show.bs.modal', function (e) {
-          console.log('hrefModal show')
-        });
-        
+        /** Once modal view is exited, remove the html node that was loaded into it */
         $('#hrefModal').on('hidden.bs.modal', function (e) {
           console.log('hrefModal hidden');
           var node = $("#hrefModalContent")[0]; //TODO add check
@@ -475,7 +487,7 @@
             node.removeChild(node.lastChild);
           }
         });
-        
+        /** This isn't my code and not sure why this is here */
         $('.delete-button').on('click', function(e){
           console.log('delete clicked');
           throw true;
@@ -486,45 +498,72 @@
     
     </script>
     
-    <!-- Table Selector Scripts -->
+    <!-- Table Selector Scripts @author Talha Koc-->
     <script>
-      //TODO : Change HTML header when table selection is changed
-      
+     
+      /**
+      * onDocumentReady
+      * 
+      * Functions to run when the "documentIsReady" function gets called within the browser
+      * 
+      */ 
       $(document).ready(function(){
+        /**
+         * Switches to Properties Table 
+         * 
+         * Shows the element with the propertiesPanel id 
+         * and hides the element with the contactsPanel id
+         * @constructor
+         */
         function switchToProperties(){
           $('#propertiesPanel').collapse('show');
           $('#contactsPanel').collapse('hide');
         }
+        /**
+         * Switches to Contacts Table 
+         * 
+         * Does the reverse of the switchToProperties function
+         * @constructor
+         */
         function switchToContacts(){
           $('#propertiesPanel').collapse('hide');
           $('#contactsPanel').collapse('show');
         }
+        /** Adds event listener to the Properties button in the Tables panel */ 
         $('#table-option-properties').on('click', function(e){
           switchToProperties();
         });
+        /** Adds event listener to the Contacts button in the Tables panel */
         $('#table-option-contacts').on('click', function(e){
           switchToContacts();
         });
+        /** Adds event listener to the Properties Table to switch the header to the Properties Header*/
         $('#propertiesPanel').on('shown.bs.collapse', function(){
           $('#properties-page-header').collapse('show');
           $('#contacts-page-header').collapse('hide');
         });
+        /** Adds event listener to the Contacts Table to switch the header to the Contacts Header */
         $('#contactsPanel').on('shown.bs.collapse', function(){
           $('#properties-page-header').collapse('hide');
           $('#contacts-page-header').collapse('show');         
         });
+        /** Displays the Contacts Table on load */
         switchToContacts();
-
+        /** Show Simple Search on Contacts Table by default*/
+        $('#simpleSearch').collapse('show');
+        /** Switches the search bar on the Contacts table to Simple Search*/
         $('#simpleSearch').on('show.bs.collapse', function(){
           $('#advancedSearch').collapse('hide');
         });
+        /** Switches the search bar on the Contacts table to Advanced Search*/
          $('#advancedSearch').on('show.bs.collapse', function(){
           $('#simpleSearch').collapse('hide');
         });
-        $('#simpleSearch').collapse('show');
+        /** Switches the search bar on the Properties table to Simple Search*/
         $('#simplePropertySearch').on('show.bs.collapse', function(){
           $('#advancedPropertySearch').collapse('hide');
         });
+        /** Switches the search bar on the Properties table to Advanced Search*/
          $('#advancedPropertySearch').on('show.bs.collapse', function(){
           $('#simplePropertySearch').collapse('hide');
         });
@@ -532,7 +571,7 @@
       });
     </script>
     
-    <!-- EDITOR SCRIPTS //TODO MOVE THESE  -->
+    <!-- EDITOR SCRIPTS  -->
     <script type="text/javascript">
         function view_text () {
             // Find html elements.
