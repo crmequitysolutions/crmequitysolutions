@@ -1,0 +1,21 @@
+### Frequently Asked Questions
+
+Here we will outline questions the user might have and how to solve them:
+
+Q: There's an empty screen when I click one of the Create New links.
+A: Just refresh the page and try again.
+
+Q: I clicked "Send a Template" and the site crashed
+A: This means you haven't created a property yet
+
+Q: What is this giant grey box above the properties?
+A: This is a map view of all the properties. Hit the full screen button on the top right to get it to load.
+
+Q: What is an investor pref?
+A: An investor pref allows the user to set specific information that they know an investor is looking for
+in a property. They can then use the "Match" button to see which of their properties fits what each investor
+is looking for.
+
+Q: Can I change the values I see on the home page?
+A: Unfortunately, you cannot customize the values you see right now however that is something we plan to
+work on in the future.

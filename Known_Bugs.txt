@@ -1,0 +1,12 @@
+### Bugs
+
+Here we will outline all known bugs and potential causes:
+
+* Trying to send a template before a property is created causes a crash
+* Map doesn't load properly
+* "Forgot my password" doesn't work since Devise isn't set up to send emails currently
+* Searching properties doesn't work
+* Sometimes modals don't populate and the page has to be refreshed
+* In the new address modal, clicking new community takes the user to a separate page and deletes all current progress
+* In the separate new community page described above, hitting the back button doesn't take the user back home
+* New lines in the template editor don't translate to the email (all text is just on 1 line)
