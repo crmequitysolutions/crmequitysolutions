@@ -42,4 +42,4 @@ Ruby * Modules: (located in the *file)
 --------------
 ### Deployment
 
-See the App Maintenance Documentation in the AppMaintenanceDocumentation.md file in the root folder of the project.
+You can currently access the app at https://rocky-island-55465.herokuapp.com/. You can log into Heroku with the crmequitysolutions@gmail.com email and the password "compsci408". That is also the password for the gmail account itself. You can clone the Heroku app into any IDE and use any of the basic Heroku commands from the command line to maintain the app.
