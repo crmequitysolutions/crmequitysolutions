@@ -13,7 +13,7 @@ This project will create an app to be used by wholesalers for a variety of purpo
 ### Dependencies
 Ruby * Modules: (located in the *file)
 * 'bootstrap', '~> 4.0.0.alpha3.1'
-* 'rails_bootstrap_navbar'
+* 'rails\_bootstrap\_navbar'
 * 'rails' version 5.0 or later
 * 'sass-rails'
 * 'coffee-rails'
