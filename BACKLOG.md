@@ -21,7 +21,7 @@ Backlog
 * Add ability to send templates to investors or contacts without properties
 * Add new line to template editor
 * Fix map not loading until taking it fullscreen
-* Put rooms database on home page
+* Put rooms database on home page (\rooms is the link to add)
 * Deal with guide and contact pages
 * Make issues not disappear with Amazon S3
 * Specify need to create address and contact before property
@@ -34,4 +34,5 @@ Backlog
 * Set time zone based on property address
 * Make password able to be reset
 * Make it so entire item is not canceled on error
+* Add rental units to front end (\rental_units is the link to add)
 
