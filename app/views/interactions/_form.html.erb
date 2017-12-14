@@ -20,6 +20,7 @@
         <%= content_tag(:option, c.last_name << ', ' << c.first_name, value: c.contact_id) %>
       <% end %>
     <% end %>
+    <%= link_to 'New Contact', new_contact_path %>
   </div>
 
   <div class="field">
@@ -49,6 +50,7 @@
         <%= content_tag(:option, Address.where(["address_id = ?", c.address_id]).first.line_1 << ', ' << Address.where(["address_id = ?", c.address_id]).first.city << ', ' << Address.where(["address_id = ?", c.address_id]).first.state << ' ' << Address.where(["address_id = ?", c.address_id]).first.zip_code.to_s, value: c.property_id) %>
       <% end %>
     <% end %>
+    <%= link_to 'New Property', new_property_path %>
   </div>
 
   <div class="actions">

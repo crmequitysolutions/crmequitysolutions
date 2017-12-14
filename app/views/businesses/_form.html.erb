@@ -25,6 +25,7 @@
         <%= content_tag(:option, c.line_1 << ', ' << c.city << ', ' << c.state << ' ' << c.zip_code.to_s, value: c.address_id) %>
       <% end %>
     <% end %>
+    <%= link_to 'New Address', new_address_path %>
   </div>
 
   <div class="field">
@@ -44,6 +45,7 @@
         <%= content_tag(:option, c.last_name << ', ' << c.first_name, value: c.contact_id) %>
       <% end %>
     <% end %>
+    <%= link_to 'New Contact', new_contact_path %>
   </div>
 
   <div class="field">
@@ -54,6 +56,7 @@
       <% end %>
       <option value=-1>No Secondary Contact</option>
     <% end %>
+    <%= link_to 'New Contact', new_contact_path %>
   </div>
 
   <div class="actions">
