@@ -23,7 +23,9 @@ So in general, each view relating to tables will have the following files:
 
 ------------
 ### Splash Screen and Login
+The splash screen is just a generic Bootstrap template. The logo is being loaded from Imgur because there was an error trying to save it to the project. The login and sign up buttons both link to the appropriate pages. It is located under the application view folder in the ndex.html.erb file.
 
+Login and sign up are both done using a ruby gem called Devise. All the Devise views can be found under the devise folder in views. Sessions contains the login page and Registrations contains the sign up page. There is also a mailer that can be used to set up email confirmations and change passwords, but this has not yet been implemented. Devise checks to make sure that the email entered is a valid email and also makes sure the password is at least 6 characters long. The AuthController is used to return whether the user is logged in or not and the command authenticate_user is put at the top of every controller that is only available to users who are signed in.
 
 ------------
 ### Home
