@@ -10,7 +10,7 @@
 
 ###Tested Platforms
 CRM Equity Solutions has been tested on the following platforms:  
-* Chrome (Desktop) on macOS Sierra and Windows
+* Chrome Version 61.0.3163.100 (Desktop) on macOS Sierra and Windows
 * Firefox (Desktop) on macOS Sierra and Windows
 * Chrome iOS App on iPhone 6s Plus
-* Chrome Android App on Samsug Galaxy Note 8
+* Chrome Android App Version 63.0.3239.111 on Samsug Galaxy Note 8
