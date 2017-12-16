@@ -1,4 +1,4 @@
-###Functionality
+### Functionality
 * Allows users to add addresses, contacts, properties, etc. to the database
 * Allows users to search or sort said database by columns
 * Allows users to view all of their properties on a map
@@ -8,7 +8,7 @@
 * Allows users to save business cards and images of their properties to the database
 
 
-###Tested Platforms
+### Tested Platforms
 CRM Equity Solutions has been tested on the following platforms:  
 * Chrome Version 61.0.3163.100 (Desktop) on macOS Sierra and Windows
 * Firefox (Desktop) on macOS Sierra and Windows
